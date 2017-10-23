@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   namespace :customer do
     root 'top#index'
   end
+
+  get '*anything' => 'errors#routing_error'
 end
