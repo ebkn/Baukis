@@ -1,4 +1,4 @@
-class Staff::Base < ApplicatoinController
+class Staff::Base < ApplicationController
   private
 
   def current_staff_member
