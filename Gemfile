@@ -8,6 +8,7 @@ end
 gem 'rails', '~> 5.0.6'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.0'
+gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -34,7 +35,7 @@ group :development do
   gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rack-mini-profiler'
+  # gem 'rack-mini-profiler'
   gem 'erb2haml'
 end
 

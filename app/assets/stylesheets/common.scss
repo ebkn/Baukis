@@ -1,0 +1,41 @@
+html, body {
+  height: 100%;
+}
+
+header {
+  padding: 5px;
+  span.logo-mark {
+    font-weight: bold;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: $dark_gray;
+  color: $very_light_gray;
+  p {
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+  }
+}
+
+.wrapper {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 100%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  background-color: $gray;
+  .container {
+    h1 {
+      margin: 0;
+      padding: $moderate * 1.5 $moderate;
+      font-size: $large;
+      font-weight: normal;
+      color: $light_gray;
+    }
+  }
+}
