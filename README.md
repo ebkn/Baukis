@@ -1,24 +1,13 @@
-# README
+# Baukis
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+Baukis is customer management system for company.
 
-* Ruby version
+This is sample for studying Ruby on Rails.
 
-* System dependencies
+## Dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Ruby 2.4.2
+- Rails 5.0.6
+- MySQL 5.7
