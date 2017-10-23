@@ -4,7 +4,6 @@ html, body {
 
 header {
   padding: 5px;
-  background-color: $dark_cyan;
   span.logo-mark {
     font-weight: bold;
   }
@@ -23,11 +22,20 @@ footer {
   }
 }
 
-#wrapper {
+.wrapper {
   position: relative;
   box-sizing: border-box;
   min-height: 100%;
   margin: 0 auto;
   padding-bottom: 20px;
   background-color: $gray;
+  .container {
+    h1 {
+      margin: 0;
+      padding: $moderate * 1.5 $moderate;
+      font-size: $large;
+      font-weight: normal;
+      color: $light_gray;
+    }
+  }
 }
