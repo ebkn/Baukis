@@ -23,7 +23,7 @@ html, body {
     }
     .header-right {
       width: 100%;
-      background-color: #1C1F23;
+      background-color: $black;
       text-align: center;
       &-button {
         display: inline-block;
@@ -39,11 +39,11 @@ html, body {
   }
 
   footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    background-color: $dark_gray;
-    color: $very_light_gray;
+    height: 60px;
+    line-height: 60px;
+    background-color: $black;
+    color: white;
     p {
       text-align: center;
       padding: 5px;
@@ -96,11 +96,11 @@ html, body {
     .header-right {
       -webkit-flex-grow: 1;
       flex-grow: 1;
-      background-color: #1C1F23;
+      background-color: $black;
       text-align: right;
       &-button {
         display: inline-block;
-        width: 100px;
+        width: 150px;
         line-height: 60px;
         color: $very_light_gray;
         text-decoration: none;
@@ -108,7 +108,7 @@ html, body {
         font-size: 15px;
         font-weight: bold;
         &:hover {
-          background-color: rgba(255, 255, 255, 0.1);
+          background-color: $light_gray;
           color: $gray;
         }
       }
@@ -119,12 +119,15 @@ html, body {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: $dark_gray;
-    color: $very_light_gray;
+    height: 60px;
+    background-color: $black;
+    color: white;
     p {
+      box-sizing: border-box;
       text-align: center;
-      padding: 5px;
+      line-height: 60px;
       margin: 0;
+      padding: 0;
     }
   }
 

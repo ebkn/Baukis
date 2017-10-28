@@ -1,19 +1,20 @@
 // colors
 
-// gray
+// main color
+$black: #263238;
+$gray: #F5F5F5;
 $dark_gray: #666666;
-$gray: #cccccc;
 $light_gray: #eeeeee;
 $very_light_gray: #fafafa;
 
 // red (for admin)
 $admin_red: #D81B60;
-$darken_admin_red: darken($admin_red, 25%);
+$admin_dark_red: darken($admin_red, 25%);
 
 // green (for staff)
 $staff_green: #7CB342;
-$darken_staff_green: darken($staff_green, 25%);
+$staff_dark_green: darken($staff_green, 25%);
 
 // blue (for customer)
 $customer_blue: #039BE5;
-$darken_customer_blue: darken($customer_blue, 25%);
+$customer_dark_blue: darken($customer_blue, 25%);
