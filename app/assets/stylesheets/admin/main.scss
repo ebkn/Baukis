@@ -1,11 +1,13 @@
 header {
-  background-color: $dark_magenta;
+  .logo-mark {
+    background-color: $admin_red;
+  }
 }
 
 .wrapper {
   .container {
     h1 {
-      background-color: $very_dark_magenta;
+      background-color: $darken_admin_red;
     }
   }
 }

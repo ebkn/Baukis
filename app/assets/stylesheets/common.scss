@@ -3,13 +3,44 @@ html, body {
 }
 
 header {
-  padding: 5px;
-  span.logo-mark {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  height: 60px;
+  line-height: 60px;
+  .logo-mark {
+    box-sizing: border-box;
+    -webkit-flex-basis: 250px;
+    text-align: center;
+    font-size: 30px;
     font-weight: bold;
+    text-decoration: none;
+    color: white;
+    &-addition {
+      font-weight: normal;
+      font-size: 15px;
+    }
   }
-  a {
-    float: right;
-    color: $very_light_gray;
+  .header-right {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    background-color: #1C1F23;
+    text-align: right;
+    &-button {
+      display: inline-block;
+      width: 100px;
+      line-height: 60px;
+      color: $very_light_gray;
+      text-decoration: none;
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: $gray;
+      }
+    }
   }
 }
 

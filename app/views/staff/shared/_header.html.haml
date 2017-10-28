@@ -1,6 +1,9 @@
 %header
-  %span.logo-mark BAUKIS
-  - if current_staff_member
-    = link_to 'ログアウト', staff_session_path, method: :delete
-  - else
-    = link_to 'ログイン', staff_login_path
+  = link_to staff_root_path, class: 'logo-mark' do
+    BAUKIS
+    %span.logo-mark-addition for staff
+  .header-right
+    - if current_staff_member
+      = link_to 'ログアウト', staff_session_path, method: :delete, class: 'header-right-button'
+    - else
+      = link_to 'ログイン', staff_login_path, class: 'header-right-button'

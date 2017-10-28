@@ -6,14 +6,14 @@ $gray: #cccccc;
 $light_gray: #eeeeee;
 $very_light_gray: #fafafa;
 
-// magenta (for admin)
-$dark_magenta: #7D3C7D;
-$very_dark_magenta: darken($dark_magenta, 25%);
+// red (for admin)
+$admin_red: #D81B60;
+$darken_admin_red: darken($admin_red, 25%);
 
-// syan (for staf)
-$dark_cyan: #448888;
-$very_dark_cyan: darken($dark_cyan, 25%);
+// green (for staff)
+$staff_green: #7CB342;
+$darken_staff_green: darken($staff_green, 25%);
 
-// yellow (for customer)
-$dark_yellow: #7D7D3C;
-$very_dark_yellow: darken($dark_yellow, 25%);
+// blue (for customer)
+$customer_blue: #039BE5;
+$darken_customer_blue: darken($customer_blue, 25%);

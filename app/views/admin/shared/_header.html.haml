@@ -1,6 +1,9 @@
 %header
-  %span.logo-mark BAUKIS
-  - if current_administrator
-    = link_to 'ログアウト', admin_session_path, method: :delete
-  - else
-    = link_to 'ログイン', admin_login_path
+  = link_to admin_root_path, class: 'logo-mark' do
+    BAUKIS
+    %span.logo-mark-addition for admin
+  .header-right
+    - if current_administrator
+      = link_to 'ログアウト', admin_session_path, method: :delete, class: 'header-right-button'
+    - else
+      = link_to 'ログイン', admin_login_path, class: 'header-right-button'
