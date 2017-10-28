@@ -7,5 +7,5 @@ class Admin::Base < ApplicationController
     end
   end
 
-  helper_method :current_staff_member
+  helper_method :current_administrator
 end
