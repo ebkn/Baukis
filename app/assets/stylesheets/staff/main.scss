@@ -1,11 +1,13 @@
 header {
-  background-color: $dark_cyan;
+  .logo-mark {
+    background-color: $staff_green;
+  }
 }
 
 .wrapper {
   .container {
     h1 {
-      background-color: $very_dark_cyan;
+      background-color: $staff_dark_green;
     }
   }
 }
