@@ -18,3 +18,6 @@
 
 # Ignore assets file (precompile)
 /public/assets/*
+
+# Ignore coverage directory
+/coverage
