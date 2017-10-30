@@ -1,47 +1,39 @@
-// for pc
-@media (min-width: 480px) {
+// for smart phone
+@media (max-width: 480px) {
   html, body {
     height: 100%;
   }
 
   header {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: flex-start;
-    justify-content: flex-start;
-    height: 60px;
-    line-height: 60px;
+    width: 100%;
     .logo-mark {
-      box-sizing: border-box;
-      -webkit-flex-basis: 250px;
+      display: block;
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
       text-align: center;
-      font-size: $title_large;
+      font-size: $title_large_phone;
       font-weight: bold;
       text-decoration: none;
       color: white;
       &-addition {
         font-weight: normal;
-        font-size: $small;
+        font-size: $normal;
       }
     }
     .header-right {
-      -webkit-flex-grow: 1;
-      flex-grow: 1;
+      width: 100%;
       background-color: $black;
-      text-align: right;
+      text-align: center;
       &-button {
         display: inline-block;
-        width: 150px;
+        width: 100px;
         line-height: 60px;
         color: $very_light_gray;
         text-decoration: none;
         text-align: center;
         font-size: $small;
         font-weight: bold;
-        &:hover {
-          background-color: $dark_gray;
-          color: $gray;
-        }
       }
     }
   }
@@ -51,7 +43,7 @@
     box-sizing: border-box;
     min-height: 100%;
     margin: 0 auto;
-    padding-bottom: $very_wide;
+    padding-bottom: 20px;
     background-color: $light_gray;
     .container {
       h1.title {
@@ -65,18 +57,15 @@
   }
 
   footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     height: 60px;
+    line-height: 60px;
     background-color: $black;
     color: white;
     p {
-      box-sizing: border-box;
       text-align: center;
-      line-height: 60px;
+      padding: $moderate;
       margin: 0;
-      padding: 0;
     }
   }
 }

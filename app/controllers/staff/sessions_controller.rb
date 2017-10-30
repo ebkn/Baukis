@@ -13,6 +13,7 @@ class Staff::SessionsController < Staff::Base
     if @form.email.present?
       staff_member = StaffMember.find_by(email_for_index: @form.email.downcase)
     end
+    # TODO: check password and start_date
     if staff_member
       session[:staff_member_id] = staff_member.id
       redirect_to staff_root_path

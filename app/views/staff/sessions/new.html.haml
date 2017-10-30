@@ -1,12 +1,12 @@
 - @title = 'ログイン'
-#login-form
-  %h1= @title
+.login_form
+  %h1.login_form-title= @title
   = form_for @form, url: :staff_session do |f|
-    %div
-      = f.label :email, 'メールアドレス'
-      = f.text_field :email
-    %div
-      = f.label :password, 'パスワード'
-      = f.password_field :password
-    %div
+    .login_form-input
+      = f.label :email, 'Email'
+      = f.text_field :email, placeholder: 'メールアドレスを入力', required: true
+    .login_form-input
+      = f.label :password, 'Password'
+      = f.password_field :password, placeholder: 'パスワードを入力', required: true
+    .login_form-input
       = f.submit 'ログイン'

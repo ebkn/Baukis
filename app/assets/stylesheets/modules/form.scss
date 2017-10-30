@@ -1,0 +1,116 @@
+// for smart phone
+@media (max-width: 480px) {
+  .login_form {
+    width: 85%;
+    margin: $very_wide auto;
+    padding: $very_wide;
+    border: solid 1px $gray;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+    &-title {
+      margin: $wide 0;
+      padding: $moderate * 1.5 $moderate;
+      font-size: $large;
+      font-weight: normal;
+      background-color: transparent;
+      color: $black;
+    }
+
+    &-input {
+      padding: $very_wide;
+      label {
+        display: block;
+        padding: $moderate 0;
+        font-size: $small;
+        color: $black;
+      }
+
+      input[type='text'], input[type='password'] {
+        padding: $wide;
+        width: 95%;
+        text-align: center;
+        font-size: $small;
+        border: 2px solid $gray;
+        border-radius: 5px;
+        outline: 0;
+      }
+
+      input[type='submit'] {
+        width: 95%;
+        margin: $very_wide * 2 0;
+        padding: $wide $very_wide;
+        border: 1px solid $gray;
+        border-radius: 5px;
+        border-bottom: 4px solid $dark_gray;
+        color: white;
+        outline: 0;
+        &:active {
+          position: relative;
+          top: 2px;
+          border-bottom: 4px solid transparent;
+        }
+      }
+    }
+  }
+}
+
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+
+// for pc
+@media (min-width: 480px) {
+  .login_form {
+    width: 50%;
+    margin: $very_wide auto;
+    padding: $very_wide;
+    border: solid 1px $gray;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+    &-title {
+      margin: $wide 0;
+      padding: $moderate * 1.5 $moderate;
+      font-size: $large;
+      font-weight: normal;
+      background-color: transparent;
+      color: $black;
+    }
+
+    &-input {
+      padding: $very_wide;
+      label {
+        display: block;
+        padding: $moderate 0;
+        font-size: $small;
+        color: $black;
+      }
+
+      input[type='text'], input[type='password'] {
+        padding: $wide;
+        width: 80%;
+        text-align: center;
+        font-size: $small;
+        border: 2px solid $gray;
+        border-radius: 5px;
+        outline: 0;
+      }
+
+      input[type='submit'] {
+        width: 40%;
+        margin: $very_wide * 2 0;
+        padding: $wide $very_wide;
+        border: 1px solid $gray;
+        border-radius: 5px;
+        border-bottom: 4px solid $dark_gray;
+        color: white;
+        outline: 0;
+        &:active {
+          position: relative;
+          top: 2px;
+          border-bottom: 4px solid transparent;
+        }
+      }
+    }
+  }
+}

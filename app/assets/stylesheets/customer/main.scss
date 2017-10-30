@@ -6,8 +6,18 @@ header {
 
 .wrapper {
   .container {
-    h1 {
+    h1.title {
       background-color: $customer_dark_blue;
+    }
+
+    .error {
+      border: solid 2px $customer_dark_blue;
+    }
+
+    .login_form {
+      &-input input[type='submit'] {
+        background-color: $customer_blue;
+      }
     }
   }
 }
