@@ -1,4 +1,8 @@
 class Staff::SessionsController < Staff::Base
+  def index
+    redirect_to :staff_login
+  end
+
   def new
     if current_staff_member
       redirect_to :staff_root
