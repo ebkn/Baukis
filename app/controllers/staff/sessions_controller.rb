@@ -1,6 +1,6 @@
 class Staff::SessionsController < Staff::Base
   def index
-    redirect_to :staff_login
+    redirect_to staff_login_path
   end
 
   def new
@@ -14,23 +14,26 @@ class Staff::SessionsController < Staff::Base
   def create
     @form = Staff::LoginForm.new(login_form_params)
 
-    if form_filled?(@form)
-      staff_member = StaffMember.find_by(email_for_index: @form.email.downcase)
-
-      if staff_member.suspended
-        flash.now.alert = 'アカウントが凍結されています'
-        render :new
-      elsif Staff::Authenticator.new(staff_member).authenticate(@form.password)
-        session[:staff_member_id] = staff_member.id
-        flash.notice = 'ログインしました'
-        redirect_to staff_root_path
-      else
-        flash.now.alert = 'メールアドレスまたはパスワードが間違っています'
-        render :new
-      end
-    else
+    unless form_filled?(@form)
       flash.now.alert = 'メールアドレスとパスワードを入力してください'
       render :new
+      return
+    end
+
+    staff_member = StaffMember.find_by(email_for_index: @form.email.downcase)
+
+    if staff_member.nil?
+      flash.now.alert = 'メールアドレスまたはパスワードが間違っています'
+      render :new
+    elsif staff_member.suspended
+      flash.now.alert = 'アカウントが凍結されています'
+      render :new
+    elsif Staff::Authenticator.new(staff_member).authenticate(@form.password)
+      session[:staff_member_id] = staff_member.id
+      flash.notice = 'ログインしました'
+      redirect_to staff_root_path
+    else
+      redirect_to staff_login_path, alert: 'エラーが発生しました'
     end
   end
 

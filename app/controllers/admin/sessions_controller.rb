@@ -1,4 +1,4 @@
-class Admin::SessionsController < ApplicationController
+class Admin::SessionsController < Admin::Base
   def index
     redirect_to :admin_login
   end
@@ -7,37 +7,39 @@ class Admin::SessionsController < ApplicationController
     if current_administrator
       redirect_to :admin_root
     else
-      @form = Admin::LginForm.new
+      @form = Admin::LoginForm.new
     end
   end
 
   def create
     @form = Admin::LoginForm.new(login_form_params)
 
-    if form_filled?(@form)
-      administrator = Administrator.find_by(email_for_index: @form.email.downcase)
-
-      if administrator.suspended
-        flash.now.alert = 'アカウントが乙結されています'
-        render :new
-      elsif Admin::Authenticator.new(administrator).authenticate(@form.password)
-        session[:administrator_id] = administrator.id
-        flash.notice = 'ログインしました'
-        redirect_to admin_root_path
-      else
-        flash.now.alert = 'メールアドレスまたはパスワードが間違っています'
-        render :new
-      end
-    else
+    unless form_filled?(@form)
       flash.now.alert = 'メールアドレスとパスワードを入力してください'
       render :new
+      return
+    end
+
+    administrator = Administrator.find_by(email_for_index: @form.email.downcase)
+
+    if administrator.nil?
+      flash.now.alert = 'メールアドレスまたはパスワードが間違っています'
+      render :new
+    elsif administrator.suspended
+      flash.now.alert = 'アカウントが凍結されています'
+      render :new
+    elsif Admin::Authenticator.new(administrator).authenticate(@form.password)
+      session[:administrator_id] = administrator.id
+      flash.notice = 'ログインしました'
+      redirect_to admin_root_path
+    else
+      redirect_to admin_login_path, alert: 'エラーが発生しました'
     end
   end
 
   def destroy
     session.delete(:administrator_id)
-    flash.notice = 'ログアウトしました'
-    redirect_to admin_root_path
+    redirect_to admin_root_path, notice: 'ログアウトしました'
   end
 
   private
