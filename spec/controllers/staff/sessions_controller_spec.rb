@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 describe Staff::SessionsController, type: :controller do
-  describe 'GET #index' do
-    it 'redirects to staff_login_path' do
-      get :index
-      expect(response).to redirect_to staff_login_path
-    end
-  end
-
   describe 'GET #new' do
     context 'when current_staff_member exists' do
       it 'redirects staff_root_path' do
