@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 describe Admin::SessionsController, type: :controller do
-  describe 'GET #index' do
-    it 'redirects to admin_login_path' do
-      get :index
-      expect(response).to redirect_to admin_login_path
-    end
-  end
-
   describe 'GET #new' do
     context 'when current_administrator exists' do
       it 'redirects admin_root_path' do

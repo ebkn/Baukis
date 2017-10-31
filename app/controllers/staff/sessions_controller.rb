@@ -1,8 +1,4 @@
 class Staff::SessionsController < Staff::Base
-  def index
-    redirect_to staff_login_path
-  end
-
   def new
     if current_staff_member
       redirect_to staff_root_path

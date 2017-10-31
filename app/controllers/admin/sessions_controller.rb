@@ -1,8 +1,4 @@
 class Admin::SessionsController < Admin::Base
-  def index
-    redirect_to admin_login_path
-  end
-
   def new
     if current_administrator
       redirect_to admin_root_path
