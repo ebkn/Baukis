@@ -10,7 +10,7 @@ describe Staff::Authenticator do
       @password = Faker::Internet.password
     end
 
-    context 'when true' do
+    context 'when success' do
       it 'returns true when correct password' do
         staff_member = build(:staff_member, password: @password)
         expect(is_authenticated(staff_member, @password)).to be true
@@ -22,7 +22,7 @@ describe Staff::Authenticator do
       end
     end
 
-    context 'when false' do
+    context 'when failed' do
       it 'returns false when incorrect password' do
         another_pass = Faker::Internet.password
         staff_member = build(:staff_member, password: @password)
