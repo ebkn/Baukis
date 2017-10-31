@@ -1,0 +1,12 @@
+- @title = 'ログイン'
+.login_form
+  %h1.login_form-title= @title
+  = form_for @form, url: :admin_session do |f|
+    .login_form-input
+      = f.label :email, 'Email'
+      = f.text_field :email, placeholder: 'メールアドレスを入力', required: true
+    .login_form-input
+      = f.label :password, 'Password'
+      = f.password_field :password, placeholder: 'パスワードを入力', required: true
+    .login_form-input
+      = f.submit 'ログイン'

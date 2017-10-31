@@ -1,0 +1,43 @@
+// for smartphone
+@media (max-width: 480px) {
+  .flash {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px auto;
+    padding: $wide;
+    border-radius: 10px;
+    text-align: center;
+    color: $very_light_gray;
+    font-size: $normal;
+    &-notice {
+      background-color: $flash_green;
+    }
+
+    &-alert {
+      background-color: $flash_red;
+    }
+  }
+}
+
+// for pc
+@media (min-width: 480px) {
+  .flash {
+    position: absolute;
+    top: 8px;
+    left: 25%;
+    width: 50%;
+    margin: 0 auto;
+    padding: $wide;
+    border-radius: 10px;
+    text-align: center;
+    color: $very_light_gray;
+    font-size: $normal;
+    &-notice {
+      background-color: $flash_green;
+    }
+
+    &-alert {
+      background-color: $flash_red;
+    }
+  }
+}
