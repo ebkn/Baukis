@@ -8,7 +8,6 @@ class Staff::SessionsController < Staff::Base
       redirect_to :staff_root
     else
       @form = Staff::LoginForm.new
-      render :new
     end
   end
 
