@@ -110,7 +110,7 @@ describe Staff::SessionsController, type: :controller do
         context 'when email is incorrect' do
           before do
             another_email = Faker::Internet.email
-            create(:staff_member, email: @email, password: @password, suspended: true)
+            create(:staff_member, email: @email, password: @password)
             post :create, params: {
               staff_login_form: { email: another_email, password: @password }
             }

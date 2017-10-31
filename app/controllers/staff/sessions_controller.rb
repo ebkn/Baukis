@@ -29,7 +29,7 @@ class Staff::SessionsController < Staff::Base
       session[:staff_member_id] = staff_member.id
       flash.notice = 'ログインしました'
       redirect_to staff_root_path
-    elsif staff_member.suspended?
+    elsif staff_member.suspended
       flash.now.alert = 'アカウントが凍結されています'
       render :new
     else
