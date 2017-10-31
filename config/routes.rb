@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace :staff do
+  namespace :staff, path: '/' do
     get 'login' => 'sessions#new', as: :login
     get 'session' => 'sessions#index', as: :session_failed
     post 'session' => 'sessions#create', as: :session
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'session' => 'sessions#index', as: :session_failed
     post 'session' => 'sessions#create', as: :session
     delete 'session' => 'sessions#destroy'
+    resources :staff_members
     root 'top#index'
   end
 
@@ -19,6 +20,5 @@ Rails.application.routes.draw do
     root 'top#index'
   end
 
-  root 'customer/top#index'
   get '*anything' => 'errors#routing_error'
 end
