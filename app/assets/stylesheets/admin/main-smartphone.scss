@@ -1,4 +1,4 @@
-@media (min-width: 480px) {
+@media (max-width: 480px) {
   header {
     .logo-mark {
       background-color: $admin_red;
@@ -27,20 +27,17 @@
       }
 
       .table-wrapper {
-        width: 80%;
+        width: 90%;
         margin: $very_wide auto;
         padding: $very_wide;
         border: solid 1px $gray;
         background-color: white;
         text-align: center;
         .links {
-          width: 90%;
-          text-align: right;
+          width: 100%;
           margin: $wide auto;
           a {
             display: block;
-            width: 120px;
-            margin-left: auto;
             padding: $wide $very_wide;
             background-color: $customer_blue;
             color: white;
@@ -53,14 +50,13 @@
         }
 
         .staff-members {
-          width: 90%;
-          padding: 0 30px;
+          width: 100%;
           margin: $very_wide auto;
           border-collapse: collapse;
           &_column {
             border-bottom: 1px solid $light_gray;
             th {
-              padding: $moderate;
+              padding: $moderate 0;
               font-size: $tiny;
               font-weight: normal;
               color: $dark_gray;
@@ -68,13 +64,14 @@
           }
 
           &_data {
+            width: 100%;
             &:hover {
               background-color: $selected_blue;
             }
 
             td {
-              padding: $wide;
-              font-size: $tiny;
+              padding: $wide 0;
+              font-size: $tiny - 2px;
               color: $dark_gray;
             }
 
