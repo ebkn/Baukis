@@ -8,9 +8,9 @@ class Admin::StaffMembersController < Admin::Base
   end
 
   def create
-    @staff_member = StaffMember.new(params[:staff_member])
+    @staff_member = StaffMember.new(staff_member_params)
     if @staff_member.save
-      redirect_to admin_staff_member_path, notice: '職員アカウントを新規登録しました'
+      redirect_to admin_staff_members_path, notice: '職員アカウントを新規登録しました'
     else
       flash.now.alert = '職員アカウントの登録に失敗しました'
       render :new
@@ -22,9 +22,9 @@ class Admin::StaffMembersController < Admin::Base
   end
 
   def update
-    @staff_member = StaffMember.find(params[:staff_member])
-    if @staff_member.update
-      redirect_to admin_staff_member_path, notice: '職員アカウントを更新しました'
+    @staff_member = StaffMember.find(params[:id])
+    if @staff_member.update(staff_member_params)
+      redirect_to admin_staff_members_path, notice: '職員アカウントを更新しました'
     else
       flash.now.alert = '職員アカウントの更新に失敗しました'
       render :edit
@@ -39,6 +39,22 @@ class Admin::StaffMembersController < Admin::Base
   def destroy
     staff_member = StaffMember.find(params[:id])
     staff_member.destroy!
-    redirect_to admin_staff_member_path, notice: '職員アカウントを削除しました'
+    redirect_to admin_staff_members_path, notice: '職員アカウントを削除しました'
+  end
+
+  private
+
+  def staff_member_params
+    params.require(:staff_member).permit(
+      :email,
+      :password,
+      :family_name,
+      :given_name,
+      :family_name_kana,
+      :given_name_kana,
+      :start_date,
+      :end_date,
+      :suspended
+    )
   end
 end

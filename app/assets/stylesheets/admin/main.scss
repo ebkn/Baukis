@@ -20,7 +20,7 @@
         }
       }
 
-      .login_form {
+      .login_form, .generic_form {
         &-input input[type='submit'] {
           background-color: $admin_red;
         }

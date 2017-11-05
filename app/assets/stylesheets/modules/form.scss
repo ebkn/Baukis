@@ -1,6 +1,6 @@
 // for smart phone
 @media (max-width: 480px) {
-  .login_form {
+  .login_form, .generic_form {
     width: 85%;
     margin: $very_wide auto;
     padding: $very_wide;
@@ -34,6 +34,13 @@
         border: 2px solid $gray;
         border-radius: 5px;
         outline: 0;
+        &.name {
+          width: 40%;
+        }
+
+        &::-webkit-input-placeholder {
+          color: $light_gray;
+        }
       }
 
       input[type='submit'] {
@@ -51,6 +58,31 @@
           border-bottom: 4px solid transparent;
         }
       }
+
+      &-cancel {
+        display: inline-block;
+        width: 40%;
+        margin: $very_wide * 2 0;
+        padding: $wide $wide;
+        border: 1px solid $gray;
+        border-radius: 5px;
+        border-bottom: 4px solid $dark_gray;
+        color: $dark_gray;
+        background-color: $gray;
+        text-decoration: none;
+        outline: 0;
+        &:active {
+          position: relative;
+          top: 2px;
+          border-bottom: 4px solid transparent;
+        }
+
+        &+input[type='submit'] {
+          display: inline-block;
+          width: 40%;
+          margin: 0 20px;
+        }
+      }
     }
   }
 }
@@ -60,7 +92,7 @@
 
 // for pc
 @media (min-width: 480px) {
-  .login_form {
+  .login_form, .generic_form {
     width: 50%;
     margin: $very_wide auto;
     padding: $very_wide;
@@ -84,6 +116,11 @@
         padding: $moderate 0;
         font-size: $small;
         color: $black;
+        &.required:after {
+          display: inline;
+          content: '*';
+          color: $admin_red;
+        }
       }
 
       input[type='text'], input[type='password'] {
@@ -94,6 +131,21 @@
         border: 2px solid $gray;
         border-radius: 5px;
         outline: 0;
+        &.name {
+          width: 35%;
+        }
+
+        &::-webkit-input-placeholder {
+          color: $light_gray;
+        }
+      }
+
+      input[type='checkbox'] {
+        display: inline-block;
+        outline: 0;
+        &+label {
+          display: inline-block;
+        }
       }
 
       input[type='submit'] {
@@ -109,6 +161,31 @@
           position: relative;
           top: 2px;
           border-bottom: 4px solid transparent;
+        }
+      }
+
+      &-cancel {
+        display: inline-block;
+        width: 25%;
+        margin: $very_wide * 2 0;
+        padding: $wide $wide;
+        border: 1px solid $gray;
+        border-radius: 5px;
+        border-bottom: 4px solid $dark_gray;
+        color: $dark_gray;
+        background-color: $gray;
+        text-decoration: none;
+        outline: 0;
+        &:active {
+          position: relative;
+          top: 2px;
+          border-bottom: 4px solid transparent;
+        }
+
+        &+input[type='submit'] {
+          display: inline-block;
+          width: 25%;
+          margin: 0 20px;
         }
       }
     }
