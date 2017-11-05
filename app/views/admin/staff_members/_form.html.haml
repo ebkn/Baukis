@@ -6,9 +6,10 @@
   = f.label :email, 'メールアドレス', class: 'required'
   = f.text_field :email, size: 32, required: true, placeholder: 'Your email'
 
-.generic_form-input
-  = f.label :password, 'パスワード', class: 'required'
-  = f.password_field :password, size: 32, required: true, placeholder: 'Your password'
+- if f.object.new_record?
+  .generic_form-input
+    = f.label :password, 'パスワード', class: 'required'
+    = f.password_field :password, size: 32, required: true, placeholder: 'Your password'
 
 .generic_form-input
   = f.label :family_name, '氏名', class: 'required'
