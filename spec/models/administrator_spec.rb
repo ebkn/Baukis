@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Administrator, type: :model do
-  describe "#password=" do
+  describe '#password=' do
     it 'creates 60 characters hashed_password' do
       administrator = Administrator.new
       administrator.password = Faker::StarWars.character

@@ -9,7 +9,6 @@ class Staff::SessionsController < Staff::Base
 
   def create
     @form = Staff::LoginForm.new(login_form_params)
-
     unless form_filled?(@form)
       flash.now.alert = 'メールアドレスとパスワードを入力してください'
       render :new
@@ -17,21 +16,19 @@ class Staff::SessionsController < Staff::Base
     end
 
     staff_member = StaffMember.find_by(email_for_index: @form.email.downcase)
-
     if staff_member.nil?
       flash.now.alert = 'メールアドレスが間違っています'
-      render :new
-    elsif Staff::Authenticator.new(staff_member).authenticate(@form.password)
-      session[:staff_member_id] = staff_member.id
-      flash.notice = 'ログインしました'
-      redirect_to staff_root_path
     elsif staff_member.suspended
       flash.now.alert = 'アカウントが凍結されています'
-      render :new
+    elsif Staff::Authenticator.new(staff_member).authenticate(@form.password)
+      session[:staff_member_id] = staff_member.id
+      redirect_to staff_root_path, notice: 'ログインしました'
+      return
     else
       flash.now.alert = 'パスワードが間違っています'
-      render :new
     end
+
+    render :new
   end
 
   def destroy

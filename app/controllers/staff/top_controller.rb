@@ -1,4 +1,3 @@
 class Staff::TopController < Staff::Base
-  def index
-  end
+  def index; end
 end
