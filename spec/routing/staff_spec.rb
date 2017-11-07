@@ -42,11 +42,8 @@ describe 'routing', type: :routing do
     end
 
     context 'when account controller' do
-      # TODO: remove pending after created accounts_controller
-      before { pending("I haven't created accounts_controller yet.") }
-
       let(:path) { "#{url}/account" }
-      let(:controller) { 'staff/account' }
+      let(:controller) { 'staff/accounts' }
 
       it 'routes to #show' do
         expect(get: path).to route_to(
