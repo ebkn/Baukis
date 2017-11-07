@@ -42,9 +42,6 @@ describe 'routing', type: :routing do
     end
 
     context 'when staff_members controller' do
-      # TODO: remove pending after created staff_members_controller
-      before { pending("I haven't created admin/staff_members_controller yet.") }
-
       let(:path) { "#{url}/staff_members" }
       let(:controller) { 'admin/staff_members' }
 
@@ -78,7 +75,8 @@ describe 'routing', type: :routing do
         expect(get: "#{path}/#{@number}/edit").to route_to(
           host: host,
           controller: controller,
-          action: 'edit'
+          action: 'edit',
+          id: @number
         )
       end
 
@@ -86,7 +84,8 @@ describe 'routing', type: :routing do
         expect(patch: "#{path}/#{@number}").to route_to(
           host: host,
           controller: controller,
-          action: 'update'
+          action: 'update',
+          id: @number
         )
       end
 
@@ -94,7 +93,8 @@ describe 'routing', type: :routing do
         expect(get: "#{path}/#{@number}").to route_to(
           host: host,
           controller: controller,
-          action: 'show'
+          action: 'show',
+          id: @number
         )
       end
 
@@ -102,7 +102,8 @@ describe 'routing', type: :routing do
         expect(delete: "#{path}/#{@number}").to route_to(
           host: host,
           controller: controller,
-          action: 'destroy'
+          action: 'destroy',
+          id: @number
         )
       end
     end
