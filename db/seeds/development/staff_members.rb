@@ -1,3 +1,15 @@
+StaffMember.create!(
+  email: 'staff@test.com',
+  family_name: '海老沼',
+  given_name: '健一',
+  family_name_kana: 'エビヌマ',
+  given_name_kana: 'ケンイチ',
+  password: 'password',
+  start_date: 100.days.ago.to_date,
+  end_date: nil,
+  suspended: false
+)
+
 family_names = %w[
   大島:オオシマ
   阿部:アベ
