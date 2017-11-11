@@ -1,4 +1,6 @@
 class Admin::Base < ApplicationController
+  before_action :authenticate_user
+
   private
 
   def current_administrator
@@ -9,4 +11,10 @@ class Admin::Base < ApplicationController
   end
 
   helper_method :current_administrator
+
+  def authenticate_user
+    unless current_administrator
+      redirect_to admin_login_path, alert: 'ログインしてください'
+    end
+  end
 end
