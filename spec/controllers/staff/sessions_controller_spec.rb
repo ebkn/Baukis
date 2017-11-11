@@ -7,6 +7,7 @@ describe Staff::SessionsController, type: :controller do
         num = Faker::Number.number(1)
         create(:staff_member, id: num)
         session[:staff_member_id] = num
+        session[:last_access_time] = 1.second.ago
         get :new
         expect(response).to redirect_to staff_root_path
       end

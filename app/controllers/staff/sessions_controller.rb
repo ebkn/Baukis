@@ -1,4 +1,6 @@
 class Staff::SessionsController < Staff::Base
+  skip_before_action :authenticate_user
+
   def new
     if current_staff_member
       redirect_to staff_root_path
@@ -22,6 +24,7 @@ class Staff::SessionsController < Staff::Base
       flash.now.alert = 'アカウントが凍結されています'
     elsif Staff::Authenticator.new(staff_member).authenticate(@form.password)
       session[:staff_member_id] = staff_member.id
+      session[:last_access_time] = Time.current
       redirect_to staff_root_path, notice: 'ログインしました'
       return
     else
