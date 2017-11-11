@@ -7,6 +7,7 @@ describe Admin::SessionsController, type: :controller do
         num = Faker::Number.number(1)
         create(:administrator, id: num)
         session[:administrator_id] = num
+        session[:last_access_time] = 1.second.ago
         get :new
         expect(response).to redirect_to admin_root_path
       end

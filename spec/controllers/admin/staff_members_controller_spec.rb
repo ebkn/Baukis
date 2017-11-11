@@ -1,6 +1,19 @@
 require 'rails_helper'
 
+describe Admin::StaffMembersController, 'when before_action' do
+  it_behaves_like 'a administrator who does not login'
+  it_behaves_like 'a administrator whose session is time out'
+  it_behaves_like 'a administrator who is suspended'
+end
+
 describe Admin::StaffMembersController, type: :controller do
+  let(:administrator) { create(:administrator) }
+
+  before do
+    session[:administrator_id] = administrator.id
+    session[:last_access_time] = 1.second.ago
+  end
+
   describe 'GET #index' do
     before { get :index }
 
