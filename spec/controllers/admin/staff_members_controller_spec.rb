@@ -53,17 +53,16 @@ describe Admin::StaffMembersController, type: :controller do
     context 'when failure' do
       context 'when invalid parameter' do
         before do
+          pending 'I have not implemented validation'
           @staff_member = create(:staff_member)
           post :create, params: { staff_member: invalid_staff_member_params }
         end
 
         it 'renders the :new template' do
-          pending 'I have not implemented validation'
           expect(response).to render_template :new
         end
 
         it 'shows the alert flash' do
-          pending 'I have not implemented validation'
           expect(flash[:alert]).to eq '職員アカウントの登録に失敗しました'
         end
       end
@@ -128,17 +127,16 @@ describe Admin::StaffMembersController, type: :controller do
     context 'when failure' do
       context 'when invalid parameter' do
         before do
+          pending 'I have not implemented validation'
           @staff_member = create(:staff_member)
           patch :update, params: { id: 1, staff_member: invalid_staff_member_params }
         end
 
         it 'renders the :new template' do
-          pending 'I have not implemented validation'
           expect(response).to render_template :edit
         end
 
         it 'shows the alert flash' do
-          pending 'I have not implemented validation'
           expect(flash[:alert]).to eq '職員アカウントの更新に失敗しました'
         end
       end
