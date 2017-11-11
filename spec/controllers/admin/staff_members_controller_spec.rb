@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::StaffMembersController, 'when before_action' do
+describe Admin::StaffMembersController, 'before_action' do
   it_behaves_like 'a administrator who does not login'
   it_behaves_like 'a administrator whose session is time out'
   it_behaves_like 'a administrator who is suspended'
