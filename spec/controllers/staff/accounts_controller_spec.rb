@@ -1,8 +1,18 @@
 require 'rails_helper'
 
+describe Staff::AccountsController, 'before action' do
+  it_behaves_like 'a staff_member who does not login'
+  it_behaves_like 'a staff_member whose session is time out'
+  it_behaves_like 'a staff_member who does not active'
+end
+
 describe Staff::AccountsController, type: :controller do
   let(:staff_member) { create(:staff_member) }
-  before { session[:staff_member_id] = staff_member.id }
+
+  before do
+    session[:staff_member_id] = staff_member.id
+    session[:last_access_time] = 1.second.ago
+  end
 
   describe 'GET #show' do
     before { get :show }

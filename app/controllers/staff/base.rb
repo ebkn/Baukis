@@ -21,7 +21,7 @@ class Staff::Base < ApplicationController
   def check_account
     if current_staff_member && !current_staff_member.active?
       session.delete(:staff_member_id)
-      redirect_to staff_root_path, alert: 'アカウントが無効になりました'
+      redirect_to staff_root_path, alert: 'アカウントが無効です'
     end
   end
 

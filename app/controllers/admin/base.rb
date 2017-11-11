@@ -21,7 +21,7 @@ class Admin::Base < ApplicationController
   def check_account
     if current_administrator && current_administrator.suspended
       session.delete(:administrator_id)
-      redirect_to admin_root_path, alert: 'アカウントが無効になりました'
+      redirect_to admin_root_path, alert: 'アカウントが無効です'
     end
   end
 

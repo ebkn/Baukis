@@ -221,7 +221,7 @@ shared_examples 'a administrator who is suspended' do
     before { get :index }
 
     it 'shows alert flash' do
-      expect(flash[:alert]).to eq 'アカウントが無効になりました'
+      expect(flash[:alert]).to eq 'アカウントが無効です'
     end
 
     it 'redirects to admin_root_path' do
@@ -233,7 +233,7 @@ shared_examples 'a administrator who is suspended' do
     before { get :new }
 
     it 'shows alert flash' do
-      expect(flash[:alert]).to eq 'アカウントが無効になりました'
+      expect(flash[:alert]).to eq 'アカウントが無効です'
     end
 
     it 'redirects to admin_root_path' do
@@ -247,7 +247,7 @@ shared_examples 'a administrator who is suspended' do
     before { post :create, params: { staff_member: staff_member_params } }
 
     it 'shows alert flash' do
-      expect(flash[:alert]).to eq 'アカウントが無効になりました'
+      expect(flash[:alert]).to eq 'アカウントが無効です'
     end
 
     it 'redirects to admin_root_path' do
@@ -262,7 +262,7 @@ shared_examples 'a administrator who is suspended' do
     end
 
     it 'shows alert flash' do
-      expect(flash[:alert]).to eq 'アカウントが無効になりました'
+      expect(flash[:alert]).to eq 'アカウントが無効です'
     end
 
     it 'redirects to admin_root_path' do
@@ -279,7 +279,7 @@ shared_examples 'a administrator who is suspended' do
     end
 
     it 'shows alert flash' do
-      expect(flash[:alert]).to eq 'アカウントが無効になりました'
+      expect(flash[:alert]).to eq 'アカウントが無効です'
     end
 
     it 'redirects to admin_root_path' do
@@ -294,7 +294,7 @@ shared_examples 'a administrator who is suspended' do
     end
 
     it 'shows alert flash' do
-      expect(flash[:alert]).to eq 'アカウントが無効になりました'
+      expect(flash[:alert]).to eq 'アカウントが無効です'
     end
 
     it 'redirects to admin_root_path' do
@@ -309,7 +309,7 @@ shared_examples 'a administrator who is suspended' do
     end
 
     it 'shows alert flash' do
-      expect(flash[:alert]).to eq 'アカウントが無効になりました'
+      expect(flash[:alert]).to eq 'アカウントが無効です'
     end
 
     it 'redirects to admin_root_path' do
