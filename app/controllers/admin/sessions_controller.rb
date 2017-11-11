@@ -24,6 +24,7 @@ class Admin::SessionsController < Admin::Base
       flash.now.alert = 'アカウントが凍結されています'
     elsif Admin::Authenticator.new(administrator).authenticate(@form.password)
       session[:administrator_id] = administrator.id
+      session[:last_access_time] = Time.current
       redirect_to admin_root_path, notice: 'ログインしました'
       return
     else
