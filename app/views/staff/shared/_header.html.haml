@@ -4,6 +4,7 @@
     %span.logo-mark-addition for staff
   .header-right
     - if current_staff_member
+      = link_to 'アカウント', staff_account_path, class: 'header-right-button'
       = link_to 'ログアウト', staff_session_path, method: :delete, class: 'header-right-button'
     - else
       = link_to 'ログイン', staff_login_path, class: 'header-right-button'

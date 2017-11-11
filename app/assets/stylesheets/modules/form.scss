@@ -35,7 +35,7 @@
         border-radius: 5px;
         outline: 0;
         &.name {
-          width: 40%;
+          width: 38%;
         }
 
         &::-webkit-input-placeholder {
@@ -61,7 +61,7 @@
 
       &-cancel {
         display: inline-block;
-        width: 40%;
+        width: 35%;
         margin: $very_wide * 2 0;
         padding: $wide $wide;
         border: 1px solid $gray;
@@ -79,7 +79,7 @@
 
         &+input[type='submit'] {
           display: inline-block;
-          width: 40%;
+          width: 38%;
           margin: 0 20px;
         }
       }
@@ -132,7 +132,7 @@
         border-radius: 5px;
         outline: 0;
         &.name {
-          width: 35%;
+          width: 38%;
         }
 
         &::-webkit-input-placeholder {
