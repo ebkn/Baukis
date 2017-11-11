@@ -21,7 +21,7 @@ RSpec.configure do |config|
     config.include ::Rails::Controller::Testing::Integration, type: type
   end
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
