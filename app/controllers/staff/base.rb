@@ -1,5 +1,5 @@
 class Staff::Base < ApplicationController
-  before_action :authenticate_user, :check_account
+  before_action :authenticate_user, :check_account, :check_timeout
 
   private
 
@@ -22,6 +22,19 @@ class Staff::Base < ApplicationController
     if current_staff_member && !current_staff_member.active?
       session.delete(:staff_member_id)
       redirect_to staff_root_path, alert: 'アカウントが無効になりました'
+    end
+  end
+
+  TIMEOUT = 60.minutes.freeze
+
+  def check_timeout
+    return unless current_staff_member
+
+    if session[:last_access_time] >= TIMEOUT.ago
+      session[:last_access_time] = Time.current
+    else
+      session.delete(:staff_member_id)
+      redirect_to staff_login_path, alert: 'セッションがタイムアウトしました'
     end
   end
 end
