@@ -1,4 +1,4 @@
-@media (min-width: 480px) {
+@media (max-width: 480px) {
   header {
     .logo-mark {
       background-color: $staff_green;
@@ -22,20 +22,17 @@
       }
 
       .table-wrapper {
-        width: 50%;
+        width: 85%;
         margin: $very_wide auto;
         padding: $very_wide;
         border: solid 1px $gray;
         background-color: white;
         text-align: center;
         .links {
-          width: 90%;
-          text-align: right;
+          width: 100%;
           margin: $wide auto;
           a {
             display: block;
-            width: 120px;
-            margin-left: auto;
             padding: $wide $very_wide;
             background-color: $customer_blue;
             color: white;
@@ -53,7 +50,12 @@
           padding: $very_wide;
           text-align: center;
           th, td {
-            padding: $very_wide 0;
+            display: block;
+            padding: $wide 0;
+          }
+
+          td {
+            margin-bottom: $very_wide;
           }
         }
       }

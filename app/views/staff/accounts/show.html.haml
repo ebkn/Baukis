@@ -1,0 +1,19 @@
+- @title = 'アカウント情報'
+%h1.title= @title
+
+.table-wrapper
+  .links
+    = link_to '編集', edit_staff_account_path
+  %table.staff-member
+    %tr
+      %th 氏名
+      %td= "#{@staff_member.family_name} #{@staff_member.given_name}"
+    %tr
+      %th フリガナ
+      %td= "#{@staff_member.family_name_kana} #{@staff_member.given_name_kana}"
+    %tr
+      %th メールアドレス
+      %td= @staff_member.email
+    %tr
+      %th 開始日
+      %td= @staff_member.start_date
