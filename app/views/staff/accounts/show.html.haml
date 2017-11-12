@@ -7,10 +7,10 @@
   %table.staff-member
     %tr
       %th 氏名
-      %td= "#{@staff_member.family_name} #{@staff_member.given_name}"
+      %td= @staff_member.full_name
     %tr
       %th フリガナ
-      %td= "#{@staff_member.family_name_kana} #{@staff_member.given_name_kana}"
+      %td= @staff_member.full_name_kana
     %tr
       %th メールアドレス
       %td= @staff_member.email

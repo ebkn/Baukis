@@ -17,8 +17,8 @@
 
       - @staff_members.each do |staff_member|
         %tr.staff-members_data
-          %td.name= "#{staff_member.family_name} #{staff_member.given_name}"
-          %td.name= "#{staff_member.family_name_kana} #{staff_member.given_name_kana}"
+          %td.name= staff_member.full_name
+          %td.name= staff_member.full_name_kana
           %td.mail= staff_member.email
           %td= staff_member.start_date
           %td= staff_member.end_date
