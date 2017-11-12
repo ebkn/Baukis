@@ -110,6 +110,31 @@
             }
           }
         }
+
+        .staff-member-events {
+          width: 50%;
+          margin: 0 auto;
+          padding: $very_wide;
+          text-align: center;
+          th {
+            padding: $moderate 0;
+            font-size: $normal;
+            font-weight: normal;
+            color: $dark_gray;
+            border-bottom: 1px solid $light_gray;
+          }
+
+          td {
+            padding: $very_wide 0;
+            font-size: $normal;
+            font-weight: normal;
+            color: $dark_gray;
+            a {
+              text-decoration: none;
+              color: $dark_gray;
+            }
+          }
+        }
       }
     }
   }

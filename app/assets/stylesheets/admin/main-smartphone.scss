@@ -68,9 +68,10 @@
 
             &_data {
               width: 100%;
-              td {
-                padding: $wide 0;
-                font-size: $tiny - 2px;
+              th {
+                padding: $moderate 0;
+                font-size: $tiny;
+                font-weight: normal;
                 color: $dark_gray;
               }
 
@@ -97,6 +98,30 @@
                   background-color: $flash_red;
                 }
               }
+            }
+          }
+        }
+
+        .staff-member-events {
+          width: 100%;
+          margin: 0 auto;
+          padding: $very_wide 0;
+          text-align: center;
+          th {
+            padding: $moderate 0;
+            font-size: $tiny;
+            font-weight: normal;
+            color: $dark_gray;
+            border-bottom: 1px solid $light_gray;
+          }
+
+          td {
+            padding: $wide 0;
+            font-size: $tiny;
+            font-weight: normal;
+            color: $dark_gray;
+            a {
+              text-decoration: none;
             }
           }
         }
