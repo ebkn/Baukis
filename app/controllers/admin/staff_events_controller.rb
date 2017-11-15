@@ -6,6 +6,6 @@ class Admin::StaffEventsController < Admin::Base
     else
       @events = StaffEvent.all
     end
-    @events = @events.page(params[:page])
+    @events = @events.includes(:member).page(params[:page])
   end
 end
