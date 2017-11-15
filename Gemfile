@@ -19,6 +19,7 @@ gem 'bcrypt'
 gem 'nokogiri'
 gem 'rails-i18n'
 gem 'kaminari'
+gem 'date_validator'
 
 group :development, :test do
   gem 'byebug', platform: :mri
