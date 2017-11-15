@@ -1,6 +1,8 @@
 class StaffMember < ApplicationRecord
   has_many :events, class_name: 'StaffEvent', dependent: :destroy
 
+  default_scope { order(:family_name_kana, :given_name_kana) }
+
   before_validation do
     self.email_for_index = email.downcase if email
   end
