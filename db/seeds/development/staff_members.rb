@@ -13,21 +13,27 @@ StaffMember.create!(
 family_names = %w[
   大島:オオシマ
   阿部:アベ
+  高橋:タカハシ
+  金田:カネダ
+  篠田:シノダ
+  山口:ヤマグチ
   吉田:ヨシダ
   森:モリ
 ]
 
 given_names = %w[
+  祐介:ユウスケ
   隼也:シュンヤ
   勇気:ユウキ
-  武:タケシ
+  芽衣:メイ
   紗香:サヤカ
   真理子:マリコ
+  咲:サキ
 ]
 
-20.times do |i|
-  fn = family_names[i % 4].split(':')
-  gn = given_names[i % 5].split(':')
+64.times do |i|
+  fn = family_names[i % 8].split(':')
+  gn = given_names[i % 7].split(':')
 
   StaffMember.create!(
     email: Faker::Internet.email,

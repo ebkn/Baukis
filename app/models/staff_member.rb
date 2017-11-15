@@ -1,4 +1,8 @@
 class StaffMember < ApplicationRecord
+  has_many :events, class_name: 'StaffEvent', dependent: :destroy
+
+  default_scope { order(:family_name_kana, :given_name_kana) }
+
   before_validation do
     self.email_for_index = email.downcase if email
   end
@@ -15,5 +19,13 @@ class StaffMember < ApplicationRecord
     !suspended &&
       start_date <= Time.zone.today &&
       (end_date.nil? || end_date > Time.zone.today)
+  end
+
+  def full_name
+    "#{family_name} #{given_name}"
+  end
+
+  def full_name_kana
+    "#{family_name_kana} #{given_name_kana}"
   end
 end

@@ -1,0 +1,29 @@
+nav.pagination {
+  display: inline-block;
+  margin: $very_wide 0;
+  padding: $wide 0;
+  border-top: solid $gray 1px;
+  border-bottom: solid $gray 1px;
+  span.page, span.first, span.prev, span.next, span.last {
+    display: inline-block;
+    background-color: $light_gray;
+    padding: $wide;
+    a {
+      color: $dark_gray;
+      text-decoration: none;
+    }
+  }
+
+  span.current {
+    background-color: $dark_gray;
+    color: $light_gray;
+  }
+
+  span.disabled {
+    color: $gray;
+  }
+
+  span.gap {
+    background-color: transparent;
+  }
+}

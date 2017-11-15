@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026141613) do
+ActiveRecord::Schema.define(version: 20171112145328) do
 
   create_table "administrators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                           null: false
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20171026141613) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.index ["email_for_index"], name: "index_administrators_on_email_for_index", unique: true, using: :btree
+  end
+
+  create_table "staff_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "staff_member_id"
+    t.string   "type",            null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["created_at"], name: "index_staff_events_on_created_at", using: :btree
+    t.index ["staff_member_id", "created_at"], name: "index_staff_events_on_staff_member_id_and_created_at", using: :btree
+    t.index ["staff_member_id"], name: "index_staff_events_on_staff_member_id", using: :btree
   end
 
   create_table "staff_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -39,4 +49,5 @@ ActiveRecord::Schema.define(version: 20171026141613) do
     t.index ["family_name_kana", "given_name_kana"], name: "index_staff_members_on_family_name_kana_and_given_name_kana", using: :btree
   end
 
+  add_foreign_key "staff_events", "staff_members"
 end
