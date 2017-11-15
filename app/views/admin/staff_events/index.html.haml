@@ -18,3 +18,4 @@
     - if @events.empty?
       %tr
         = content_tag :td, '記録がありません', colspan: @staff_member ? 2 : 3
+  = paginate @events
