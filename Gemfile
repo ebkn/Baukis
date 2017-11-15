@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 gem 'nokogiri'
 gem 'rails-i18n'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platform: :mri
