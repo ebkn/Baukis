@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe StaffMember, type: :model do
+  describe 'normalization' do
+    it 'deletes before and after trailing spaces' do
+      email = Faker::Internet.email
+      member = create(:staff_member, email: " #{email} ")
+      expect(member.email).to eq email
+    end
+  end
+
   describe '#password=' do
     it 'creates 60 characters hashed_password' do
       member = StaffMember.new
