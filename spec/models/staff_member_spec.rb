@@ -123,6 +123,16 @@ RSpec.describe StaffMember, type: :model do
         member = build(:staff_member, start_date: nil)
         expect(member).not_to be_valid
       end
+
+      it 'is invalid with start_date before 2017/1/1' do
+        member = build(:staff_member, start_date: Date.new(2016, 12, 31))
+        expect(member).not_to be_valid
+      end
+
+      it 'is invalid with end_date before start_date' do
+        member = build(:staff_member, start_date: Time.zone.today, end_date: Time.zone.yesterday)
+        expect(member).not_to be_valid
+      end
     end
   end
 
@@ -138,6 +148,20 @@ RSpec.describe StaffMember, type: :model do
       member = StaffMember.new
       member.password = nil
       expect(member.hashed_password).to be_nil
+    end
+  end
+
+  describe '#full_name' do
+    it 'returns full_name' do
+      member = build(:staff_member)
+      expect(member.full_name).to eq "#{member.family_name} #{member.given_name}"
+    end
+  end
+
+  describe '#full_name_kana' do
+    it 'returns full_name_kana' do
+      member = build(:staff_member)
+      expect(member.full_name_kana).to eq "#{member.family_name_kana} #{member.given_name_kana}"
     end
   end
 end
