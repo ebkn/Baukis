@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'session', to: redirect('/login')
       resource :session, only: %i[create destroy]
       resource :account, only: %i[show edit update]
+      resource :password, only: %i[show edit update]
       root 'top#index'
     end
   end
