@@ -22,6 +22,7 @@ $customer_dark_blue: darken($customer_blue, 25%);
 // flash
 $flash_green: #8BC34A;
 $flash_red: #ef5350;
+$flash_red_lighten: lighten($flash_red, 25%);
 
 // table
 $selected_blue: #90CAF9;
