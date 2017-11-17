@@ -66,7 +66,6 @@ describe Admin::StaffMembersController, type: :controller do
     context 'when failure' do
       context 'when invalid parameter' do
         before do
-          pending 'I have not implemented validation'
           @staff_member = create(:staff_member)
           post :create, params: { staff_member: invalid_staff_member_params }
         end
@@ -140,7 +139,6 @@ describe Admin::StaffMembersController, type: :controller do
     context 'when failure' do
       context 'when invalid parameter' do
         before do
-          pending 'I have not implemented validation'
           @staff_member = create(:staff_member)
           patch :update, params: { id: 1, staff_member: invalid_staff_member_params }
         end

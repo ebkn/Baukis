@@ -1,0 +1,17 @@
+- @title = 'パスワード変更'
+%h1.title= @title
+
+.generic_form
+  = form_for @change_password_form, url: staff_password_path, method: :patch do |f|
+    .generic_form-input
+      = f.label :current_password, '現在のパスワード'
+      = f.password_field :current_password, size: 32, required: true
+    .generic_form-input
+      = f.label :new_password, '新しいパスワード'
+      = f.password_field :new_password, size: 32, required: true
+    .generic_form-input
+      = f.label :new_password_confirmation, '新しいパスワード(確認)'
+      = f.password_field :new_password_confirmation, size: 32, required: true
+    .generic_form-input
+      = link_to 'キャンセル', staff_account_path, class: 'generic_form-input-cancel'
+      = f.submit '変更'

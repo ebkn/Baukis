@@ -70,6 +70,35 @@ describe 'routing', type: :routing do
       end
     end
 
+    context 'when password controller' do
+      let(:path) { "#{url}/password" }
+      let(:controller) { 'staff/passwords' }
+
+      it 'routes to #show' do
+        expect(get: path).to route_to(
+          host: host,
+          controller: controller,
+          action: 'show'
+        )
+      end
+
+      it 'routes to #edit' do
+        expect(get: "#{path}/edit").to route_to(
+          host: host,
+          controller: controller,
+          action: 'edit'
+        )
+      end
+
+      it 'routes to #update' do
+        expect(patch: path).to route_to(
+          host: host,
+          controller: controller,
+          action: 'update'
+        )
+      end
+    end
+
     context 'when top controller' do
       it 'routes to #index' do
         expect(get: url).to route_to(

@@ -60,12 +60,11 @@ describe Staff::AccountsController, type: :controller do
         let(:invalid_staff_member_params) { attributes_for(:staff_member, email: nil) }
 
         before do
-          pending 'I have not implemented validation'
           patch :update, params: { staff_member: invalid_staff_member_params }
         end
 
         it 'shows the alert flash' do
-          expect(flash[:notice]).to eq 'アカウント情報の更新に失敗しました'
+          expect(flash[:alert]).to eq 'アカウント情報の更新に失敗しました'
         end
 
         it 'renders the :edit template' do

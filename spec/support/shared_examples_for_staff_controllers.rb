@@ -140,7 +140,7 @@ shared_examples 'a staff_member who does not active' do
   end
 
   context 'when start_date is after today' do
-    let(:staff_member) { create(:staff_member, start_date: Time.zone.tomorrow) }
+    let(:staff_member) { create(:staff_member, start_date: Time.zone.tomorrow, end_date: nil) }
 
     before do
       session[:staff_member_id] = staff_member.id
@@ -188,8 +188,13 @@ shared_examples 'a staff_member who does not active' do
     end
   end
 
-  context 'when start_date is after today' do
-    let(:staff_member) { create(:staff_member, end_date: Time.zone.yesterday) }
+  context 'when end_date is before today' do
+    let(:staff_member) do
+      staff_member = build(:staff_member, end_date: Time.zone.yesterday)
+      staff_member.email_for_index = staff_member.email.downcase
+      staff_member.save(validate: false)
+      staff_member
+    end
 
     before do
       session[:staff_member_id] = staff_member.id

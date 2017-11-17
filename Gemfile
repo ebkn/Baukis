@@ -19,6 +19,7 @@ gem 'bcrypt'
 gem 'nokogiri'
 gem 'rails-i18n'
 gem 'kaminari'
+gem 'date_validator'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -26,7 +27,9 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'faker'
+  gem 'faker-japanese'
   gem 'simplecov'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -34,7 +37,6 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'pry-rails'
   gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller'
