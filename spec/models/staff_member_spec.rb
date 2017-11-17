@@ -55,6 +55,42 @@ RSpec.describe StaffMember, type: :model do
         expect(build(:staff_member)).to be_valid
       end
 
+      it 'is valid with family_name includes hiragana' do
+        name = 'きむら'
+        member = build(:staff_member, family_name: name, family_name_kana: 'キムラ')
+        expect(member).to be_valid
+      end
+
+      it 'is valid with family_name includes katakana and "-"' do
+        name = 'クルーズ'
+        member = build(:staff_member, family_name: name, family_name_kana: name)
+        expect(member).to be_valid
+      end
+
+      it 'is valid with family_name includes alphabet' do
+        name = 'Potter'
+        member = build(:staff_member, family_name: name, family_name_kana: 'ポッター')
+        expect(member).to be_valid
+      end
+
+      it 'is valid with given_name includes hiragana' do
+        name = 'れな'
+        member = build(:staff_member, given_name: name, given_name_kana: 'レナ')
+        expect(member).to be_valid
+      end
+
+      it 'is valid with given_name includes katakana and "-"' do
+        name = 'ジョニー'
+        member = build(:staff_member, given_name: name, given_name_kana: name)
+        expect(member).to be_valid
+      end
+
+      it 'is valid with given_name includes alphabet' do
+        name = 'Harry'
+        member = build(:staff_member, given_name: name, given_name_kana: 'ハリー')
+        expect(member).to be_valid
+      end
+
       it 'is valid with family_name_kana includes "-"' do
         name = 'エリー'
         member = build(:staff_member, family_name_kana: name)
@@ -92,8 +128,20 @@ RSpec.describe StaffMember, type: :model do
         expect(member).not_to be_valid
       end
 
+      it 'is invalid with family_name includes greece word' do
+        greece_word = 'λ'
+        member = build(:staff_member, family_name: greece_word, family_name_kana: greece_word)
+        expect(member).not_to be_valid
+      end
+
       it 'is invalid without given_name' do
         member = build(:staff_member, given_name: nil)
+        expect(member).not_to be_valid
+      end
+
+      it 'is invalid with given_name includes greece word' do
+        greece_word = 'λ'
+        member = build(:staff_member, given_name: greece_word, given_name_kana: greece_word)
         expect(member).not_to be_valid
       end
 
