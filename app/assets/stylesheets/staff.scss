@@ -2,6 +2,10 @@
 @import 'config/*';
 @import 'modules/*';
 
+@import 'jquery-ui/core';
+@import 'jquery-ui/theme';
+@import 'jquery-ui/datepicker';
+
 @import 'common';
 @import 'common-smartphone';
 @import 'staff/*';
