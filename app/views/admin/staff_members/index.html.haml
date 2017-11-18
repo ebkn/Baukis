@@ -16,13 +16,14 @@
         %th アクション
 
       - @staff_members.each do |staff_member|
+        - presenter = StaffMemberPresenter.new(staff_member, self)
         %tr.staff-members_data
           %td.name= staff_member.full_name
           %td.name= staff_member.full_name_kana
           %td.mail= staff_member.email
           %td= staff_member.start_date
           %td= staff_member.end_date
-          %td= staff_member.suspended ? '停止中' : ''
+          %td= presenter.suspended_status
           %td.staff-members_data_actions
             = link_to 'ログ', admin_staff_member_staff_events_path(staff_member), class: 'staff-members_data_actions-log'
             = link_to '編集', edit_admin_staff_member_path(staff_member), class: 'staff-members_data_actions-edit'
