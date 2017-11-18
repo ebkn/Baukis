@@ -1,3 +1,5 @@
+- form_presenter = StaffMemberFormPresenter.new(f, self)
+
 .notes
   %span.mark *
   印のついた項目は入力必須です
@@ -11,15 +13,8 @@
     = f.label :password, 'パスワード', class: 'required'
     = f.password_field :password, size: 32, required: true, placeholder: 'Your password'
 
-.generic_form-input
-  = f.label :family_name, '氏名', class: 'required'
-  = f.text_field :family_name, required: true, class: 'name', placeholder: 'Your family name'
-  = f.text_field :given_name, required: true, class: 'name', placeholder: 'Your given name'
-
-.generic_form-input
-  = f.label :family_name_kana, 'フリガナ', class: 'required'
-  = f.text_field :family_name_kana, required: true, class: 'name'
-  = f.text_field :given_name_kana, required: true, class: 'name'
+= form_presenter.full_name_block(:family_name, :given_name, '氏名', required: true, class: 'name')
+= form_presenter.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ', required: true, class: 'name')
 
 .generic_form-input
   = f.label :start_date, '開始日', class: 'required'
