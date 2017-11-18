@@ -29,6 +29,12 @@
       }
     }
 
+    .error-message {
+      color: $flash_red;
+      font-size: $small;
+      padding: $moderate 0;
+    }
+
     &-input {
       padding: $very_wide;
       label {
@@ -132,6 +138,12 @@
       input {
         background-color: $flash_red_lighten;
       }
+    }
+
+    .error-message {
+      color: $flash_red;
+      font-size: $small;
+      padding: $moderate 0;
     }
 
     &-input {
