@@ -1,5 +1,0 @@
-%tr
-  - unless @staff_member
-    %td= link_to event.member.full_name, admin_staff_member_staff_events_path(event.member)
-  %td= event.description
-  %td= event.occured_at.strftime('%Y/%m/%d %H:%M:%S')
