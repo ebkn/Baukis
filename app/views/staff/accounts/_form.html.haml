@@ -1,17 +1,7 @@
-.notes
-  %span.mark *
-  印のついた項目は入力必須です
-
-.generic_form-input
-  = f.label :email, 'メールアドレス', class: 'required'
-  = f.text_field :email, size: 32, required: true, placeholder: 'Your email'
-
-.generic_form-input
-  = f.label :family_name, '氏名', class: 'required'
-  = f.text_field :family_name, required: true, class: 'name', placeholder: 'Your family name'
-  = f.text_field :given_name, required: true, class: 'name', placeholder: 'Your given name'
-
-.generic_form-input
-  = f.label :family_name_kana, 'フリガナ', class: 'required'
-  = f.text_field :family_name_kana, required: true, class: 'name'
-  = f.text_field :given_name_kana, required: true, class: 'name'
+= markup do |m|
+  - form_presenter = StaffMemberFormPresenter.new(f, self)
+  - m << form_presenter.notes
+  - form_presenter.with_options(required: true) do |option_form|
+    - m << option_form.text_field_block(:email, 'メールアドレス', size: 32, placeholder: 'Your email')
+    - m << option_form.full_name_block(:family_name, :given_name, '氏名', class: 'name')
+    - m << option_form.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ', class: 'name')

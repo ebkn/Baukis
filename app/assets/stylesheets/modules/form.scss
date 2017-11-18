@@ -29,6 +29,12 @@
       }
     }
 
+    .error-message {
+      color: $flash_red;
+      font-size: $small;
+      padding: $moderate 0;
+    }
+
     &-input {
       padding: $very_wide;
       label {
@@ -40,6 +46,7 @@
 
       input[type='text'], input[type='password'] {
         padding: $wide;
+        margin: 0 $narrow;
         width: 95%;
         text-align: center;
         font-size: $small;
@@ -133,6 +140,12 @@
       }
     }
 
+    .error-message {
+      color: $flash_red;
+      font-size: $small;
+      padding: $moderate 0;
+    }
+
     &-input {
       padding: $very_wide;
       label {
@@ -149,6 +162,7 @@
 
       input[type='text'], input[type='password'] {
         padding: $wide;
+        margin: 0 $narrow;
         width: 80%;
         text-align: center;
         font-size: $small;

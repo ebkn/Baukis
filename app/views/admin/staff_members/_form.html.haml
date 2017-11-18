@@ -1,34 +1,12 @@
-.notes
-  %span.mark *
-  印のついた項目は入力必須です
+= markup do |m|
+  - form_presenter = StaffMemberFormPresenter.new(f, self)
+  - m << form_presenter.notes
 
-.generic_form-input
-  = f.label :email, 'メールアドレス', class: 'required'
-  = f.text_field :email, size: 32, required: true, placeholder: 'Your email'
-
-- if f.object.new_record?
-  .generic_form-input
-    = f.label :password, 'パスワード', class: 'required'
-    = f.password_field :password, size: 32, required: true, placeholder: 'Your password'
-
-.generic_form-input
-  = f.label :family_name, '氏名', class: 'required'
-  = f.text_field :family_name, required: true, class: 'name', placeholder: 'Your family name'
-  = f.text_field :given_name, required: true, class: 'name', placeholder: 'Your given name'
-
-.generic_form-input
-  = f.label :family_name_kana, 'フリガナ', class: 'required'
-  = f.text_field :family_name_kana, required: true, class: 'name'
-  = f.text_field :given_name_kana, required: true, class: 'name'
-
-.generic_form-input
-  = f.label :start_date, '開始日', class: 'required'
-  = f.text_field :start_date, required: true
-
-.generic_form-input
-  = f.label :end_date, '終了日'
-  = f.text_field :end_date
-
-.generic_form-input
-  = f.check_box :suspended
-  = f.label :suspended, 'アカウント停止'
+  - form_presenter.with_options(required: true) do |option_form|
+    - m << option_form.text_field_block(:email, 'メールアドレス', size: 32, placeholder: 'Your email')
+    - m << option_form.password_field_block(:password, 'パスワード', size: 32, placeholder: 'Your password')
+    - m << option_form.full_name_block(:family_name, :given_name, '氏名', class: 'name')
+    - m << option_form.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ', class: 'name')
+    - m << option_form.date_field_block(:start_date, '開始日')
+    - m << option_form.date_field_block(:end_date, '終了日', required: false)
+  - m << form_presenter.check_box_block
