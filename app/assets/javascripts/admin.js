@@ -1,5 +1,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require ./shared
-//= require ./admin
+//= require_tree ./shared
+//= require_tree ./admin
