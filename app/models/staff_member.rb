@@ -38,7 +38,7 @@ class StaffMember < ApplicationRecord
 
   after_validation do
     if errors.include?(:email_for_index)
-      errors.add(:email, :token)
+      errors.add(:email, :taken)
       errors.delete(:email_for_index)
     end
   end
