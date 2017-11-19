@@ -29,6 +29,8 @@ city_names = %w[中央区 文京区 世田谷区 八王子市 町田市 横浜�
 
 company_names = %w[ABC XYZ BAUKIS CLI UNIQUE FORWARD]
 
+division_names = %w[開発部 人事部 マーケティング部]
+
 address1s = %w[小石川2-4 日本橋4-2 開発2-1 渋谷4-2]
 
 address2s = %w[レイズハイツ301 Rubyビル3F センタービル1103 -3]
@@ -86,8 +88,10 @@ i.create_work_address!(
 
     c.create_work_address!(
       postal_code: sprintf('%07d', rand(10000000)),
+      company_name: company_names.sample,
+      division_name: division_names.sample,
       prefecture: Address::PREFECTURE_NAMES.sample,
-      city: company_names.sample,
+      city: city_names.sample,
       address1: address1s.sample,
       address2: address2s.sample
     )
