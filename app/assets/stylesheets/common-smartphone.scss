@@ -81,7 +81,7 @@
           color: $very_light_gray;
         }
 
-        #staff_member_password, #form_customer_password {
+        #staff_member_password, .edit_form  #form_customer_password {
           display: none;
         }
       }
