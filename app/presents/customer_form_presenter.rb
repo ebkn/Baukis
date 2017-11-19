@@ -4,19 +4,19 @@ class CustomerFormPresenter < UserFormPresenter
       m << decorated_label(name, label_text, options)
       options = insert_birthday_picker(options)
       m << text_field(name, options)
-      m << error_message_for(name)
+      m << error_messages_for(name)
     end
   end
 
   def gender_field_block
     markup(:div, class: 'generic_form-input') do |m|
-      m << decoreted_label(:gender, '性別')
+      m << decorated_label(:gender, '性別')
       m << radio_button(:gender, 'male')
-      m << label(:gender_male, '男性')
+      m << label(:gender_male, '男性', class: 'gender')
       m << radio_button(:gender, 'female')
-      m << label(:gender_female, '女性')
+      m << label(:gender_female, '女性', class: 'gender')
       m << radio_button(:gender, 'other')
-      m << label(:gender_other, 'その他')
+      m << label(:gender_other, 'その他', class: 'gender')
     end
   end
 

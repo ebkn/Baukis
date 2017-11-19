@@ -24,31 +24,6 @@
         &-input input[type='submit'] {
           background-color: $admin_red;
         }
-
-        #enable-password_field-button, #disable-password_field-button {
-          width: 80%;
-          margin: $wide auto;
-          padding: $wide $wide;
-          border: 1px solid $gray;
-          border-radius: 5px;
-          border-bottom: 4px solid $dark_gray;
-          color: $dark_gray;
-        }
-
-        #enable-password_field-button {
-          background-color: $admin_red;
-          color: $very_light_gray;
-        }
-
-        #disable-password_field-button {
-          display: none;
-          background-color: $customer_blue;
-          color: $very_light_gray;
-        }
-
-        #staff_member_password {
-          display: none;
-        }
       }
 
       .table-wrapper {

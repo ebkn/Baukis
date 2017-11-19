@@ -19,6 +19,27 @@
         &-input input[type='submit'] {
           background-color: $staff_green;
         }
+
+        fieldset {
+          margin: $very_wide * 2 0;
+          border: 1px solid $gray;
+          legend {
+            font-size: $normal;
+            color: $dark_gray;
+          }
+
+          .notes {
+            padding: $moderate 0;
+            font-size: $tiny;
+            color: $dark_gray;
+          }
+
+          .gender {
+            display: inline;
+            padding-left: $moderate;
+            padding-right: $very_wide;
+          }
+        }
       }
 
       .table-wrapper {

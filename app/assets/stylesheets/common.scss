@@ -5,6 +5,8 @@
   }
 
   header {
+    min-width: 600px;
+    box-sizing: border-box;
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: flex-start;
@@ -49,6 +51,7 @@
   .wrapper {
     position: relative;
     box-sizing: border-box;
+    min-width: 600px;
     min-height: 100%;
     margin: 0 auto;
     padding-bottom: $very_wide + 60px;
@@ -61,6 +64,43 @@
         font-weight: normal;
         color: $light_gray;
       }
+
+      .login_form, .generic_form {
+        min-width: 550px;
+        label {
+          color: $dark_gray;
+        }
+
+        #enable-password_field-button, #disable-password_field-button {
+          width: 40%;
+          margin: $wide auto;
+          padding: $wide $wide;
+          border: 1px solid $gray;
+          border-radius: 5px;
+          border-bottom: 4px solid $dark_gray;
+          color: $dark_gray;
+          &:active {
+            position: relative;
+            top: 2px;
+            border-bottom: 4px solid transparent;
+          }
+        }
+
+        #enable-password_field-button {
+          background-color: $admin_red;
+          color: $very_light_gray;
+        }
+
+        #disable-password_field-button {
+          display: none;
+          background-color: $customer_blue;
+          color: $very_light_gray;
+        }
+
+        #staff_member_password, #form_customer_password {
+          display: none;
+        }
+      }
     }
   }
 
@@ -68,6 +108,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+    min-width: 600px;
     height: 60px;
     background-color: $black;
     color: white;
