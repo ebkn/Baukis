@@ -18,8 +18,8 @@
       - @staff_members.each do |staff_member|
         - presenter = StaffMemberPresenter.new(staff_member, self)
         %tr.staff-members_data
-          %td.name= staff_member.full_name
-          %td.name= staff_member.full_name_kana
+          %td.name= presenter.full_name
+          %td.name= presenter.full_name_kana
           %td.mail= staff_member.email
           %td= staff_member.start_date
           %td= staff_member.end_date

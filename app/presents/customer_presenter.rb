@@ -1,9 +1,8 @@
-class StaffMemberPresenter < ModelPresenter
+class CustomerPresenter < ModelPresenter
   delegate :family_name,
            :given_name,
            :family_name_kana,
            :given_name_kana,
-           :suspended,
            to: :object
 
   def full_name
@@ -14,7 +13,19 @@ class StaffMemberPresenter < ModelPresenter
     "#{family_name_kana} #{given_name_kana}"
   end
 
-  def suspended_status
-    suspended ? '停止中' : ''
+  def birthday
+    return '' if object.birthday.blank?
+    object.birthday.strftime('%Y/%m/%d')
+  end
+
+  def gender
+    case object.gender
+    when 'male'
+      '男性'
+    when 'female'
+      '女性'
+    else
+      ''
+    end
   end
 end

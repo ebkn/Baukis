@@ -10,18 +10,20 @@
         %th 氏名
         %th.name_kana フリガナ
         %th メールアドレス
-        %th 誕生日
+        %th 生年月日
         %th 性別
+        %th アクション
 
       - @customers.each do |customer|
+        - presenter = CustomerPresenter.new(customer, self)
         %tr.customers_data
-          %td.name= customer.full_name
-          %td.name= customer.full_name_kana
+          %td.name= presenter.full_name
+          %td.name= presenter.full_name_kana
           %td.mail= customer.email
-          %td= customer.birthday
-          %td= customer.gender
-          -# %td.customers_data_actions
-          -#   = link_to 'ログ', staff_customer_staff_events_path(customer), class: 'customers_data_actions-log'
-          -#   = link_to '編集', edit_staff_customer_path(customer), class: 'customers_data_actions-edit'
-          -#   = link_to '削除', staff_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'customers_data_actions-delete'
+          %td= presenter.birthday
+          %td= presenter.gender
+          %td.customers_data_actions
+            = link_to '詳細', staff_customer_path(customer), class: 'customers_data_actions-log'
+            = link_to '編集', edit_staff_customer_path(customer), class: 'customers_data_actions-edit'
+            = link_to '削除', staff_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'customers_data_actions-delete'
     = paginate @customers
