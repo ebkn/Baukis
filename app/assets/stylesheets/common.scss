@@ -51,7 +51,7 @@
     box-sizing: border-box;
     min-height: 100%;
     margin: 0 auto;
-    padding-bottom: $very_wide;
+    padding-bottom: $very_wide + 60px;
     background-color: $light_gray;
     .container {
       h1.title {
