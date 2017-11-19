@@ -46,7 +46,7 @@
         %td= home_address.address2
 
   - if @customer.work_address
-    - work_address = @customer.home_address
+    - work_address = @customer.work_address
     - work_address_presenter = AddressPresenter.new(work_address, self)
     %h2.customer-title 勤務先
     %table.customer
