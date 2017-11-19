@@ -1,7 +1,7 @@
 @media (max-width: 480px) {
   .overflow {
     overflow-x: scroll;
-    .customers, .staff-members {
+    .staff-members, .customers {
       width: 700px;
       margin: $very_wide auto;
       border-collapse: collapse;
@@ -22,6 +22,12 @@
           padding: $moderate 0;
           font-size: $tiny;
           font-weight: normal;
+          color: $dark_gray;
+        }
+
+        td {
+          padding: $wide;
+          font-size: $tiny;
           color: $dark_gray;
         }
 
