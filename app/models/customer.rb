@@ -2,6 +2,8 @@ class Customer < ApplicationRecord
   has_one :home_address, dependent: :destroy
   has_one :work_address, dependent: :destroy
 
+  default_scope { order(:family_name_kana, :given_name_kana) }
+
   before_validation do
     self.email_for_index = email.downcase if email
   end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resource :session, only: %i[create destroy]
       resource :account, only: %i[show edit update]
       resource :password, only: %i[show edit update]
+      resources :customers
       root 'top#index'
     end
   end
