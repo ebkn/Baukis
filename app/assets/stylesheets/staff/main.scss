@@ -22,7 +22,8 @@
       }
 
       .table-wrapper {
-        width: 50%;
+        width: 60%;
+        min-width: 450px;
         margin: $very_wide auto;
         padding: $very_wide;
         border: solid 1px $gray;
@@ -45,16 +46,6 @@
             text-decoration: none;
             text-align: center;
             font-size: $normal;
-          }
-        }
-
-        .staff-member {
-          width: 50%;
-          margin: 0 auto;
-          padding: $very_wide;
-          text-align: center;
-          th, td {
-            padding: $very_wide 0;
           }
         }
       }

@@ -43,21 +43,6 @@
             font-size: $normal;
           }
         }
-
-        .staff-member {
-          width: 50%;
-          margin: 0 auto;
-          padding: $very_wide;
-          text-align: center;
-          th, td {
-            display: block;
-            padding: $wide 0;
-          }
-
-          td {
-            margin-bottom: $very_wide;
-          }
-        }
       }
     }
   }
