@@ -1,0 +1,9 @@
+= f.fields_for :home_address, f.object.customer.home_address do |ff|
+  = markup do |m|
+    - presenter = AddressFormPresenter.new(ff, self)
+    - presenter.with_options(required: true) do |option_presenter|
+      - m << option_presenter.postal_code_block(:postal_code, '郵便番号', size: 7)
+      - m << option_presenter.drop_down_list_block(:prefecture, '都道府県', Address::PREFECTURE_NAMES)
+      - m << option_presenter.text_field_block(:city, '市区町村', size: 16)
+      - m << option_presenter.text_field_block(:address1, '町域、番地等', size: 40)
+    - m << presenter.text_field_block(:address2, '建物名、部屋番号等', size: 40)

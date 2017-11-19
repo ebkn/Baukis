@@ -19,6 +19,27 @@
         &-input input[type='submit'] {
           background-color: $staff_green;
         }
+
+        fieldset {
+          margin: $very_wide * 2 0;
+          border: 1px solid $gray;
+          legend {
+            font-size: $large;
+            color: $dark_gray;
+          }
+
+          .notes {
+            padding: $moderate 0;
+            font-size: $tiny;
+            color: $dark_gray;
+          }
+
+          .gender {
+            display: inline;
+            padding-left: $moderate;
+            padding-right: $very_wide;
+          }
+        }
       }
 
       .table-wrapper {
@@ -41,21 +62,6 @@
             text-decoration: none;
             text-align: center;
             font-size: $normal;
-          }
-        }
-
-        .staff-member {
-          width: 50%;
-          margin: 0 auto;
-          padding: $very_wide;
-          text-align: center;
-          th, td {
-            display: block;
-            padding: $wide 0;
-          }
-
-          td {
-            margin-bottom: $very_wide;
           }
         }
       }

@@ -1,0 +1,73 @@
+- @title = '顧客詳細情報'
+%h1.title= @title
+
+.table-wrapper
+  %h2.customer-title 基本情報
+  - presenter = CustomerPresenter.new(@customer, self)
+  %table.customer
+    %tr
+      %th 氏名
+      %td= presenter.full_name
+    %tr
+      %th フリガナ
+      %td= presenter.full_name_kana
+    %tr
+      %th メールアドレス
+      %td= @customer.email
+    %tr
+      %th 性別
+      %td= presenter.gender
+    %tr
+      %th 登録日時
+      %td= presenter.created_at
+    %tr
+      %th 更新日時
+      %td= presenter.updated_at
+
+  - if @customer.home_address
+    - home_address = @customer.home_address
+    - home_address_presenter = AddressPresenter.new(home_address, self)
+    %h2.customer-title 自宅住所
+    %table.customer
+      %tr
+        %th 郵便番号
+        %td= home_address_presenter.postal_code
+      %tr
+        %th 都道府県
+        %td= home_address.prefecture
+      %tr
+        %th 市区町村
+        %td= home_address.city
+      %tr
+        %th 町域、番地等
+        %td= home_address.address1
+      %tr
+        %th 建物名、部屋番号等
+        %td= home_address.address2
+
+  - if @customer.work_address
+    - work_address = @customer.work_address
+    - work_address_presenter = AddressPresenter.new(work_address, self)
+    %h2.customer-title 勤務先
+    %table.customer
+      %tr
+        %th 会社名
+        %td= work_address.company_name
+      %tr
+        %th 部署名
+        %td= work_address.division_name
+      %tr
+        %th 郵便番号
+        %td= work_address_presenter.postal_code
+      %tr
+        %th 都道府県
+        %td= work_address.prefecture
+      %tr
+        %th 市区町村
+        %td= work_address.city
+      %tr
+        %th 町域、番地等
+        %td= work_address.address1
+      %tr
+        %th 建物名、部屋番号等
+        %td= work_address.address2

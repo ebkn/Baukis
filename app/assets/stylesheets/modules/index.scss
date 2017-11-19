@@ -1,0 +1,121 @@
+@media (max-width: 480px) {
+  .overflow {
+    overflow-x: scroll;
+    .staff-members, .customers {
+      width: 700px;
+      margin: $very_wide auto;
+      border-collapse: collapse;
+      overflow-x: auto;
+      &_column {
+        border-bottom: 1px solid $light_gray;
+        th {
+          padding: $moderate 0;
+          font-size: $tiny;
+          font-weight: normal;
+          color: $dark_gray;
+        }
+      }
+
+      &_data {
+        width: 100%;
+        th {
+          padding: $moderate 0;
+          font-size: $tiny;
+          font-weight: normal;
+          color: $dark_gray;
+        }
+
+        td {
+          padding: $wide;
+          font-size: $tiny;
+          color: $dark_gray;
+        }
+
+        &_actions {
+          text-align: center;
+          a {
+            display: inline-block;
+            padding: $wide;
+            margin: 0 10px;
+            text-decoration: none;
+            color: $very_light_gray;
+            border-radius: 3px;
+          }
+
+          &-log {
+            background-color: $dark_gray;
+          }
+
+          &-edit {
+            background-color: $flash_green;
+          }
+
+          &-delete {
+            background-color: $flash_red;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .overflow {
+    overflow-x: scroll;
+    .staff-members, .customers {
+      width: 90%;
+      min-width: 700px;
+      padding: 0 30px;
+      margin: $very_wide auto;
+      border-collapse: collapse;
+      &_column {
+        border-bottom: 1px solid $light_gray;
+        th {
+          padding: $moderate;
+          font-size: $tiny;
+          font-weight: normal;
+          color: $dark_gray;
+        }
+      }
+
+      &_data {
+        &:hover {
+          background-color: $selected_blue;
+        }
+
+        td {
+          padding: $wide;
+          font-size: $tiny;
+          color: $dark_gray;
+        }
+
+        &_actions {
+          text-align: center;
+          a {
+            width: 25%;
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 5%;
+            margin: 0 2%;
+            text-align: center;
+            text-decoration: none;
+            color: $very_light_gray;
+            border-radius: 3px;
+          }
+
+          &-log {
+            background-color: $dark_gray;
+          }
+
+          &-edit {
+            background-color: $flash_green;
+          }
+
+          &-delete {
+            background-color: $flash_red;
+          }
+        }
+      }
+    }
+  }
+}

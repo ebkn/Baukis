@@ -56,12 +56,4 @@ class StaffMember < ApplicationRecord
       start_date <= Time.zone.today &&
       (end_date.nil? || end_date > Time.zone.today)
   end
-
-  def full_name
-    "#{family_name} #{given_name}"
-  end
-
-  def full_name_kana
-    "#{family_name_kana} #{given_name_kana}"
-  end
 end

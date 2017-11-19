@@ -6,12 +6,13 @@
     = link_to '編集', edit_staff_account_path
     = link_to 'パスワード変更', edit_staff_password_path
   %table.staff-member
+    - presenter = StaffMemberPresenter.new(@staff_member, self)
     %tr
       %th 氏名
-      %td= @staff_member.full_name
+      %td= presenter.full_name
     %tr
       %th フリガナ
-      %td= @staff_member.full_name_kana
+      %td= presenter.full_name_kana
     %tr
       %th メールアドレス
       %td= @staff_member.email
