@@ -29,6 +29,10 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'faker'
   gem 'faker-japanese'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'pry-rails'
 end
@@ -43,13 +47,6 @@ group :development do
   gem 'binding_of_caller'
   # gem 'rack-mini-profiler'
   gem 'erb2haml'
-end
-
-group :test do
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'selenium-webdriver'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
