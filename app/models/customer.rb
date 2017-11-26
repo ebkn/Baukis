@@ -8,6 +8,13 @@ class Customer < ApplicationRecord
     self.email_for_index = email.downcase if email
   end
 
+  validates :gender, inclusion: { in: ['male', 'female', ''], allow_blank: true }
+  validates :birthday, date: {
+    after: Date.new(1900, 1, 1),
+    before: proc { Time.zone.today },
+    allow_blank: true
+  }
+
   def password=(raw_password)
     if raw_password.is_a?(String)
       self.hashed_password = BCrypt::Password.create(raw_password)
