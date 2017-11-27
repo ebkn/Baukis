@@ -78,7 +78,7 @@ feature 'customer management by staff' do
 
   scenario "update customer's information" do
     new_email = Faker::Internet.email
-    new_home_address_postal_code = '00000000'
+    new_home_address_postal_code = '0000000'
     new_work_address_company_name = 'XXX'
 
     click_link '顧客管理'
