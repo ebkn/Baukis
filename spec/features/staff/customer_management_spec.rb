@@ -37,6 +37,8 @@ feature 'customer management by staff' do
       choose '女性'
     end
 
+    check '自宅住所を入力する'
+
     within('.home_address_fields') do
       fill_in '郵便番号', with: postal_code
       select '東京都', from: '都道府県'
@@ -44,6 +46,8 @@ feature 'customer management by staff' do
       fill_in '町域、番地等', with: address1
       fill_in '建物名、部屋番号等', with: ''
     end
+
+    check '勤務先を入力する'
 
     within('.work_address_fields') do
       fill_in '会社名', with: company_name
