@@ -198,18 +198,4 @@ RSpec.describe StaffMember, type: :model do
       expect(member.hashed_password).to be_nil
     end
   end
-
-  describe '#full_name' do
-    it 'returns full_name' do
-      member = build(:staff_member)
-      expect(member.full_name).to eq "#{member.family_name} #{member.given_name}"
-    end
-  end
-
-  describe '#full_name_kana' do
-    it 'returns full_name_kana' do
-      member = build(:staff_member)
-      expect(member.full_name_kana).to eq "#{member.family_name_kana} #{member.given_name_kana}"
-    end
-  end
 end
