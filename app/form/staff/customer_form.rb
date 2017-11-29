@@ -34,6 +34,16 @@ class Staff::CustomerForm
     else
       customer.work_address.mark_for_destruction
     end
+
+    phones = phone_params(:customer).fetch(:phones)
+    customer.personal_phones.size.times do |index|
+      attributes = phones[index.to_s]
+      if attributes && attributes[:number].present?
+        customer.personal_phones[index].assign_attributes(attributes)
+      else
+        customer.personal_phones[index].mark_for_destruction
+      end
+    end
   end
 
   private
@@ -71,5 +81,9 @@ class Staff::CustomerForm
       :company_name,
       :division_name
     )
+  end
+
+  def phone_params(record_name)
+    @params.require(record_name).permit(phones: %i[number primary])
   end
 end
