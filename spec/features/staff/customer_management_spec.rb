@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'customer management by staff' do
   include FeaturesSpecHelper
+
   let(:staff_member) { create(:staff_member, password: 'password') }
   let!(:customer) { create(:customer) }
 
