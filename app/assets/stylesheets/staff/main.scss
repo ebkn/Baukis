@@ -20,6 +20,10 @@
           background-color: $staff_green;
         }
 
+        .fields_check_box {
+          margin: $very_wide 0;
+        }
+
         fieldset {
           margin: $very_wide * 2 0;
           border: 1px solid $gray;
