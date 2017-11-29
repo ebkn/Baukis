@@ -5,7 +5,7 @@ class Phone < ApplicationRecord
   belongs_to :address, optional: true
 
   before_validation do
-    self.number = normalize_as_phone_number
+    self.number = normalize_as_phone_number(number)
     self.number_for_index = number.gsub(/\D/, '') if number
   end
 
