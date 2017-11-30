@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130072032) do
+ActiveRecord::Schema.define(version: 20171130073436) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "customer_id",                null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20171130072032) do
     t.datetime "updated_at",                 null: false
     t.index ["city"], name: "index_addresses_on_city", using: :btree
     t.index ["customer_id"], name: "index_addresses_on_customer_id", using: :btree
+    t.index ["postal_code"], name: "index_addresses_on_postal_code", using: :btree
     t.index ["prefecture", "city"], name: "index_addresses_on_prefecture_and_city", using: :btree
     t.index ["type", "city"], name: "index_addresses_on_type_and_city", using: :btree
     t.index ["type", "customer_id"], name: "index_addresses_on_type_and_customer_id", unique: true, using: :btree
