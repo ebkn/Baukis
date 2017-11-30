@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129070927) do
+ActiveRecord::Schema.define(version: 20171130044228) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "customer_id",                null: false
@@ -24,8 +24,12 @@ ActiveRecord::Schema.define(version: 20171129070927) do
     t.string   "division_name", default: "", null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["city"], name: "index_addresses_on_city", using: :btree
     t.index ["customer_id"], name: "index_addresses_on_customer_id", using: :btree
+    t.index ["prefecture", "city"], name: "index_addresses_on_prefecture_and_city", using: :btree
+    t.index ["type", "city"], name: "index_addresses_on_type_and_city", using: :btree
     t.index ["type", "customer_id"], name: "index_addresses_on_type_and_customer_id", unique: true, using: :btree
+    t.index ["type", "prefecture", "city"], name: "index_addresses_on_type_and_prefecture_and_city", using: :btree
   end
 
   create_table "administrators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -50,8 +54,20 @@ ActiveRecord::Schema.define(version: 20171129070927) do
     t.string   "hashed_password"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "birth_year"
+    t.integer  "birth_month"
+    t.integer  "birth_mday"
+    t.index ["birth_mday", "family_name_kana", "given_name_kana"], name: "index_customers_on_birth_mday_nad_kana", using: :btree
+    t.index ["birth_mday", "given_name_kana"], name: "index_customers_on_birth_mday_and_given_name_kana", using: :btree
+    t.index ["birth_month", "birth_mday"], name: "index_customers_on_birth_month_and_birth_mday", using: :btree
+    t.index ["birth_month", "family_name_kana", "given_name_kana"], name: "index_customers_on_birth_month_and_kana", using: :btree
+    t.index ["birth_month", "given_name_kana"], name: "index_customers_on_birth_month_and_given_name_kana", using: :btree
+    t.index ["birth_year", "birth_month", "birth_mday"], name: "index_customers_on_birth_year_and_birth_month_and_birth_mday", using: :btree
+    t.index ["birth_year", "family_name_kana", "given_name_kana"], name: "index_customers_on_birth_year_and_kana", using: :btree
+    t.index ["birth_year", "given_name_kana"], name: "index_customers_on_birth_year_and_given_name_kana", using: :btree
     t.index ["email_for_index"], name: "index_customers_on_email_for_index", unique: true, using: :btree
     t.index ["family_name_kana", "given_name_kana"], name: "index_customers_on_family_name_kana_and_given_name_kana", using: :btree
+    t.index ["given_name_kana"], name: "index_customers_on_given_name_kana", using: :btree
   end
 
   create_table "phones", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
