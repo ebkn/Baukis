@@ -59,7 +59,8 @@ class Staff::CustomersController < Staff::Base
       :address_type,
       :prefecture,
       :city,
-      :phone_number
+      :phone_number,
+      :last_four_digits_of_phone_number
     )
   end
 end

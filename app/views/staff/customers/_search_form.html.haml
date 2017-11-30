@@ -23,4 +23,5 @@
 
     - m.div(class: 'search_form-phone_and_submit') do
       - m << presenter.text_field_block(:phone_number, '電話番号')
+      - m << presenter.text_field_block(:last_four_digits_of_phone_number, '電話番号下4桁')
       - m << f.submit('検索')
