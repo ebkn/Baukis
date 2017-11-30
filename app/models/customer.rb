@@ -12,6 +12,14 @@ class Customer < ApplicationRecord
 
   default_scope { order(:family_name_kana, :given_name_kana) }
 
+  before_validation do
+    if birthday
+      self.birth_year  = birthday.year
+      self.birth_month = birthday.month
+      self.birth_mday  = birthday.mday
+    end
+  end
+
   validates :gender, inclusion: { in: ['male', 'female', ''], allow_blank: true }
   validates :birthday, date: {
     after: Date.new(1900, 1, 1),
