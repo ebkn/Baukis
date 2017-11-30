@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130045955) do
+ActiveRecord::Schema.define(version: 20171130072032) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "customer_id",                null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20171130045955) do
     t.index ["birth_year", "given_name_kana"], name: "index_customers_on_birth_year_and_given_name_kana", using: :btree
     t.index ["email_for_index"], name: "index_customers_on_email_for_index", unique: true, using: :btree
     t.index ["family_name_kana", "given_name_kana"], name: "index_customers_on_family_name_kana_and_given_name_kana", using: :btree
+    t.index ["gender", "family_name_kana", "given_name_kana"], name: "index_customers_on_gender_and_kana", using: :btree
     t.index ["given_name_kana"], name: "index_customers_on_given_name_kana", using: :btree
   end
 
