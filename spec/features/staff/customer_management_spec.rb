@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'customer management by staff' do
   include FeaturesSpecHelper
+
   let(:staff_member) { create(:staff_member, password: 'password') }
   let!(:customer) { create(:customer) }
 
@@ -37,6 +38,8 @@ feature 'customer management by staff' do
       choose '女性'
     end
 
+    check '自宅住所を入力する'
+
     within('.home_address_fields') do
       fill_in '郵便番号', with: postal_code
       select '東京都', from: '都道府県'
@@ -44,6 +47,8 @@ feature 'customer management by staff' do
       fill_in '町域、番地等', with: address1
       fill_in '建物名、部屋番号等', with: ''
     end
+
+    check '勤務先を入力する'
 
     within('.work_address_fields') do
       fill_in '会社名', with: company_name
@@ -102,5 +107,44 @@ feature 'customer management by staff' do
     expect(customer.email).to eq new_email
     expect(customer.home_address.postal_code).to eq new_home_address_postal_code
     expect(customer.work_address.company_name).to eq new_work_address_company_name
+  end
+
+  scenario 'register customer (only fundamental information)' do
+    email            = Faker::Internet.email
+    password         = Faker::Internet.password
+    family_name      = Faker::Japanese::Name.last_name
+    given_name       = Faker::Japanese::Name.first_name
+    family_name_kana = family_name.yomi
+    given_name_kana  = given_name.yomi
+    birth_date       = '1970-01-01'
+
+    click_link '顧客管理'
+    click_link '新規登録'
+
+    within('.customer_fields') do
+      fill_in 'メールアドレス', with: email
+      fill_in 'パスワード', with: password
+      fill_in 'form_customer_family_name', with: family_name
+      fill_in 'form_customer_given_name', with: given_name
+      fill_in 'form_customer_family_name_kana', with: family_name_kana
+      fill_in 'form_customer_given_name_kana', with: given_name_kana
+      fill_in '生年月日', with: birth_date
+      choose '女性'
+    end
+
+    click_button '登録'
+
+    new_customer = Customer.where(email: email).first
+
+    expect(new_customer.email).to eq email
+    expect(new_customer.family_name).to eq family_name
+    expect(new_customer.given_name).to eq given_name
+    expect(new_customer.family_name_kana).to eq family_name_kana
+    expect(new_customer.given_name_kana).to eq given_name_kana
+    expect(new_customer.birthday).to eq Date.new(1970, 1, 1)
+    expect(new_customer.gender).to eq 'female'
+
+    expect(new_customer.home_address).to be_nil
+    expect(new_customer.work_address).to be_nil
   end
 end

@@ -1,7 +1,10 @@
 class Address < ApplicationRecord
   include StringNormalizer
 
-  belongs_to :customer
+  belongs_to :customer, optional: true
+  has_many :phones, proc {
+    order(:id)
+  }, dependent: :destroy, autosave: true
 
   PREFECTURE_NAMES = %w[
     北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県

@@ -3,8 +3,12 @@ class Customer < ApplicationRecord
   include EmailHolder
   include PasswordHolder
 
-  has_one :home_address, dependent: :destroy
-  has_one :work_address, dependent: :destroy
+  has_one :home_address, dependent: :destroy, autosave: true
+  has_one :work_address, dependent: :destroy, autosave: true
+  has_many :phones, dependent: :destroy
+  has_many :personal_phones, proc {
+    where(address_id: nil).order(:id)
+  }, class_name: 'Phone', autosave: true
 
   default_scope { order(:family_name_kana, :given_name_kana) }
 

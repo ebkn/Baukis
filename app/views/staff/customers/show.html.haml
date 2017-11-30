@@ -23,6 +23,12 @@
     %tr
       %th 更新日時
       %td= presenter.updated_at
+    %tr
+      %th 個人電話番号(1)
+      %td= presenter.personal_phones[0]
+    %tr
+      %th 個人電話番号(2)
+      %td= presenter.personal_phones[1]
 
   - if @customer.home_address
     - home_address = @customer.home_address
@@ -44,6 +50,12 @@
       %tr
         %th 建物名、部屋番号等
         %td= home_address.address2
+      %tr
+        %th 自宅電話番号(1)
+        %td= home_address_presenter.phones[0]
+      %tr
+        %th 自宅電話番号(2)
+        %td= home_address_presenter.phones[1]
 
   - if @customer.work_address
     - work_address = @customer.work_address
@@ -71,3 +83,9 @@
       %tr
         %th 建物名、部屋番号等
         %td= work_address.address2
+      %tr
+        %th 勤務先電話番号(1)
+        %td= work_address_presenter.phones[0]
+      %tr
+        %th 勤務先電話番号(2)
+        %td= work_address_presenter.phones[1]

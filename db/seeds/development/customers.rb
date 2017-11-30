@@ -55,6 +55,8 @@ i.create_home_address!(
 )
 
 i.create_work_address!(
+  company_name: 'XXX',
+  division_name: 'YYY',
   postal_code: sprintf('%07d', rand(10000000)),
   prefecture: Address::PREFECTURE_NAMES.sample,
   city: company_names.sample,
@@ -78,6 +80,8 @@ i.create_work_address!(
       gender: m < 5 ? 'male' : 'female'
     )
 
+    c.personal_phones.create!(number: sprintf('090-0000-%04d', n * 10 + m)) if m % 2 == 0
+
     c.create_home_address!(
       postal_code: sprintf('%07d', rand(10000000)),
       prefecture: Address::PREFECTURE_NAMES.sample,
@@ -85,6 +89,8 @@ i.create_work_address!(
       address1: address1s.sample,
       address2: address2s.sample
     )
+
+    c.home_address.phones.create!(number: sprintf('03-0000-%04d', n))
 
     c.create_work_address!(
       postal_code: sprintf('%07d', rand(10000000)),
