@@ -11,8 +11,8 @@
 
     - m.div(class: 'search_form-date') do
       - m << presenter.drop_down_list_block(:birth_year, '誕生年 : ', (1900..Time.current.year).to_a.reverse)
-      - m << presenter.drop_down_list_block(:birth_year, '誕生月 : ', 1..12)
-      - m << presenter.drop_down_list_block(:birth_year, '誕生日 : ', 1..31)
+      - m << presenter.drop_down_list_block(:birth_month, '誕生月 : ', 1..12)
+      - m << presenter.drop_down_list_block(:birth_mday, '誕生日 : ', 1..31)
 
     - m.div(class: 'search_form-address_range') do
       - m << presenter.drop_down_list_block(:address_type, '住所の検索範囲 : ', [%w[自宅住所のみ home], %w[勤務先のみ work]])

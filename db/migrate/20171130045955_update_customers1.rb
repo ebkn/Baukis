@@ -3,8 +3,8 @@ class UpdateCustomers1 < ActiveRecord::Migration[5.0]
     def up
       execute(%q{
         UPDATE customers SET
-          birth_year = EXTRACT(YEAR FROM birthday)
-          birth_month = EXTRACT(MONTH FROM birthday)
+          birth_year = EXTRACT(YEAR FROM birthday),
+          birth_month = EXTRACT(MONTH FROM birthday),
           birth_mday = EXTRACT(DAY FROM birthday)
           WHERE birthday IS NOT NULL
       })

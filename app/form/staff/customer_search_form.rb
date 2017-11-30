@@ -18,7 +18,7 @@ class Staff::CustomerSearchForm
     rel = search_by_address(rel)
     rel = search_by_phone(rel)
 
-    rel.oreder(:family_name_kana, :given_name_kana)
+    rel.order(:family_name_kana, :given_name_kana)
   end
 
   private
@@ -60,6 +60,6 @@ class Staff::CustomerSearchForm
 
   def search_by_phone(rel)
     return rel if phone_number.blank?
-    rel.join(:phones).where('phones.number_for_index' => phone_number)
+    rel.joins(:phones).where('phones.number_for_index' => phone_number)
   end
 end
