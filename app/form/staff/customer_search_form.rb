@@ -9,6 +9,7 @@ class Staff::CustomerSearchForm
                 :birth_month,
                 :birth_mday,
                 :address_type,
+                :postal_code,
                 :prefecture,
                 :city,
                 :phone_number
@@ -31,6 +32,7 @@ class Staff::CustomerSearchForm
   def normalize_values
     self.family_name_kana = normalize_as_furigana(family_name_kana)
     self.given_name_kana = normalize_as_furigana(given_name_kana)
+    self.postal_code = normalize_as_postal_code(postal_code)
     self.city = normalize_as_name(city)
     self.phone_number = normalize_as_phone_number(phone_number).try(:gsub, /\D/, '')
   end
@@ -56,7 +58,7 @@ class Staff::CustomerSearchForm
   end
 
   def search_by_address(rel)
-    return rel if prefecture.blank? && city.blank?
+    return rel if postal_code.blank? && prefecture.blank? && city.blank?
 
     case address_type
     when 'home'
@@ -69,6 +71,7 @@ class Staff::CustomerSearchForm
       raise
     end
 
+    rel = rel.where('addresses.postal_code' => postal_code) if postal_code.present?
     rel = rel.where('addresses.prefecture' => prefecture) if prefecture.present?
     rel = rel.where('address.city' => city) if city.present?
 
