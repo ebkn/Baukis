@@ -38,4 +38,18 @@ feature 'customer\'s phone managent by staff' do
     expect(customer.home_address.phones.size).to eq 1
     expect(customer.home_address.phones[0].number).to eq phone_number
   end
+
+  scenario 'add customer\'s work phone number by staff' do
+    phone_number = '090-0000-0000'
+    click_link '顧客管理'
+    first('.customers_data').click_link '編集'
+
+    fill_in 'form_work_address_phones_0_number', with: phone_number
+    check 'form_work_address_phones_0_primary'
+    click_button '更新'
+
+    customer.reload
+    expect(customer.work_address.phones.size).to eq 1
+    expect(customer.work_address.phones[0].number).to eq phone_number
+  end
 end

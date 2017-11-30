@@ -8,3 +8,8 @@
     - m << presenter.text_field_block(:city, '市区町村', size: 16)
     - m << presenter.text_field_block(:address1, '町域、番地等', size: 40)
     - m << presenter.text_field_block(:address2, '建物名、部屋番号等', size: 40)
+    - m.div(class: 'generic_form-input') do
+      - m << presenter.decorated_label(:phones, '電話番号')
+      - m.ul do
+        - presenter.object.phones.each_with_index do |phone, index|
+          - m << render('phone_fields', f: ff, phone: phone, index: index)
