@@ -1,6 +1,7 @@
 class Staff::CustomersController < Staff::Base
   def index
-    @customers = Customer.page(params[:page])
+    @search_form = Staff::CustomerSearchForm.new(search_params)
+    @customers = @search_form.search.page(params[:page])
   end
 
   def show
@@ -41,5 +42,25 @@ class Staff::CustomersController < Staff::Base
     customer = Customer.find(params[:id])
     customer.destroy!
     redirect_to staff_customers_path, notice: '顧客アカウントを削除しました'
+  end
+
+  private
+
+  def search_params
+    return nil unless params[:search]
+    params.require(:search).permit(
+      :family_name_kana,
+      :given_name_kana,
+      :gender,
+      :birth_year,
+      :birth_month,
+      :birth_mday,
+      :postal_code,
+      :address_type,
+      :prefecture,
+      :city,
+      :phone_number,
+      :last_four_digits_of_phone_number
+    )
   end
 end

@@ -9,7 +9,10 @@ class Phone < ApplicationRecord
     self.number_for_index = number.gsub(/\D/, '') if number
   end
 
-  before_create { self.customer = address.customer if address }
+  before_create do
+    self.customer = address.customer if address
+    self.last_four_digits = number_for_index[-4, 4] if number_for_index
+  end
 
   VALID_PHONE_NUMBER = /\A\+?\d+(-\d+)*\z/
 

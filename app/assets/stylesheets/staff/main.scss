@@ -15,6 +15,95 @@
         border: solid 2px $staff_dark_green;
       }
 
+      .search_form {
+        padding: $moderate 0;
+        border: 1px solid $light_gray;
+        border-radius: 2px;
+        background-color: $light_gray;
+        color: $dark_gray;
+        &-name .generic_form-input {
+          display: inline-block;
+          box-sizing: border-box;
+          width: 48%;
+          padding: $moderate 0;
+          &:after {
+            clear: both;
+            display: block;
+            content: '';
+          }
+          &:after {
+            clear: both;
+            display: block;
+            content: '';
+          }
+        }
+
+        &-personal .generic_form-input {
+          display: inline-block;
+          box-sizing: border-box;
+          width: 24%;
+          padding: $moderate 0;
+          label, select {
+            display: inline-block;
+            padding: 0;
+          }
+
+          label {
+            padding: 0 $moderate;
+          }
+
+          &:after {
+            clear: both;
+            display: block;
+            content: '';
+          }
+        }
+
+        &-address select, &-address .generic_form-input{
+          display: inline-block;
+          box-sizing: border-box;
+          width: 24%;
+          padding: $moderate 0;
+          label, select, input {
+            width: 40%;
+            display: inline-block;
+            padding: 0;
+          }
+        }
+
+        &-phone_and_submit .generic_form-input {
+          display: inline-block;
+          box-sizing: border-box;
+          width: 35%;
+          padding: $moderate 0;
+          label, input {
+            display: inline-block;
+          }
+
+          label {
+            width: 20%;
+          }
+
+          input {
+            width: 70%;
+          }
+        }
+
+        input[type="submit"] {
+          display: inline-block;
+          width: 20%;
+          margin: $moderate 0;
+          padding: $wide $very_wide;
+          background-color: $staff_green;
+          color: white;
+          border: solid 1px $gray;
+          border-radius: 5px;
+          text-decoration: none;
+          text-align: center;
+          font-size: $normal;
+        }
+      }
+
       .login_form, .generic_form {
         &-input input[type='submit'] {
           background-color: $staff_green;
@@ -52,7 +141,7 @@
 
       .table-wrapper {
         width: 60%;
-        min-width: 550px;
+        min-width: 600px;
         margin: $very_wide auto;
         padding: $very_wide;
         border: solid 1px $gray;
