@@ -1,0 +1,26 @@
+= form_for @search_form, as: 'search',
+                         url: staff_customers_path,
+                         method: :get,
+                         html: { class: 'search_form' } do |f|
+  = markup do |m|
+    - presenter = FormPresenter.new(f, self)
+
+    - m.div(class: 'search_form-name') do
+      - m << presenter.text_field_block(:family_name_kana, 'フリガナ(姓)', class: 'search_form-name')
+      - m << presenter.text_field_block(:given_name_kana, 'フリガナ(名)', class: 'search_form-name')
+
+    - m.div(class: 'search_form-date') do
+      - m << presenter.drop_down_list_block(:birth_year, '誕生年 : ', (1900..Time.current.year).to_a.reverse)
+      - m << presenter.drop_down_list_block(:birth_year, '誕生月 : ', 1..12)
+      - m << presenter.drop_down_list_block(:birth_year, '誕生日 : ', 1..31)
+
+    - m.div(class: 'search_form-address_range') do
+      - m << presenter.drop_down_list_block(:address_type, '住所の検索範囲 : ', [%w[自宅住所のみ home], %w[勤務先のみ work]])
+
+    - m.div(class: 'search_form-address') do
+      - m << presenter.drop_down_list_block(:prefecture, '都道府県 : ', Address::PREFECTURE_NAMES)
+      - m << presenter.text_field_block(:city, '市区町村 : ')
+
+    - m.div(class: 'search_form-phone_and_submit') do
+      - m << presenter.text_field_block(:phone_number, '電話番号 : ')
+      - m << f.submit('検索')

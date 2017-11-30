@@ -1,5 +1,6 @@
 class Staff::CustomersController < Staff::Base
   def index
+    @search_form = Staff::CustomerSearchForm.new
     @customers = Customer.page(params[:page])
   end
 
