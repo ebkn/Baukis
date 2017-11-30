@@ -50,6 +50,7 @@ class Staff::CustomersController < Staff::Base
     params.require(:search).permit(
       :family_name_kana,
       :given_name_kana,
+      :gender,
       :birth_year,
       :birth_month,
       :birth_mday,

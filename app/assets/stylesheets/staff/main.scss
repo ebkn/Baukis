@@ -38,10 +38,10 @@
           }
         }
 
-        &-date .generic_form-input {
+        &-personal .generic_form-input {
           display: inline-block;
           box-sizing: border-box;
-          width: 30%;
+          width: 22%;
           padding: $moderate 0;
           label, select {
             display: inline-block;
@@ -59,17 +59,10 @@
           }
         }
 
-        &-address_range {
-          label, select {
-            display: inline-block;
-            padding: 0 $moderate;
-          }
-        }
-
         &-address select, &-address .generic_form-input{
           display: inline-block;
           box-sizing: border-box;
-          width: 48%;
+          width: 30%;
           padding: $moderate 0;
           label, select, input {
             width: 40%;

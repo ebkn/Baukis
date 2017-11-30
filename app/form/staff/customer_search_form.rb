@@ -4,6 +4,7 @@ class Staff::CustomerSearchForm
 
   attr_accessor :family_name_kana,
                 :given_name_kana,
+                :gender,
                 :birth_year,
                 :birth_month,
                 :birth_mday,
@@ -17,6 +18,7 @@ class Staff::CustomerSearchForm
 
     rel = Customer
     rel = search_by_name(rel)
+    rel = search_by_gender(rel)
     rel = search_by_date(rel)
     rel = search_by_address(rel)
     rel = search_by_phone(rel)
@@ -38,6 +40,11 @@ class Staff::CustomerSearchForm
     rel = rel.where(given_name_kana: given_name_kana) if given_name_kana.present?
 
     rel
+  end
+
+  def search_by_gender(rel)
+    return rel if gender.blank?
+    rel.where(gender: gender)
   end
 
   def search_by_date(rel)
