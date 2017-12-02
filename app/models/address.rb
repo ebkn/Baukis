@@ -2,9 +2,7 @@ class Address < ApplicationRecord
   include StringNormalizer
 
   belongs_to :customer, optional: true
-  has_many :phones, proc {
-    order(:id)
-  }, dependent: :destroy, autosave: true
+  has_many :phones, dependent: :destroy, autosave: true
 
   PREFECTURE_NAMES = %w[
     北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県
@@ -18,9 +16,9 @@ class Address < ApplicationRecord
 
   before_validation do
     self.postal_code = normalize_as_postal_code(postal_code)
-    self.city = normalize_as_name(city)
-    self.address1 = normalize_as_name(address1)
-    self.address2 = normalize_as_name(address2)
+    self.city        = normalize_as_name(city)
+    self.address1    = normalize_as_name(address1)
+    self.address2    = normalize_as_name(address2)
   end
 
   validates :postal_code, format: { with: /\A\d{7}\z/, allow_blank: true }

@@ -1,18 +1,18 @@
 module EmailHolder
   extend ActiveSupport::Concern
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
-
   included do
     include StringNormalizer
 
     before_validation do
-      self.email            = normalize_as_email(email)
-      self.email_for_index  = email.downcase if email
+      self.email = normalize_as_email(email)
+      self.email_for_index = email.downcase if email
     end
 
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
+
     validates :email, presence: true,
-    format: { with: VALID_EMAIL_REGEX, allow_blank: true }
+                      format: { with: VALID_EMAIL_REGEX, allow_blank: true }
     validates :email_for_index, uniqueness: true
 
     after_validation do

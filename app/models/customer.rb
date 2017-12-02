@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   has_one :work_address, autosave: true
   has_many :phones, dependent: :destroy
   has_many :personal_phones, proc {
-    where(address_id: nil).order(:id)
+    where(address_id: nil)
   }, class_name: 'Phone', autosave: true
 
   default_scope { order(:family_name_kana, :given_name_kana) }
