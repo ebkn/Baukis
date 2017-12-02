@@ -10,9 +10,14 @@ class CreateAddresses < ActiveRecord::Migration[5.0]
       t.string :address2, null: false
       t.string :company_name, null: false, default: ''
       t.string :division_name, null: false, default: ''
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :addresses, %i[type customer_id], unique: true
+    add_index :addresses, %i[type prefecture city]
+    add_index :addresses, %i[type city]
+    add_index :addresses, %i[prefecture city]
+    add_index :addresses, :postal_code
+    add_index :addresses, :city
   end
 end
