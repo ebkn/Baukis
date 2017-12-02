@@ -17,7 +17,7 @@ class Staff::SessionsController < Staff::Base
       return
     end
 
-    staff_member = StaffMember.find_by(email_for_index: @form.email.downcase)
+    staff_member = StaffMember.get_by_email(@form.email)
     if staff_member.nil?
       flash.now.alert = 'メールアドレスが間違っています'
     elsif staff_member.suspended
