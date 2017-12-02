@@ -54,7 +54,7 @@ customers page
 http://example.com/mypage
 ```
 
-Sample email & password.
+This is email & password for development.
 ```
 # administrator
 admin@test.com
@@ -67,4 +67,16 @@ password
 # customer
 customer@test.com
 password
+```
+
+## Test
+
+Run this command
+```sh
+$ rspec
+```
+
+then overage report is created by simpleCov gem.
+```
+/coverage/index.html
 ```
