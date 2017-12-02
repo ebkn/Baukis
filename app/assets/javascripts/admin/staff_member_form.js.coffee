@@ -1,7 +1,7 @@
 $(document).on 'turbolinks:load', ->
-  $enable_button = $('#enable-password_field-button')
+  $enable_button  = $('#enable-password_field-button')
   $disable_button = $('#disable-password_field-button')
-  $password_form = $('#staff_member_password')
+  $password_form  = $('#staff_member_password')
   $password_label = $('label[for=staff_member_password]')
 
   $enable_button.on 'click', ->
