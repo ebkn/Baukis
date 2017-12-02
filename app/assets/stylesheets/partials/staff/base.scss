@@ -1,3 +1,78 @@
+@media (max-width: 480px) {
+  header {
+    .logo-mark {
+      background-color: $staff_green;
+    }
+  }
+
+  .wrapper {
+    .container {
+      h1.title {
+        background-color: $staff_dark_green;
+      }
+
+      .error {
+        border: solid 2px $staff_dark_green;
+      }
+
+      .login_form, .generic_form {
+        &-input input[type='submit'] {
+          background-color: $staff_green;
+        }
+
+        .fields_check_box {
+          margin: $very_wide 0;
+        }
+
+        fieldset {
+          margin: $very_wide * 2 0;
+          border: 1px solid $gray;
+          legend {
+            font-size: $large;
+            color: $dark_gray;
+          }
+
+          .notes {
+            padding: $moderate 0;
+            font-size: $tiny;
+            color: $dark_gray;
+          }
+
+          .gender {
+            display: inline;
+            padding-left: $moderate;
+            padding-right: $very_wide;
+          }
+        }
+      }
+
+      .table-wrapper {
+        width: 85%;
+        margin: $very_wide auto;
+        padding: $very_wide;
+        border: solid 1px $gray;
+        background-color: white;
+        text-align: center;
+        .links {
+          width: 100%;
+          margin: $wide auto;
+          a {
+            display: block;
+            padding: $wide $very_wide;
+            background-color: $customer_blue;
+            color: white;
+            border: solid 1px $gray;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            font-size: $normal;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (min-width: 480px) {
   header {
     .logo-mark {

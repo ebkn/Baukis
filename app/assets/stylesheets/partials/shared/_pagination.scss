@@ -4,10 +4,16 @@ nav.pagination {
   padding: $wide 0;
   border-top: solid $gray 1px;
   border-bottom: solid $gray 1px;
-  span.page, span.first, span.prev, span.next, span.last {
+
+  span.page,
+  span.first,
+  span.prev,
+  span.next,
+  span.last {
     display: inline-block;
     background-color: $light_gray;
     padding: $wide;
+
     a {
       color: $dark_gray;
       text-decoration: none;

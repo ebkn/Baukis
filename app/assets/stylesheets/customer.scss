@@ -1,11 +1,12 @@
-@import 'normalize';
-@import 'config/*';
-@import 'modules/*';
+@import 'reset';
 
 @import 'jquery-ui/core';
 @import 'jquery-ui/theme';
 @import 'jquery-ui/datepicker';
 
-@import 'common';
-@import 'common-smartphone';
-@import 'customer/*';
+@import 'modules/colors';
+@import 'modules/dimensions';
+
+@import 'partials/shared/base';
+
+@import 'partials/customer/base';
