@@ -1,4 +1,9 @@
-# Be sure to restart your server when you modify this file.
-
-# Configure sensitive parameters which will be filtered from the log file.
-Rails.application.config.filter_parameters += [:password]
+Rails.application.config.filter_parameters += %i(
+  email email_for_index password
+  family_name given_name family_name_kana given_name_kana
+  gender
+  birthday birth_year birth_month birth_mday birth_year
+  number number_for_index last_four_digits
+  postal_code prefecture city address1 address2
+  company_name division_name
+)
