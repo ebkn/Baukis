@@ -24,4 +24,16 @@ class StaffMember < ApplicationRecord
       start_date <= Time.zone.today &&
       (end_date.nil? || end_date > Time.zone.today)
   end
+
+  def create_rejected_events
+    events.create!(type: 'rejected')
+  end
+
+  def create_login_events
+    events.create!(type: 'logged_in')
+  end
+
+  def create_logout_events
+    events.create!(type: 'logged_out')
+  end
 end

@@ -9,11 +9,11 @@ class Staff::CustomersController < Staff::Base
   end
 
   def new
-    @customer_form = Staff::CustomerForm.new
+    set_new_customer_form
   end
 
   def create
-    @customer_form = Staff::CustomerForm.new
+    set_new_customer_form
     @customer_form.assign_attributes(params[:form])
     if @customer_form.save
       redirect_to staff_customers_path, notice: '顧客を追加しました'
@@ -24,11 +24,11 @@ class Staff::CustomersController < Staff::Base
   end
 
   def edit
-    @customer_form = Staff::CustomerForm.new(Customer.find(params[:id]))
+    set_selected_customer_form
   end
 
   def update
-    @customer_form = Staff::CustomerForm.new(Customer.find(params[:id]))
+    set_selected_customer_form
     @customer_form.assign_attributes(params[:form])
     if @customer_form.save
       redirect_to staff_customers_path, notice: '顧客情報を更新しました'
@@ -49,18 +49,20 @@ class Staff::CustomersController < Staff::Base
   def search_params
     return nil unless params[:search]
     params.require(:search).permit(
-      :family_name_kana,
-      :given_name_kana,
+      :family_name_kana, :given_name_kana,
       :gender,
-      :birth_year,
-      :birth_month,
-      :birth_mday,
-      :postal_code,
+      :birth_year, :birth_month, :birth_mday,
       :address_type,
-      :prefecture,
-      :city,
-      :phone_number,
-      :last_four_digits_of_phone_number
+      :postal_code, :prefecture, :city,
+      :phone_number, :last_four_digits_of_phone_number
     )
+  end
+
+  def set_new_customer_form
+    @customer_form = Staff::CustomerForm.new
+  end
+
+  def set_selected_customer_form
+    @customer_form = Staff::CustomerForm.new(Customer.find(params[:id]))
   end
 end

@@ -17,27 +17,27 @@ class Staff::SessionsController < Staff::Base
       return
     end
 
-    staff_member = StaffMember.get_by_email(@form.email)
+    staff_member = StaffMember.find_by(email_for_index: @form.email.downcase)
     if staff_member.nil?
       flash.now.alert = 'メールアドレスが間違っています'
+      render :new
     elsif staff_member.suspended
-      staff_member.events.create!(type: 'rejected')
+      staff_member.create_rejected_events
       flash.now.alert = 'アカウントが凍結されています'
+      render :new
     elsif Staff::Authenticator.new(staff_member).authenticate(@form.password)
       login(staff_member)
-      return
+      redirect_to staff_root_path, notice: 'ログインしました'
     else
       flash.now.alert = 'パスワードが間違っています'
+      render :new
     end
-
-    render :new
   end
 
   def destroy
-    current_staff_member.events.create!(type: 'logged_out') if current_staff_member
+    current_staff_member&.create_logout_events(current_staff_member)
     session.delete(:staff_member_id)
-    flash.notice = 'ログアウトしました'
-    redirect_to staff_root_path
+    redirect_to staff_root_path, notice: 'ログアウトしました'
   end
 
   private
@@ -53,7 +53,6 @@ class Staff::SessionsController < Staff::Base
   def login(staff_member)
     session[:staff_member_id] = staff_member.id
     session[:last_access_time] = Time.current
-    staff_member.events.create!(type: 'logged_in')
-    redirect_to staff_root_path, notice: 'ログインしました'
+    staff_member.create_login_events
   end
 end

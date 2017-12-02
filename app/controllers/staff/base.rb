@@ -13,9 +13,8 @@ class Staff::Base < ApplicationController
   helper_method :current_staff_member
 
   def authenticate_user
-    unless current_staff_member
-      redirect_to staff_login_path, alert: 'ログインしてください'
-    end
+    return if current_staff_member
+    redirect_to staff_login_path, alert: 'ログインしてください'
   end
 
   def check_account
