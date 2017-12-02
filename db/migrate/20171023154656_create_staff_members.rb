@@ -11,7 +11,7 @@ class CreateStaffMembers < ActiveRecord::Migration[5.0]
       t.date :start_date, null: false
       t.date :end_date
       t.boolean :suspended, null: false, default: false
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :staff_members, :email_for_index, unique: true
