@@ -6,7 +6,7 @@ class StaffMember < ApplicationRecord
 
   has_many :events, class_name: 'StaffEvent', dependent: :destroy
 
-  default_scope { order(:family_name_kana, :given_name_kana) }
+  scope :order_by_name, -> { order(:family_name_kana, :given_name_kana) }
 
   validates :start_date, presence: true, date: {
     after_or_equal_to: Date.new(2017, 1, 1),

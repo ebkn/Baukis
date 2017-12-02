@@ -1,6 +1,6 @@
 class Admin::StaffMembersController < Admin::Base
   def index
-    @staff_members = StaffMember.page(params[:page])
+    @staff_members = StaffMember.order_by_name.page(params[:page])
   end
 
   def new
@@ -46,14 +46,10 @@ class Admin::StaffMembersController < Admin::Base
 
   def staff_member_params
     params.require(:staff_member).permit(
-      :email,
-      :password,
-      :family_name,
-      :given_name,
-      :family_name_kana,
-      :given_name_kana,
-      :start_date,
-      :end_date,
+      :email, :password,
+      :family_name, :given_name,
+      :family_name_kana, :given_name_kana,
+      :start_date, :end_date,
       :suspended
     )
   end
