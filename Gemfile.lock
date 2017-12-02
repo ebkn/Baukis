@@ -161,6 +161,8 @@ GEM
     public_suffix (3.0.1)
     puma (3.10.0)
     rack (2.0.3)
+    rack-mini-profiler (0.10.6)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.6)
@@ -300,6 +302,7 @@ DEPENDENCIES
   nokogiri
   pry-rails
   puma (~> 3.0)
+  rack-mini-profiler
   rails (~> 5.0.6)
   rails-controller-testing
   rails-i18n
