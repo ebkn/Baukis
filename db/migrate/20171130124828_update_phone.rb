@@ -6,6 +6,7 @@ class UpdatePhone < ActiveRecord::Migration[5.0]
           WHERE number_for_index IS NOT NULL AND LENGTH(number_for_index) >= 4
     SQL
   end
+
   def down
     execute <<-SQL
       UPDATE phones SET

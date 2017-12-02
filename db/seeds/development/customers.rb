@@ -43,6 +43,9 @@ i = Customer.create!(
   given_name_kana: 'ケンイチ',
   password: 'password',
   birthday: Date.new(1998, 2, 12),
+  birth_year: 1998,
+  birth_month: 2,
+  birth_mday: 12,
   gender: 'male'
 )
 
@@ -69,6 +72,8 @@ i.create_work_address!(
     fn = family_names[n].split(':')
     gn = given_names[m].split(':')
 
+    birthday = 60.years.ago.advance(seconds: rand(40.years)).to_date
+
     c = Customer.create!(
       email: Faker::Internet.email,
       family_name: fn[0],
@@ -76,7 +81,10 @@ i.create_work_address!(
       family_name_kana: fn[1],
       given_name_kana: gn[1],
       password: Faker::Internet.password,
-      birthday: 60.years.ago.advance(seconds: rand(40.years)).to_date,
+      birthday: birthday,
+      birth_year: birthday.year,
+      birth_month: birthday.month,
+      birth_mday: birthday.mday,
       gender: m < 5 ? 'male' : 'female'
     )
 

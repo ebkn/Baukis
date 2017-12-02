@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(version: 20171130124828) do
     t.string   "given_name_kana",  null: false
     t.string   "gender"
     t.date     "birthday"
-    t.string   "hashed_password"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
     t.integer  "birth_year"
     t.integer  "birth_month"
     t.integer  "birth_mday"
+    t.string   "hashed_password"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["birth_mday", "family_name_kana", "given_name_kana"], name: "index_customers_on_birth_mday_nad_kana", using: :btree
     t.index ["birth_mday", "given_name_kana"], name: "index_customers_on_birth_mday_and_given_name_kana", using: :btree
     t.index ["birth_month", "birth_mday"], name: "index_customers_on_birth_month_and_birth_mday", using: :btree
