@@ -22,22 +22,8 @@ gem 'rails-i18n'
 gem 'kaminari'
 gem 'date_validator'
 
-group :development, :test do
-  gem 'byebug', platform: :mri
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
-  gem 'rails-controller-testing'
-  gem 'faker'
-  gem 'faker-japanese'
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'selenium-webdriver'
-  gem 'simplecov'
-  gem 'pry-rails'
-end
-
 group :development do
+  gem 'byebug', platform: :mri, group: :test
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
@@ -46,6 +32,20 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rack-mini-profiler'
+  gem 'pry-rails', group: :test
+end
+
+group :test do
+  gem 'rspec-rails', group: :development
+  gem 'factory_bot_rails', group: :development
+  gem 'rails-controller-testing', group: :development
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'faker', group: :development
+  gem 'faker-japanese', group: :development
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
