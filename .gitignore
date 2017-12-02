@@ -21,3 +21,6 @@
 
 # Ignore coverage directory
 /coverage
+
+# Ignore gems
+/vendor/bundle/*
