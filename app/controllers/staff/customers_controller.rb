@@ -1,7 +1,7 @@
 class Staff::CustomersController < Staff::Base
   def index
     @search_form = Staff::CustomerSearchForm.new(search_params)
-    @customers = @search_form.search.page(params[:page])
+    @customers = @search_form.search.order_by_name.page(params[:page])
   end
 
   def show

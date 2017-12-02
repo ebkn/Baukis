@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
     where(address_id: nil)
   }, class_name: 'Phone', autosave: true
 
-  default_scope { order(:family_name_kana, :given_name_kana) }
+  scope :order_by_name, -> { order(:family_name_kana, :given_name_kana) }
 
   before_validation do
     if birthday
@@ -21,7 +21,9 @@ class Customer < ApplicationRecord
     end
   end
 
-  validates :gender, inclusion: { in: ['male', 'female', ''], allow_blank: true }
+  validates :gender, inclusion: {
+    in: ['male', 'female', ''], allow_blank: true
+  }
   validates :birthday, date: {
     after: Date.new(1900, 1, 1),
     before: proc { Time.zone.today },

@@ -7,13 +7,8 @@ class Staff::CustomerForm
   def initialize(customer = nil)
     @customer = customer
     @customer ||= Customer.new
-    build_phones(@customer.personal_phones)
-    self.inputs_home_address = @customer.home_address.present?
-    self.inputs_work_address = @customer.work_address.present?
-    @customer.build_home_address unless @customer.home_address
-    @customer.build_work_address unless @customer.work_address
-    build_phones(@customer.home_address.phones)
-    build_phones(@customer.work_address.phones)
+    set_addresses
+    build_all_phones
   end
 
   def assign_attributes(params = {})
@@ -43,6 +38,19 @@ class Staff::CustomerForm
   end
 
   private
+
+  def set_addresses
+    self.inputs_home_address = @customer.home_address.present?
+    self.inputs_work_address = @customer.work_address.present?
+    @customer.build_home_address unless @customer.home_address
+    @customer.build_work_address unless @customer.work_address
+  end
+
+  def build_all_phones
+    build_phones(@customer.personal_phones)
+    build_phones(@customer.home_address.phones)
+    build_phones(@customer.work_address.phones)
+  end
 
   def build_phones(phones)
     (2 - phones.size).times { phones.build }
