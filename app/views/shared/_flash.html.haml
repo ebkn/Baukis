@@ -1,2 +1,5 @@
 - flash.each do |key, value|
-  = content_tag(:div, value, class: "flash flash-#{key}")
+  = content_tag(:div, class: "alert #{flash_class_for(key)} alert-dismissible fade show", role: 'alert') do
+    %button.close{type: 'button', 'data-dismiss' => 'alert', 'aria-label' => 'Close'}
+      %span{'aria-hidden' => true} &times;
+    = value

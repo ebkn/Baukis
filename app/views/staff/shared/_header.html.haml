@@ -7,5 +7,4 @@
       = link_to 'Account', staff_account_path, class: 'navbar-brand'
       = link_to 'Logout', staff_session_path, method: :delete, class: 'navbar-brand'
     - else
-      %li.nav-item
-        = link_to 'Log in', staff_login_path, class: 'dropdown-item'
+      = link_to 'Log in', staff_login_path, class: 'navbar-brand'
