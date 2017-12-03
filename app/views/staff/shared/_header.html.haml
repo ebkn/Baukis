@@ -1,10 +1,11 @@
-%header
-  = link_to staff_root_path, class: 'logo-mark' do
+%nav.navbar.navbar-dark.bg-success.navbar-expand-lg
+  = link_to staff_root_path, class: 'navbar-brand' do
     BAUKIS
     %span.logo-mark-addition for staff
-  .header-right
+  .navbar-brand.justify-content-between
     - if current_staff_member
-      = link_to 'アカウント', staff_account_path, class: 'header-right-button'
-      = link_to 'ログアウト', staff_session_path, method: :delete, class: 'header-right-button'
+      = link_to 'Account', staff_account_path, class: 'navbar-brand'
+      = link_to 'Logout', staff_session_path, method: :delete, class: 'navbar-brand'
     - else
-      = link_to 'ログイン', staff_login_path, class: 'header-right-button'
+      %li.nav-item
+        = link_to 'Log in', staff_login_path, class: 'dropdown-item'
