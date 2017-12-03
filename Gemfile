@@ -22,6 +22,7 @@ gem 'rails-i18n'
 gem 'kaminari'
 gem 'date_validator'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'bootstrap-material-design'
 
 group :development do
   gem 'byebug', platform: :mri, group: :test
