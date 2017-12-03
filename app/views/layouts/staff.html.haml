@@ -11,6 +11,8 @@
     .wrapper
       = render 'staff/shared/header'
       = render 'shared/flash'
+      .container-fluid
+        %h3= @title
       .container
         = yield
       = render 'shared/footer'

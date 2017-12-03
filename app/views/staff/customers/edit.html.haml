@@ -1,5 +1,4 @@
 - @title = '顧客アカウント編集'
-%h1.title= @title
 
 .generic_form
   = form_for @customer_form,  as: 'form', url: staff_customer_path(@customer_form.customer) do |f|
