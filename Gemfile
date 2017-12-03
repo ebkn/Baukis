@@ -21,7 +21,7 @@ gem 'nokogiri'
 gem 'rails-i18n'
 gem 'kaminari'
 gem 'date_validator'
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.beta2.1'
 
 group :development do
   gem 'byebug', platform: :mri, group: :test
