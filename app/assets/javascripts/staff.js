@@ -1,7 +1,6 @@
 //= require jquery3
 //= require jquery_ujs
-//= require popper
-//= require bootstrap
+//= require_tree ./vendor/
 //= require turbolinks
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/i18n/datepicker-ja
