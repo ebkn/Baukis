@@ -1,6 +1,5 @@
-(function () {
+$(document).on('turbolinks:load', function () {
 'use strict';
-
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-beta): util.js

@@ -2,17 +2,16 @@
 %html
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"}/
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no"}/
     %title= document_title
     = csrf_meta_tags
     = stylesheet_link_tag    'customer', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'customer', 'data-turbolinks-track': 'reload'
   %body
-    .wrapper
-      = render 'customer/shared/header'
-      = render 'shared/flash'
-      .container-fluid
+    = render 'customer/shared/header'
+    = render 'shared/flash'
+    .container.my-4
+      .my-5
         %h3= @title
-      .container
-        = yield
-      = render 'shared/footer'
+      = yield
+    = render 'shared/footer'

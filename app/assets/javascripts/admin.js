@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require_tree ./vendor
+//= require vendor/bootstrap-material-design
 //= require turbolinks
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/i18n/datepicker-ja
