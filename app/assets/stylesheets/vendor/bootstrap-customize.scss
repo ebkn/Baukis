@@ -11,3 +11,7 @@
   @extend .invalid-feedback;
   display: block;
 }
+
+.table-responsive td {
+  white-space: nowrap;
+}
