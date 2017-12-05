@@ -2,7 +2,7 @@
   = link_to staff_root_path, class: 'navbar-brand' do
     BAUKIS
     %span.logo-mark-addition for staff
-  .navbar-brand
+  %div
     - if current_staff_member
       = link_to 'Account', staff_account_path, class: 'navbar-brand'
       = link_to 'Logout', staff_session_path, method: :delete, class: 'navbar-brand'
