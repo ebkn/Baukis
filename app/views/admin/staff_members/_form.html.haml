@@ -1,12 +1,9 @@
 = markup do |m|
   - form_presenter = StaffMemberFormPresenter.new(f, self)
-  - m << form_presenter.notes
-
-  - form_presenter.with_options(required: true) do |option_form|
-    - m << option_form.text_field_block(:email, 'メールアドレス', size: 32, placeholder: 'Your email')
-    - m << option_form.password_field_block(:password, 'パスワード', size: 32, placeholder: 'Your password')
-    - m << option_form.full_name_block(:family_name, :given_name, '氏名', class: 'name')
-    - m << option_form.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ', class: 'name')
-    - m << option_form.date_field_block(:start_date, '開始日')
-    - m << option_form.date_field_block(:end_date, '終了日', required: false)
+  - m << form_presenter.text_field_block(:email, 'メールアドレス', size: 32, placeholder: 'Your email')
+  - m << form_presenter.password_field_block(:password, 'パスワード', size: 32, placeholder: 'Your password')
+  - m << form_presenter.full_name_block(:family_name, :given_name, '氏名')
+  - m << form_presenter.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ')
+  - m << form_presenter.date_field_block(:start_date, '開始日')
+  - m << form_presenter.date_field_block(:end_date, '終了日', required: false)
   - m << form_presenter.check_box_block
