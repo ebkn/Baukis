@@ -11,7 +11,7 @@
       %th{scope: 'col'} 開始日
       %th{scope: 'col'} 終了日
       %th{scope: 'col'} 状態
-      %th{scope: 'col'}
+      %th{scope: 'col'} アクション
   %tbody
     - @staff_members.each do |staff_member|
       - presenter = StaffMemberPresenter.new(staff_member, self)
