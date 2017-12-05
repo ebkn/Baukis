@@ -1,0 +1,13 @@
+.form-control {
+  @extend .is-valid;
+}
+
+.field_with_errors .form-control {
+  @extend .is-invalid;
+  background-image: linear-gradient(to top, #F44336 2px, rgba(0, 150, 136, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
+}
+
+.error-message {
+  @extend .invalid-feedback;
+  display: block;
+}
