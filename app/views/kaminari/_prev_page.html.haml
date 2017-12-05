@@ -1,3 +1,6 @@
-%span.prev
-  = link_to_unless current_page.first?, t('views.pagination.previous').html_safe, url, rel: 'prev', remote: remote do |name|
-    = content_tag :span, name, class: 'disabled'
+- if current_page.first?
+  %li.page-item.disabled
+    = link_to t('views.pagination.previous').html_safe, url, remote: remote, class: 'page-link'
+- else
+  %li.page-item
+    = link_to t('views.pagination.previous').html_safe, url, remote: remote, class: 'page-link'

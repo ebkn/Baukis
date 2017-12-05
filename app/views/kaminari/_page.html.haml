@@ -1,2 +1,6 @@
-%span{class: "page#{' current' if page.current?}"}
-  = link_to_unless page.current?, page, url, {remote: remote, rel: page.rel}
+- if page.current?
+  %li.page-item.disabled
+    = link_to page, url, remote: remote, class: 'page-link'
+- else
+  %li.page-item
+    = link_to page, url, remote: remote, class: 'page-link'

@@ -1,3 +1,6 @@
-%span.first
-  = link_to_unless current_page.first?, t('views.pagination.first').html_safe, url, remote: remote do |name|
-    = content_tag :span, name, class: 'disabled'
+- if current_page.first?
+  %li.page-item.disabled
+    = link_to t('views.pagination.first').html_safe, url, remote: remote, class: 'page-link'
+- else
+  %li.page-item
+    = link_to t('views.pagination.first').html_safe, url, remote: remote, class: 'page-link'
