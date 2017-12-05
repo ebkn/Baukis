@@ -24,34 +24,34 @@ class FormPresenter
   end
 
   def text_field_block(name, label_text, options = {})
-    markup(:div, class: 'generic_form-input') do |m|
+    markup(:div, class: 'form-group py-2') do |m|
       m << decorated_label(name, label_text, options)
-      m << text_field(name, options)
+      m << text_field(name, options.merge(class: 'form-control'))
       m << error_messages_for(name)
     end
   end
 
   def password_field_block(name, label_text, options = {})
-    markup(:div, class: 'generic_form-input') do |m|
+    markup(:div, class: 'form-group py-2') do |m|
       m << decorated_label(name, label_text, options)
-      m << password_field(name, options)
+      m << password_field(name, options.merge(class: 'form-control'))
       m << error_messages_for(name)
     end
   end
 
   def date_field_block(name, label_text, options = {})
-    markup(:div, class: 'generic_form-input') do |m|
+    markup(:div, class: 'form-group py-2') do |m|
       m << decorated_label(name, label_text, options)
-      options = insert_datepicker(options)
+      options = insert_datepicker(options.merge(class: 'form-control'))
       m << text_field(name, options)
       m << error_messages_for(name)
     end
   end
 
   def drop_down_list_block(name, label_text, choises, options = {})
-    markup(:div, class: 'generic_form-input') do |m|
-      m << decorated_label(name, label_text, options)
-      m << form_builder.select(name, choises, { include_blank: true }, options)
+    markup(:div, class: 'form-group py-2') do |m|
+      m << decorated_label(name, label_text, options.merge(class: 'form-control'))
+      m << form_builder.select(name, choises, { include_blank: true }, options.merge(class: 'form-control'))
       m << error_messages_for(name)
     end
   end

@@ -1,20 +1,18 @@
 - @title = 'アカウント情報'
-
-.table-wrapper
-  .links
-    = link_to '編集', edit_staff_account_path
-    = link_to 'パスワード変更', edit_staff_password_path
-  %table.staff-member
-    - presenter = StaffMemberPresenter.new(@staff_member, self)
-    %tr
-      %th 氏名
-      %td= presenter.full_name
-    %tr
-      %th フリガナ
-      %td= presenter.full_name_kana
-    %tr
-      %th メールアドレス
-      %td= @staff_member.email
-    %tr
-      %th 開始日
-      %td= @staff_member.start_date
+.row.justify-content-end
+  = link_to '編集', edit_staff_account_path, class: 'btn btn-info '
+  = link_to 'パスワード変更', edit_staff_password_path, class: 'btn btn-info'
+%table.table.table-bordered.my-3
+  - presenter = StaffMemberPresenter.new(@staff_member, self)
+  %tr.text-center
+    %th 氏名
+    %td= presenter.full_name
+  %tr.text-center
+    %th フリガナ
+    %td= presenter.full_name_kana
+  %tr.text-center
+    %th メールアドレス
+    %td= @staff_member.email
+  %tr.text-center
+    %th 開始日
+    %td= @staff_member.start_date
