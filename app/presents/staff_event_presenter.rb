@@ -6,12 +6,7 @@ class StaffEventPresenter < ModelPresenter
   def table_row
     markup(:tr, class: 'text-center') do |m|
       unless view_context.instance_variable_get(:@staff_member)
-        m.td do
-          m << link_to(
-            full_name(member),
-            admin_staff_member_staff_events_path(member)
-          )
-        end
+        m.td { m << link_to_staff_events(member) }
       end
       m.td description
       m.td occured_at.strftime('%Y/%m/%d %H:%M:%S')
@@ -19,6 +14,13 @@ class StaffEventPresenter < ModelPresenter
   end
 
   private
+
+  def link_to_staff_events(member)
+    link_to(
+      full_name(member),
+      admin_staff_member_staff_events_path(member)
+    )
+  end
 
   def full_name(member)
     "#{member.family_name} #{member.given_name}"
