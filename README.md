@@ -1,5 +1,8 @@
 # Baukis
 
+[![Build Status](https://travis-ci.org/ebkn12/Baukis.svg?branch=master)](https://travis-ci.org/ebkn12/Baukis)
+
+
 ## Description
 
 Baukis is a customer management system for company.
