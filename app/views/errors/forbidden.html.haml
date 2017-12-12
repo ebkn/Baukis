@@ -1,7 +1,6 @@
-.error
-  %h1 403 Forbidden
-  - case @exception
-  - when ApplicationController::IpAddressRejected
-    %p= "あなたのIPアドレス (#{request.ip}) からは利用できません"
-  - else
-    %p 指定されたページを閲覧する権限がありません
+- @title = '403 Forbidden'
+- case @exception
+- when ApplicationController::IpAddressRejected
+  %p= "あなたのIPアドレス (#{request.ip}) からは利用できません"
+- else
+  %p 指定されたページを閲覧する権限がありません

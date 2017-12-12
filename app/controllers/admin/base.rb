@@ -13,16 +13,14 @@ class Admin::Base < ApplicationController
   helper_method :current_administrator
 
   def authenticate_user
-    unless current_administrator
-      redirect_to admin_login_path, alert: 'ログインしてください'
-    end
+    return if current_administrator
+    redirect_to admin_login_path, alert: 'ログインしてください'
   end
 
   def check_account
-    if current_administrator && current_administrator.suspended
-      session.delete(:administrator_id)
-      redirect_to admin_root_path, alert: 'アカウントが無効です'
-    end
+    return unless current_administrator&.suspended
+    session.delete(:administrator_id)
+    redirect_to admin_root_path, alert: 'アカウントが無効です'
   end
 
   TIMEOUT = 60.minutes.freeze

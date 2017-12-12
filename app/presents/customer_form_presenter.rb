@@ -1,23 +1,30 @@
 class CustomerFormPresenter < UserFormPresenter
-  def birthday_field_block(name, label_text, options = {})
-    markup(:div, class: 'generic_form-input') do |m|
-      m << decorated_label(name, label_text, options)
+  def birthday_field_block(name, options = {})
+    markup(:div, class: 'form-group py-2') do |m|
       options = insert_birthday_picker(options)
-      m << text_field(name, options)
+      m << text_field_block(name, options)
       m << error_messages_for(name)
     end
   end
 
   def gender_field_block
-    markup(:div, class: 'generic_form-input') do |m|
+    markup(:div, class: 'form-group py-2') do |m|
       m << decorated_label(:gender, '性別')
-      m << radio_button(:gender, 'male')
-      m << label(:gender_male, '男性', class: 'gender')
-      m << radio_button(:gender, 'female')
-      m << label(:gender_female, '女性', class: 'gender')
-      m << radio_button(:gender, 'other')
-      m << label(:gender_other, 'その他', class: 'gender')
-      m << error_messages_for(:gender)
+      m.div(class: 'form-row px-3') do
+        m.div(class: 'col-sm-3 col-md-2 form-check text-center') do
+          m << radio_button(:gender, 'male', class: 'form-check-input')
+          m << label(:gender_male, '男性', class: 'form-check-label')
+        end
+        m.div(class: 'col-sm-3 col-md-2 form-check text-center') do
+          m << radio_button(:gender, 'female', class: 'form-check-input')
+          m << label(:gender_female, '女性', class: 'form-check-label')
+        end
+        m.div(class: 'col-sm-3 col-md-2 form-check text-center') do
+          m << radio_button(:gender, 'other', class: 'form-check-input')
+          m << label(:gender_other, 'その他', class: 'form-check-label')
+        end
+        m << error_messages_for(:gender)
+      end
     end
   end
 

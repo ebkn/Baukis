@@ -32,16 +32,20 @@ $(document).on 'turbolinks:load', ->
     $('fieldset#home-address-fields input').prop('disabled', !checked)
     $('fieleset#home-address-fieles select').prop('disabled', !checked)
 
-    if checked $('fieldset.home_address_fields').show()
-    else $('fieldset.home_address_fields').hide()
+    if checked
+      $('fieldset#home-address-fields').show()
+    else
+      $('fieldset#home-address-fields').hide()
 
   toggle_work_address_fields = ->
     checked = $work_address_check_box.prop('checked')
     $('fieldset#work-address-fields input').prop('disabled', !checked)
-    $('fieleset#work-address-fieles select').prop('disabled', !checked)
+    $('fieleset#work-address-fields select').prop('disabled', !checked)
 
-    if checked $('fieldset.work_address_fields').show()
-    else $('fieldset.work_address_fields').hide()
+    if checked
+      $('fieldset#work-address-fields').show()
+    else
+      $('fieldset#work-address-fields').hide()
 
   toggle_home_address_fields()
   toggle_work_address_fields()

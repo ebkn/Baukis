@@ -18,10 +18,9 @@ class Staff::Base < ApplicationController
   end
 
   def check_account
-    if current_staff_member && !current_staff_member.active?
-      session.delete(:staff_member_id)
-      redirect_to staff_root_path, alert: 'アカウントが無効です'
-    end
+    return if current_staff_member.blank? || current_staff_member.active?
+    session.delete(:staff_member_id)
+    redirect_to staff_root_path, alert: 'アカウントが無効です'
   end
 
   TIMEOUT = 60.minutes.freeze

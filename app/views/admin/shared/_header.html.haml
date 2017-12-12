@@ -1,9 +1,8 @@
-%header
-  = link_to admin_root_path, class: 'logo-mark' do
+%nav.sticky-top.navbar.navbar-dark.bg-dark.justify-content-between
+  = link_to admin_root_path, class: 'navbar-brand' do
     BAUKIS
     %span.logo-mark-addition for admin
-  .header-right
-    - if current_administrator
-      = link_to 'ログアウト', admin_session_path, method: :delete, class: 'header-right-button'
-    - else
-      = link_to 'ログイン', admin_login_path, class: 'header-right-button'
+  - if current_administrator
+    = link_to 'Log out', admin_session_path, method: :delete, class: 'navbar-brand'
+  - else
+    = link_to 'Log in', admin_login_path, class: 'navbar-brand'

@@ -35,7 +35,7 @@ class Staff::SessionsController < Staff::Base
   end
 
   def destroy
-    current_staff_member&.create_logout_events(current_staff_member)
+    current_staff_member&.create_logout_events
     session.delete(:staff_member_id)
     redirect_to staff_root_path, notice: 'ログアウトしました'
   end

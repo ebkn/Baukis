@@ -1,12 +1,9 @@
 - @title = 'ログイン'
-.login_form
-  %h1.login_form-title= @title
-  = form_for @form, url: :staff_session do |f|
-    .login_form-input
-      = f.label :email, 'Email'
-      = f.text_field :email, placeholder: 'メールアドレスを入力', required: true
-    .login_form-input
-      = f.label :password, 'Password'
-      = f.password_field :password, placeholder: 'パスワードを入力', required: true
-    .login_form-input
-      = f.submit 'ログイン'
+= form_for @form, url: :staff_session do |f|
+  .form-group.py-2
+    = f.label :email, 'Email', class: 'bmd-label-floating'
+    = f.email_field :email, class: 'form-control', placeholder: 'メールアドレスを入力'
+  .form-group.py-2
+    = f.label :password, 'Password', class: 'bmd-label-floating'
+    = f.password_field :password, class: 'form-control', placeholder: 'パスワードを入力'
+  = f.submit 'ログイン', class: 'my-3 btn btn-raised btn-info'

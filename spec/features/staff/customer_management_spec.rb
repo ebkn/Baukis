@@ -27,7 +27,7 @@ feature 'customer management by staff' do
     click_link '顧客管理'
     click_link '新規登録'
 
-    within('.customer_fields') do
+    within(first('.form-group')) do
       fill_in 'メールアドレス', with: email
       fill_in 'パスワード', with: password
       fill_in 'form_customer_family_name', with: family_name
@@ -40,7 +40,7 @@ feature 'customer management by staff' do
 
     check '自宅住所を入力する'
 
-    within('.home_address_fields') do
+    within('#home-address-fields') do
       fill_in '郵便番号', with: postal_code
       select '東京都', from: '都道府県'
       fill_in '市区町村', with: city
@@ -50,7 +50,7 @@ feature 'customer management by staff' do
 
     check '勤務先を入力する'
 
-    within('.work_address_fields') do
+    within('#work-address-fields') do
       fill_in '会社名', with: company_name
       fill_in '部署名', with: ''
       fill_in '郵便番号', with: ''
@@ -87,17 +87,17 @@ feature 'customer management by staff' do
     new_work_address_company_name = 'XXX'
 
     click_link '顧客管理'
-    first('.customers_data').click_link '編集'
+    first('table').click_link '編集'
 
-    within('.customer_fields') do
+    within(first('.form-group')) do
       fill_in 'メールアドレス', with: new_email
     end
 
-    within('.home_address_fields') do
+    within('#home-address-fields') do
       fill_in '郵便番号', with: new_home_address_postal_code
     end
 
-    within('.work_address_fields') do
+    within('#work-address-fields') do
       fill_in '会社名', with: new_work_address_company_name
     end
 
@@ -121,7 +121,7 @@ feature 'customer management by staff' do
     click_link '顧客管理'
     click_link '新規登録'
 
-    within('.customer_fields') do
+    within(first('.form-group')) do
       fill_in 'メールアドレス', with: email
       fill_in 'パスワード', with: password
       fill_in 'form_customer_family_name', with: family_name

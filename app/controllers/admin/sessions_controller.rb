@@ -31,7 +31,6 @@ class Admin::SessionsController < Admin::Base
       flash.now.alert = 'パスワードが間違っています'
       render :new
     end
-
   end
 
   def destroy

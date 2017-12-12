@@ -1,21 +1,19 @@
-= FormPresenter.new(f, self).notes
-
-%fieldset.customer_fields
-  %legend 基本情報
+%fieldset.form-group
+  %legend.text-center 基本情報
   = render 'customer_fields', f: f
 
-.fields_check_box.home_address_check_box
-  = f.check_box :inputs_home_address
-  = f.label :inputs_home_address, '自宅住所を入力する'
+.form-check.text-center.mt-5
+  = f.check_box :inputs_home_address, class: 'form-check-input'
+  = f.label :inputs_home_address, '自宅住所を入力する', class: 'form-check-label'
 
-%fieldset.home_address_fields
-  %legend 自宅住所
+%fieldset#home-address-fields.form-group
+  %legend.text-center 自宅住所
   = render 'home_address_fields', f: f
 
-.fields_check_box.work_address_check_box
-  = f.check_box :inputs_work_address
-  = f.label :inputs_work_address, '勤務先を入力する'
+.form-check.text-center.mt-5
+  = f.check_box :inputs_work_address, class: 'form-check-input'
+  = f.label :inputs_work_address, '勤務先を入力する', class: 'form-check-label'
 
-%fieldset.work_address_fields
-  %legend 勤務先
+%fieldset#work-address-fields.form-group
+  %legend.text-center 勤務先
   = render 'work_address_fields', f: f

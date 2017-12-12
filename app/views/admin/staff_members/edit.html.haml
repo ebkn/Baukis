@@ -1,9 +1,6 @@
 - @title = '職員アカウント編集'
-%h1.title= @title
-
-.generic_form
-  = form_for [:admin, @staff_member] do |f|
-    = render 'form', f: f
-    .generic_form-input
-      = link_to 'キャンセル', admin_staff_members_path, class: 'generic_form-input-cancel'
-      = f.submit '更新'
+= form_for [:admin, @staff_member] do |f|
+  = render 'form', f: f
+  .row.my-4.px-3
+    = link_to 'キャンセル', admin_staff_members_path, class: 'col-2 mr-1 btn btn-raised btn-warning'
+    = f.submit '更新', class: 'col-2 btn btn-raised btn-info'

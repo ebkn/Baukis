@@ -2,15 +2,16 @@
 %html
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"}/
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no"}/
     %title= document_title
     = csrf_meta_tags
-    = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .wrapper
-      = render 'admin/shared/header'
-      = render 'shared/flash'
-      .container
-        = yield
-      = render 'shared/footer'
+    = render 'admin/shared/header'
+    = render 'shared/flash'
+    .container.my-4.px-4.py-4.border-top-0.bg-white.border
+      .py-3
+        %h3= @title
+      = yield
+    = render 'shared/footer'

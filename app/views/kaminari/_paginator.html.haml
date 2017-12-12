@@ -1,11 +1,12 @@
 = paginator.render do
-  %nav.pagination
-    = first_page_tag
-    = prev_page_tag
-    - each_page do |page|
-      - if page.display_tag?
-        = page_tag page
-      - elsif !page.was_truncated?
-        = gap_tag
-    = next_page_tag
-    = last_page_tag
+  %nav.my-3{'aria-label' => 'Page navigation example'}
+    %ul.pagination.pagination-sm.justify-content-center
+      = first_page_tag
+      = prev_page_tag
+      - each_page do |page|
+        - if page.display_tag?
+          = page_tag page
+        - elsif !page.was_truncated?
+          = gap_tag
+      = next_page_tag
+      = last_page_tag

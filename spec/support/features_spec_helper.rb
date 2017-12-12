@@ -6,7 +6,7 @@ module FeaturesSpecHelper
 
   def login_as_staff_member(staff_member, password = 'password')
     visit staff_login_path
-    within('.login_form') do
+    within('form') do
       fill_in 'Email', with: staff_member.email
       fill_in 'Password', with: password
       click_button 'ログイン'

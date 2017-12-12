@@ -1,31 +1,29 @@
 - @title = '職員管理画面'
-%h1.title= @title
-
-.table-wrapper
-  .links
-    = link_to '新規登録', new_admin_staff_member_path
-  .overflow
-    %table.staff-members
-      %tr.staff-members_column
-        %th 氏名
-        %th.name_kana フリガナ
-        %th メールアドレス
-        %th 開始日
-        %th 終了日
-        %th 状態
-        %th アクション
-
-      - @staff_members.each do |staff_member|
-        - presenter = StaffMemberPresenter.new(staff_member, self)
-        %tr.staff-members_data
-          %td.name= presenter.full_name
-          %td.name= presenter.full_name_kana
-          %td.mail= staff_member.email
-          %td= staff_member.start_date
-          %td= staff_member.end_date
-          %td= presenter.suspended_status
-          %td.staff-members_data_actions
-            = link_to 'ログ', admin_staff_member_staff_events_path(staff_member), class: 'staff-members_data_actions-log'
-            = link_to '編集', edit_admin_staff_member_path(staff_member), class: 'staff-members_data_actions-edit'
-            = link_to '削除', admin_staff_member_path(staff_member), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'staff-members_data_actions-delete'
-    = paginate @staff_members
+.row.justify-content-end.px-3
+  = link_to '新規登録', new_admin_staff_member_path, class: 'btn btn-info btn-raised'
+= paginate @staff_members
+%table.table.table-hover.table-responsive.my-3
+  %thead
+    %tr
+      %th{scope: 'col'} 氏名
+      %th{scope: 'col'} フリガナ
+      %th{scope: 'col'} メールアドレス
+      %th{scope: 'col'} 開始日
+      %th{scope: 'col'} 終了日
+      %th{scope: 'col'} 状態
+      %th{scope: 'col'} アクション
+  %tbody
+    - @staff_members.each do |staff_member|
+      - presenter = StaffMemberPresenter.new(staff_member, self)
+      %tr
+        %td= presenter.full_name
+        %td= presenter.full_name_kana
+        %td= staff_member.email
+        %td= staff_member.start_date
+        %td= staff_member.end_date
+        %td= presenter.suspended_status
+        %td
+          = link_to 'ログ', admin_staff_member_staff_events_path(staff_member), class: 'text-secondary'
+          = link_to '編集', edit_admin_staff_member_path(staff_member), class: 'text-success'
+          = link_to '削除', admin_staff_member_path(staff_member), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'text-danger'
+= paginate @staff_members
