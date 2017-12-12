@@ -50,8 +50,12 @@ class FormPresenter
 
   def drop_down_list_block(name, label_text, choises, options = {})
     markup(:div, class: 'dropdown py-2') do |m|
-      m << decorated_label(name, label_text, options.merge(class: 'form-control'))
-      m << form_builder.select(name, choises, { include_blank: true }, options.merge(class: 'form-control'))
+      m << decorated_label(name,
+                           label_text,
+                           options.merge(class: 'form-control'))
+      m << form_builder.select(name,
+                               choises, { include_blank: true },
+                               options.merge(class: 'form-control'))
       m << error_messages_for(name)
     end
   end

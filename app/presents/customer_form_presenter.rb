@@ -1,5 +1,5 @@
 class CustomerFormPresenter < UserFormPresenter
-  def birthday_field_block(name, label_text, options = {})
+  def birthday_field_block(name, options = {})
     markup(:div, class: 'form-group py-2') do |m|
       options = insert_birthday_picker(options)
       m << text_field_block(name, options)

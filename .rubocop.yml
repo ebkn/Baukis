@@ -42,3 +42,7 @@ Metrics/BlockLength:
 # enable perl regexp style ($)
 Style/PerlBackrefs:
   Enabled: false
+
+# disable missing magic comment warning
+Style/FrozenStringLiteralComment:
+  Enabled: false

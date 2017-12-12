@@ -4,7 +4,7 @@
       presenter = AddressFormPresenter.new(ff, self)
       m << presenter.text_field_block(:company_name, '会社名', size: 40, required: true)
       m << presenter.text_field_block(:division_name, '部署名', size: 40)
-      m << presenter.postal_code_block(:postal_code, '郵便番号', size: 7)
+      m << presenter.postal_code_block(:postal_code, size: 7)
       m << presenter.drop_down_list_block(:prefecture, '都道府県', Address::PREFECTURE_NAMES)
       m << presenter.text_field_block(:city, '市区町村', size: 16)
       m << presenter.text_field_block(:address1, '町域、番地等', size: 40)

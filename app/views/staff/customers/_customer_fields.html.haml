@@ -7,7 +7,7 @@
         m << option_presenter.password_field_block(:password, 'パスワード', size: 32, placeholder: 'Your password')
         m << option_presenter.full_name_block(:family_name, :given_name, '氏名', class: 'name')
         m << option_presenter.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ', class: 'name')
-    - m << presenter.birthday_field_block(:birthday, '生年月日')
+    - m << presenter.birthday_field_block(:birthday)
     - m << presenter.gender_field_block
     - m.div(class: 'generic_form-input') do
       - m << presenter.decorated_label(:personal_phones, '電話番号')
