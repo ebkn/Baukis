@@ -11,10 +11,8 @@ development:
   database: baukis_development
 
 test:
-  <<: *default
   adapter: mysql2
   encoding: utf8
-  pool: 5
   username: travis
   database: baukis_test
 
