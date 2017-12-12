@@ -1,15 +1,16 @@
 = f.fields_for :customer, f.object.customer do |ff|
-  = markup do |m|
-    - presenter = CustomerFormPresenter.new(ff, self)
-    - presenter.with_options(required: true) do |option_presenter|
-      - m << option_presenter.text_field_block(:email, 'メールアドレス', size: 32, placeholder: 'Your email')
-      - m << option_presenter.password_field_block(:password, 'パスワード', size: 32, placeholder: 'Your password')
-      - m << option_presenter.full_name_block(:family_name, :given_name, '氏名', class: 'name')
-      - m << option_presenter.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ', class: 'name')
-    - m << presenter.birthday_field_block(:birthday, '生年月日')
-    - m << presenter.gender_field_block
-    - m.div(class: 'generic_form-input') do
-      - m << presenter.decorated_label(:personal_phones, '電話番号')
-      - m.ul do
-        - presenter.object.personal_phones.each_with_index do |phone, index|
-          - m << render('phone_fields', f: ff, phone: phone, index: index)
+  :ruby
+    markup do |m|
+      presenter = CustomerFormPresenter.new(ff, self)
+      presenter.with_options(required: true) do |option_presenter|
+        m << option_presenter.text_field_block(:email, 'メールアドレス', size: 32, placeholder: 'Your email')
+        m << option_presenter.password_field_block(:password, 'パスワード', size: 32, placeholder: 'Your password')
+        m << option_presenter.full_name_block(:family_name, :given_name, '氏名', class: 'name')
+        m << option_presenter.full_name_block(:family_name_kana, :given_name_kana, 'フリガナ', class: 'name')
+      m << presenter.birthday_field_block(:birthday, '生年月日')
+      m << presenter.gender_field_block
+      m.div(class: 'generic_form-input') do
+        m << presenter.decorated_label(:personal_phones, '電話番号')
+        m.ul do
+          presenter.object.personal_phones.each_with_index do |phone, index|
+            m << render('phone_fields', f: ff, phone: phone, index: index)

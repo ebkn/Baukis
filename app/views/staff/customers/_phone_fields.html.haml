@@ -1,5 +1,6 @@
 = f.fields_for :phones, phone, index: index do |ff|
-  = markup(:li, style: 'list-style: none') do |m|
-    - m << ff.text_field(:number, class: 'phone-input', placeholder: 'Your phone number')
-    - m << ff.check_box(:primary)
-    - m << ff.label(:primary, '優先')
+  :ruby
+    markup(:li, style: 'list-style: none') do |m|
+      m << ff.text_field(:number, class: 'phone-input', placeholder: 'Your phone number')
+      m << ff.check_box(:primary)
+      m << ff.label(:primary, '優先')
