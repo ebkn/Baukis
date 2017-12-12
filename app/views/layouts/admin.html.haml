@@ -5,9 +5,8 @@
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no"}/
     %title= document_title
     = csrf_meta_tags
-    = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload'
-    %script{src: "https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js", integrity: "sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U", crossorigin: "anonymous"}
-    = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'admin/shared/header'
     = render 'shared/flash'
