@@ -1,4 +1,4 @@
-class Customer::SessionsController < ApplicationController
+class Customer::SessionsController < Customer::Base
   skip_before_action :authenticate_user
 
   def new
