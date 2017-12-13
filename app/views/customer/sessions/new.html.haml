@@ -6,4 +6,7 @@
   .form-group.py-2
     = f.label :password, 'Password', class: 'bmd-label-floating'
     = f.password_field :password, class: 'form-control', placeholder: 'パスワードを入力'
+  .form-check.py-2.px-4
+    = f.check_box :remember_me, class: 'form-check-input'
+    = f.label :remember_me, class: 'form-check-label'
   = f.submit 'ログイン', class: 'my-3 btn btn-raised btn-info'

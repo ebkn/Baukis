@@ -4,8 +4,9 @@ class Customer::Base < ApplicationController
   private
 
   def current_customer
-    return unless session[:customer_id]
-    @current_customer ||= Customer.find_by(id: session[:customer_id])
+    customer_id = cookies.signed[:customer_id] || session[:customer_id]
+    return if customer_id.blank?
+    @current_customer ||= Customer.find_by(id: customer_id)
   end
 
   helper_method :current_customer
