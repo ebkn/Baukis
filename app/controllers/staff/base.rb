@@ -1,7 +1,14 @@
 class Staff::Base < ApplicationController
-  before_action :authenticate_user, :check_account, :check_timeout
+  before_action :check_source_ip_address,
+                :authenticate_user,
+                :check_account,
+                :check_timeout
 
   private
+
+  def check_source_ip_address
+    raise IpAddressRejected unless AllowedSource.include?('staff', request.ip)
+  end
 
   def current_staff_member
     return unless session[:staff_member_id]
