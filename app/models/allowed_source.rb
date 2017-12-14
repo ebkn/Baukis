@@ -14,11 +14,11 @@ class AllowedSource < ApplicationRecord
     self.octet1 = octets[0]
     self.octet2 = octets[1]
     self.octet3 = octets[2]
-    if octet[3] == '*'
+    if octets[3] == '*'
       self.octet4 = 0
       self.wildcard = true
     else
-      self.octet4 = octet[3]
+      self.octet4 = octets[3]
     end
   end
 end
