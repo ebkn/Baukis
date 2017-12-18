@@ -9,6 +9,8 @@ class AllowedSource < ApplicationRecord
   validates :octet4,
             uniqueness: { scope: %i[octet1 octet2 octet3], allow_blank: true }
 
+  scope :order_by_octets, -> { order(:octet1, :octet2, :octet3, :octet4) }
+
   class << self
     def include?(namespace, ip_address)
       !Rails.application.config.baukis[:restrict_ip_addresses] ||

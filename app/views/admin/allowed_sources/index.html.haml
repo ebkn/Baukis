@@ -1,0 +1,16 @@
+- @title = '許可IPアドレス一覧'
+
+= paginate @allowed_sources
+%table.table.table-hover.table-responsive.my-3
+  %thead
+    %tr.text-center
+      %th{ scope: 'col' } IPアドレス
+      %th{ scope: 'col' } 作成日時
+  %tbody
+    - @allowed_sources.each do |source|
+      - presenter = AllowedSourcePresenter.new(source, self)
+      %tr.text-center
+        %td= presenter.ip_address
+        %td= presenter.created_at
+= paginate @allowed_sources
+
