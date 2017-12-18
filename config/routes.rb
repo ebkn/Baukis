@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         resources :staff_events, only: :index
       end
       resources :staff_events, only: :index
-      resources :allowed_source, only: %i[index create] do
+      resources :allowed_sources, only: %i[index create] do
         delete :delete, on: :collection
       end
       root 'top#index'
