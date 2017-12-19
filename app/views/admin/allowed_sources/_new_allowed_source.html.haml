@@ -1,0 +1,9 @@
+= form_for ['admin', @new_allowed_source] do |f|
+  .form-grou3.text-center
+    = f.label :octet1, '新規許可IPアドレス'
+  .form-group.pb-3.form-row.justify-content-center
+    = f.text_field :octet1, size: 3, class: 'form-control col-1 mx-1'
+    = f.text_field :octet2, size: 3, class: 'form-control col-1 mx-1'
+    = f.text_field :octet3, size: 3, class: 'form-control col-1 mx-1'
+    = f.text_field :octet4, size: 3, class: 'form-control col-1 mx-1'
+    = f.submit '追加', class: 'col-1 btn btn-raised btn-info mx-3'

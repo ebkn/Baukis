@@ -1,5 +1,5 @@
 - @title = '許可IPアドレス一覧'
-
+= render 'new_allowed_source'
 = paginate @allowed_sources
 %table.table.table-hover.table-responsive.my-3
   %thead
@@ -13,4 +13,3 @@
         %td= presenter.ip_address
         %td= presenter.created_at
 = paginate @allowed_sources
-
