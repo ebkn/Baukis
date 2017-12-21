@@ -34,6 +34,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    Rails.application.config.baukis[:restrict_ip_addresses] = false
   end
 end
 
