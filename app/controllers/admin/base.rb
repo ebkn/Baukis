@@ -1,7 +1,14 @@
 class Admin::Base < ApplicationController
-  before_action :authenticate_user, :check_account, :check_timeout
+  before_action :check_source_ip_address,
+                :authenticate_user,
+                :check_account,
+                :check_timeout
 
   private
+
+  def check_source_ip_address
+    raise IpAddressRejected unless AllowedSource.include?('admin', request.ip)
+  end
 
   def current_administrator
     return unless session[:administrator_id]
