@@ -43,7 +43,7 @@ class FormPresenter
     markup(:div, class: 'form-group py-2') do |m|
       m << decorated_label(name, label_text, options)
       options = insert_datepicker(options.merge(class: 'form-control'))
-      m << text_field(name, options)
+      m << text_field(name, options))
       m << error_messages_for(name)
     end
   end

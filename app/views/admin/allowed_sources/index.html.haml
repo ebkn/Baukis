@@ -15,7 +15,7 @@
         - presenter = AllowedSourcePresenter.new(source, self)
         = f.fields_for :allowed_sources, source, index: i do |ff|
           = ff.hidden_field :id
-          %tr.text-center
+          %tr.text-centerdelete_admin_allowed_sources_path
             %td= ff.check_box :_destroy
             %td= presenter.ip_address
             %td= presenter.created_at
