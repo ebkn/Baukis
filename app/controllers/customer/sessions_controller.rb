@@ -3,7 +3,7 @@ class Customer::SessionsController < Customer::Base
 
   def new
     if current_customer
-      redirect_to customer_root_path
+      redirect_to customer_root_path, notice: '既にログイン済みです'
     else
       @form = Customer::LoginForm.new
     end
@@ -20,14 +20,14 @@ class Customer::SessionsController < Customer::Base
     customer = Customer.find_by(email_for_index: @form.email.downcase)
     if customer.nil?
       flash.now.alert = 'メールアドレスが間違っています'
-      render :new
     elsif Customer::Authenticator.new(customer).authenticate(@form.password)
       check_remember_me(@form.remember_me?, customer)
       redirect_to customer_root_path, notice: 'ログインしました'
+      return
     else
       flash.now.alert = 'パスワードが間違っています'
-      render :new
     end
+    render :new
   end
 
   def destroy
