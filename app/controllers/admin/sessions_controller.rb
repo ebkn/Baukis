@@ -3,7 +3,7 @@ class Admin::SessionsController < Admin::Base
 
   def new
     if current_administrator
-      redirect_to admin_root_path
+      redirect_to admin_root_path, notice: '既にログインしています'
     else
       @form = Admin::LoginForm.new
     end
@@ -20,17 +20,16 @@ class Admin::SessionsController < Admin::Base
     administrator = Administrator.find_by(email_for_index: @form.email.downcase)
     if administrator.nil?
       flash.now.alert = 'メールアドレスが間違っています'
-      render :new
     elsif administrator.suspended
       flash.now.alert = 'アカウントが凍結されています'
-      render :new
     elsif Admin::Authenticator.new(administrator).authenticate(@form.password)
       login(administrator)
       redirect_to admin_root_path, notice: 'ログインしました'
+      return
     else
       flash.now.alert = 'パスワードが間違っています'
-      render :new
     end
+    render :new
   end
 
   def destroy
