@@ -15,9 +15,7 @@ describe Admin::SessionsController, type: :controller do
 
     context 'when current_administrator does not exist' do
       before { get :new }
-      it 'assigns the login form object to @form' do
-        expect(assigns(:form)).to be_a_kind_of(Admin::LoginForm)
-      end
+      it { expect(assigns(:form)).to be_a_kind_of(Admin::LoginForm) }
       it { expect(response).to render_template :new }
     end
   end

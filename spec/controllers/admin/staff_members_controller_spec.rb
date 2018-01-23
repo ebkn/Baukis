@@ -8,38 +8,26 @@ end
 
 describe Admin::StaffMembersController, type: :controller do
   let(:administrator) { create(:administrator) }
-
   before do
     session[:administrator_id] = administrator.id
     session[:last_access_time] = 1.second.ago
   end
 
   describe 'GET #index' do
+    let!(:staff_member1) { create(:staff_member, family_name_kana: 'アイザワ', given_name_kana: 'コウキ') }
+    let!(:staff_member2) { create(:staff_member, family_name_kana: 'ヨシダ', given_name_kana: 'シュン') }
+    let!(:staff_member3) { create(:staff_member, family_name_kana: 'アイザワ', given_name_kana: 'アキ') }
     before { get :index }
-
     it 'assigns the requested staff_members orderd by kana to @staff_members' do
-      staff_member1 = create(:staff_member, family_name_kana: 'アイザワ', given_name_kana: 'コウキ')
-      staff_member2 = create(:staff_member, family_name_kana: 'ヨシダ', given_name_kana: 'シュン')
-      staff_member3 = create(:staff_member, family_name_kana: 'アイザワ', given_name_kana: 'アキ')
-
       expect(assigns(:staff_members)).to eq [staff_member3, staff_member1, staff_member2]
     end
-
-    it 'renders the :index template' do
-      expect(response).to render_template :index
-    end
+    it { expect(response).to render_template :index }
   end
 
   describe 'GET #new' do
     before { get :new }
-
-    it 'assigns the new instance to @staff_member' do
-      expect(assigns(:staff_member)).to be_a_kind_of(StaffMember)
-    end
-
-    it 'renders the :new template' do
-      expect(response).to render_template :new
-    end
+    it { expect(assigns(:staff_member)).to be_a_kind_of(StaffMember) }
+    it { expect(response).to render_template :new }
   end
 
   describe 'POST #create' do
@@ -47,36 +35,24 @@ describe Admin::StaffMembersController, type: :controller do
     let(:invalid_staff_member_params) { attributes_for(:staff_member, email: nil) }
 
     context 'when success' do
+      subject { post :create, params: { staff_member: staff_member_params } }
       it 'saves the new staff_member' do
-        expect { post :create, params: { staff_member: staff_member_params } }
-          .to change(StaffMember, :count).by(1)
+        expect { subject }.to change(StaffMember, :count).by(1)
       end
-
-      it 'shows notice flash' do
-        post :create, params: { staff_member: staff_member_params }
-        expect(flash[:notice]).to eq '職員アカウントを新規登録しました'
-      end
-
-      it 'redirects to admin_staff_members_path' do
-        post :create, params: { staff_member: staff_member_params }
-        expect(response).to redirect_to admin_staff_members_path
+      context do
+        before { subject }
+        it { expect(flash[:notice]).to eq '職員アカウントを新規登録しました' }
+        it { expect(response).to redirect_to admin_staff_members_path }
       end
     end
 
     context 'when failure' do
       context 'when invalid parameter' do
         before do
-          @staff_member = create(:staff_member)
           post :create, params: { staff_member: invalid_staff_member_params }
         end
-
-        it 'renders the :new template' do
-          expect(response).to render_template :new
-        end
-
-        it 'shows the alert flash' do
-          expect(flash[:alert]).to eq '職員アカウントの登録に失敗しました'
-        end
+        it { expect(response).to render_template :new }
+        it { expect(flash[:alert]).to eq '職員アカウントの登録に失敗しました' }
       end
 
       context 'when raise error' do
@@ -90,18 +66,10 @@ describe Admin::StaffMembersController, type: :controller do
 
   describe 'GET #edit' do
     context 'when success' do
-      before do
-        @staff_member = create(:staff_member)
-        get :edit, params: { id: @staff_member }
-      end
-
-      it 'assigns the requested staff_member to @staff_member' do
-        expect(assigns(:staff_member)).to eq @staff_member
-      end
-
-      it 'renders the :edit template' do
-        expect(response).to render_template :edit
-      end
+      let(:staff_member) { create(:staff_member) }
+      before { get :edit, params: { id: staff_member } }
+      it { expect(assigns(:staff_member)).to eq staff_member }
+      it { expect(response).to render_template :edit }
     end
 
     context 'when failure' do
@@ -117,39 +85,26 @@ describe Admin::StaffMembersController, type: :controller do
     let(:invalid_staff_member_params) { attributes_for(:staff_member, email: nil) }
 
     context 'when success' do
+      let(:staff_member) { create(:staff_member) }
       before do
-        @staff_member = create(:staff_member)
-        patch :update, params: { id: 1, staff_member: staff_member_params }
+        patch :update, params: { id: staff_member, staff_member: staff_member_params }
       end
-
       it 'updates the requested staff_member' do
-        @staff_member.reload
-        expect(@staff_member.email).to eq 'test@test.com'
+        staff_member.reload
+        expect(staff_member.email).to eq 'test@test.com'
       end
-
-      it 'show notice flash' do
-        expect(flash[:notice]).to eq '職員アカウントを更新しました'
-      end
-
-      it 'redirects to admin_staff_members_path' do
-        expect(response).to redirect_to admin_staff_members_path
-      end
+      it { expect(flash[:notice]).to eq '職員アカウントを更新しました' }
+      it { expect(response).to redirect_to admin_staff_members_path }
     end
 
     context 'when failure' do
       context 'when invalid parameter' do
+        let(:staff_member) { create(:staff_member) }
         before do
-          @staff_member = create(:staff_member)
-          patch :update, params: { id: 1, staff_member: invalid_staff_member_params }
+          patch :update, params: { id: staff_member, staff_member: invalid_staff_member_params }
         end
-
-        it 'renders the :new template' do
-          expect(response).to render_template :edit
-        end
-
-        it 'shows the alert flash' do
-          expect(flash[:alert]).to eq '職員アカウントの更新に失敗しました'
-        end
+        it { expect(response).to render_template :edit }
+        it { expect(flash[:alert]).to eq '職員アカウントの更新に失敗しました' }
       end
 
       context 'when raise error' do
@@ -174,11 +129,9 @@ describe Admin::StaffMembersController, type: :controller do
 
   describe 'GET #show' do
     context 'when success' do
-      it 'redirects to edit_admin_staff_member_path' do
-        staff_member = create(:staff_member)
-        get :show, params: { id: staff_member }
-        expect(response).to redirect_to edit_admin_staff_member_path(staff_member)
-      end
+      let(:staff_member) { create(:staff_member) }
+      before { get :show, params: { id: staff_member } }
+      it { expect(response).to redirect_to edit_admin_staff_member_path(staff_member) }
     end
 
     context 'when failure' do
@@ -191,21 +144,15 @@ describe Admin::StaffMembersController, type: :controller do
 
   describe 'DELETE #destroy' do
     context 'when success' do
-      before { @staff_member = create(:staff_member) }
-
+      let!(:staff_member) { create(:staff_member) }
+      subject { delete :destroy, params: { id: staff_member } }
       it 'destroys the requested staff_member' do
-        expect { delete :destroy, params: { id: @staff_member } }
-          .to change(StaffMember, :count).by(-1)
+        expect { subject }.to change(StaffMember, :count).by(-1)
       end
-
-      it 'redirects to admin_staff_members_path' do
-        delete :destroy, params: { id: @staff_member }
-        expect(response).to redirect_to admin_staff_members_path
-      end
-
-      it 'shows notice flash' do
-        delete :destroy, params: { id: @staff_member }
-        expect(flash[:notice]).to eq '職員アカウントを削除しました'
+      context do
+        before { subject }
+        it { expect(response).to redirect_to admin_staff_members_path }
+        it { expect(flash[:notice]).to eq '職員アカウントを削除しました' }
       end
     end
 
