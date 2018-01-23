@@ -5,6 +5,7 @@ services:
 
 before_script:
   - cp config/.travis.database.yml config/database.yml
+  - gem update --system
   - bin/rails db:setup RAILS_ENV=test
 
 script:
