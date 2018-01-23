@@ -3,7 +3,7 @@ class Staff::SessionsController < Staff::Base
 
   def new
     if current_staff_member
-      redirect_to staff_root_path
+      redirect_to staff_root_path, notice: '既にログイン済みです'
     else
       @form = Staff::LoginForm.new
     end
