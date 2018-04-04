@@ -32,6 +32,7 @@ group :development do
   gem 'better_errors'
   gem 'rack-mini-profiler'
   gem 'pry-rails', group: :test
+  gem 'rubocop', group: :test
 end
 
 group :test do
