@@ -3,10 +3,10 @@ language: ruby
 services:
   - mysql
 
-before_script:
-  - cp config/.travis.database.yml config/database.yml
-  - gem update --system
-  - bin/rails db:setup RAILS_ENV=test
+before_install:
+  - gem update --system --no-document
 
 script:
+  - cp config/.travis.database.yml config/database.yml
+  - bin/rails db:setup RAILS_ENV=test
   - bundle exec rspec
