@@ -1,4 +1,4 @@
-class CreateAllowedSources < ActiveRecord::Migration[5.0]
+class CreateAllowedSources < ActiveRecord::Migration[5.1]
   def change
     create_table :allowed_sources do |t|
       t.string :namespace, null: false
