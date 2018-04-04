@@ -5,6 +5,7 @@ services:
 
 before_install:
   - gem update --system --no-document
+  - gem install bundler
 
 script:
   - cp config/.travis.database.yml config/database.yml
