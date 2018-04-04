@@ -11,8 +11,8 @@ This is sample for studying Ruby on Rails.
 
 ## Dependencies
 
-- Ruby 2.4.2
-- Rails 5.0.6
+- Ruby 2.5.1
+- Rails 5.1.6
 - MySQL
 
 ## Setup
@@ -22,13 +22,11 @@ $ git clone git@github.com:ebkn12/Baukis.git
 
 $ cd baukis
 
-$ rails db:create
+$ bundle install --path vendor/bundle
 
-$ rails db:migrate
+$ rails db:setup
 
 $ rails db:seed
-
-$ bundle install --path vendor/bundle
 
 $ rails s
 ```
