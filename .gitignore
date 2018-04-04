@@ -21,3 +21,6 @@
 
 # Ignore .vscode
 /.vscode
+
+# Ignore .idea
+.idea

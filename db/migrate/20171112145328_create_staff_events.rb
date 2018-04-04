@@ -1,4 +1,4 @@
-class CreateStaffEvents < ActiveRecord::Migration[5.0]
+class CreateStaffEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :staff_events do |t|
       t.references :staff_member, foreign_key: true

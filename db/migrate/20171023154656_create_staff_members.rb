@@ -1,4 +1,4 @@
-class CreateStaffMembers < ActiveRecord::Migration[5.0]
+class CreateStaffMembers < ActiveRecord::Migration[5.1]
   def change
     create_table :staff_members do |t|
       t.string :email, null: false
