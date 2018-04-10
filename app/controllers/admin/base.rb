@@ -4,6 +4,8 @@ class Admin::Base < ApplicationController
                 :check_account,
                 :check_timeout
 
+  TIMEOUT = 60.minutes.freeze
+
   private
 
   def check_source_ip_address
@@ -13,8 +15,7 @@ class Admin::Base < ApplicationController
   def current_administrator
     return unless session[:administrator_id]
 
-    @current_administrator ||=
-      Administrator.find_by(id: session[:administrator_id])
+    @current_administrator ||= Administrator.find_by(id: session[:administrator_id])
   end
 
   helper_method :current_administrator
@@ -26,11 +27,10 @@ class Admin::Base < ApplicationController
 
   def check_account
     return unless current_administrator&.suspended
+
     session.delete(:administrator_id)
     redirect_to admin_root_path, alert: 'アカウントが無効です'
   end
-
-  TIMEOUT = 60.minutes.freeze
 
   def check_timeout
     return unless current_administrator

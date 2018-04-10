@@ -1,4 +1,8 @@
 class CustomerFormPresenter < UserFormPresenter
+  GENDER_DISPLAY_NAMES = [
+    { en: 'male', ja: '男性' }, { en: 'female', ja: '女性' }, { en: 'other', ja: 'その他' }
+  ].freeze
+
   def birthday_field_block(name, options = {})
     markup(:div, class: 'form-group py-2') do |m|
       options = insert_birthday_picker(options)
@@ -11,17 +15,11 @@ class CustomerFormPresenter < UserFormPresenter
     markup(:div, class: 'form-group py-2') do |m|
       m << decorated_label(:gender, '性別')
       m.div(class: 'form-row px-3') do
-        m.div(class: 'col-sm-3 col-md-2 form-check text-center') do
-          m << radio_button(:gender, 'male', class: 'form-check-input')
-          m << label(:gender_male, '男性', class: 'form-check-label')
-        end
-        m.div(class: 'col-sm-3 col-md-2 form-check text-center') do
-          m << radio_button(:gender, 'female', class: 'form-check-input')
-          m << label(:gender_female, '女性', class: 'form-check-label')
-        end
-        m.div(class: 'col-sm-3 col-md-2 form-check text-center') do
-          m << radio_button(:gender, 'other', class: 'form-check-input')
-          m << label(:gender_other, 'その他', class: 'form-check-label')
+        GENDER_DISPLAY_NAMES.each do |gender_hash|
+          m.div(class: 'col-sm-3 col-md-2 form-check text-center') do
+            m << radio_button(:gender, gender_hash[:en], class: 'form-check-input')
+            m << label("gender_#{gender_hash[:en]}".to_sym, gender_hash[:ja], class: 'form-check-label')
+          end
         end
         m << error_messages_for(:gender)
       end

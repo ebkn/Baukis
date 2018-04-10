@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
   has_many :phones, dependent: :destroy
   has_many :personal_phones, proc {
     where(address_id: nil)
-  }, class_name: 'Phone', autosave: true
+  }, class_name: 'Phone', autosave: true, inverse_of: :customer
 
   scope :order_by_name, -> { order(:family_name_kana, :given_name_kana) }
 

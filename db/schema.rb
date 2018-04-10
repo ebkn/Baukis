@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214081644) do
+ActiveRecord::Schema.define(version: 2017_12_14_081644) do
 
-  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.string "type", null: false
     t.string "postal_code", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20171214081644) do
     t.index ["type", "prefecture", "city"], name: "index_addresses_on_type_and_prefecture_and_city"
   end
 
-  create_table "administrators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "administrators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", null: false
     t.string "email_for_index", null: false
     t.string "hashed_password"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20171214081644) do
     t.index ["email_for_index"], name: "index_administrators_on_email_for_index", unique: true
   end
 
-  create_table "allowed_sources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "allowed_sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace", null: false
     t.integer "octet1", null: false
     t.integer "octet2", null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20171214081644) do
     t.index ["namespace", "octet1", "octet2", "octet3", "octet4"], name: "index_allowed_sources_on_namespace_and_octets", unique: true
   end
 
-  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", null: false
     t.string "email_for_index", null: false
     t.string "family_name", null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20171214081644) do
     t.index ["given_name_kana"], name: "index_customers_on_given_name_kana"
   end
 
-  create_table "phones", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "phones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "address_id"
     t.string "number", null: false
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20171214081644) do
     t.index ["number_for_index"], name: "index_phones_on_number_for_index"
   end
 
-  create_table "staff_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "staff_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "staff_member_id"
     t.string "type", null: false
     t.datetime "created_at", null: false
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20171214081644) do
     t.index ["staff_member_id"], name: "index_staff_events_on_staff_member_id"
   end
 
-  create_table "staff_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "staff_members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", null: false
     t.string "email_for_index", null: false
     t.string "family_name", null: false

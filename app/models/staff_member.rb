@@ -4,7 +4,9 @@ class StaffMember < ApplicationRecord
   include EmailHolder
   include PasswordHolder
 
-  has_many :events, class_name: 'StaffEvent', dependent: :destroy
+  has_many :events, class_name: 'StaffEvent',
+                    dependent: :destroy,
+                    inverse_of: :member
 
   scope :order_by_name, -> { order(:family_name_kana, :given_name_kana) }
 

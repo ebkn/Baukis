@@ -11,23 +11,15 @@ class Customer::SessionsController < Customer::Base
 
   def create
     @form = Customer::LoginForm.new(login_form_params)
-    unless form_filled?(@form)
-      flash.now.alert = 'メールアドレスとパスワードを入力してください'
-      render :new
-      return
-    end
+    return false.tap { require_mail_and_password_flash } unless form_filled?(@form)
 
-    customer = Customer.find_by(email_for_index: @form.email.downcase)
-    if customer.nil?
-      flash.now.alert = 'メールアドレスが間違っています'
-    elsif Customer::Authenticator.new(customer).authenticate(@form.password)
-      check_remember_me(@form.remember_me?, customer)
-      redirect_to customer_root_path, notice: 'ログインしました'
-      return
-    else
-      flash.now.alert = 'パスワードが間違っています'
-    end
-    render :new
+    customer = Customer.find_by!(email_for_index: @form.email.downcase)
+    return false.tap { wrong_password_flash } unless check_password(customer)
+
+    check_and_set_remember_me(@form.remember_me?, customer)
+    redirect_to customer_root_path, notice: 'ログインしました'
+  rescue ActiveRecord::RecordNotFound
+    wrong_mail_flash
   end
 
   def destroy
@@ -46,7 +38,11 @@ class Customer::SessionsController < Customer::Base
     form_data.email.present? && form_data.password.present?
   end
 
-  def check_remember_me(remember_me, customer)
+  def check_password(customer)
+    Customer::Authenticator.new(customer).authenticate(@form.password)
+  end
+
+  def check_and_set_remember_me(remember_me, customer)
     if remember_me
       cookies.permanent.signed[:customer_id] = {
         value: customer.id,
@@ -56,5 +52,20 @@ class Customer::SessionsController < Customer::Base
       cookies.delete(:customer_id)
       session[:customer_id] = customer.id
     end
+  end
+
+  def require_mail_and_password_flash
+    flash.now.alert = 'メールアドレスとパスワードを入力してください'
+    render :new
+  end
+
+  def wrong_mail_flash
+    flash.now.alert = 'メールアドレスが間違っています'
+    render :new
+  end
+
+  def wrong_password_flash
+    flash.now.alert = 'パスワードが間違っています'
+    render :new
   end
 end

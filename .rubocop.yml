@@ -1,5 +1,10 @@
 AllCops:
-  # You could specify set of files or dirs while you want to be ignored by rubocop
+  TargetRubyVersion: 2.5.1
+
+  Include:
+      - '**/Rakefile'
+      - '**/config.ru'
+
   Exclude:
     - bin/*
     - db/**/*
@@ -21,23 +26,9 @@ Style/Documentation:
 AsciiComments:
   Enabled: false
 
-# disable Use nested module/class definitions instead of compact style warning
+# enable definition style like Module::Class
 ClassAndModuleChildren:
-  EnforcedStyle: compact
-
-# disable line is too long warning
-Metrics/LineLength:
-  Exclude:
-    - 'lib/tasks/**/*'
-    - 'lib/**/spec/*'
-    - 'spec/**/*'
-
-# dieable Block has too many lines warning
-Metrics/BlockLength:
-  Exclude:
-    - 'lib/tasks/**/*'
-    - 'lib/**/spec/*'
-    - 'spec/**/*'
+  Enabled: false
 
 # enable perl regexp style ($)
 Style/PerlBackrefs:
@@ -46,3 +37,38 @@ Style/PerlBackrefs:
 # disable missing magic comment warning
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+# disable line is too long warning
+Metrics/LineLength:
+  Max: 110
+  Exclude:
+    - 'lib/tasks/**/*'
+    - 'lib/**/spec/*'
+    - 'spec/**/*'
+
+# dieable Block has too many lines warning
+Metrics/BlockLength:
+  Max: 15
+  Exclude:
+    - 'lib/tasks/**/*'
+    - 'lib/**/spec/*'
+    - 'spec/**/*'
+
+# dieable method has too many lines warning
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'lib/tasks/**/*'
+    - 'lib/**/spec/*'
+    - 'spec/**/*'
+
+Metrics/AbcSize:
+  Max: 20
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/customer.rb'
+
+Rails/OutputSafety:
+  Exclude:
+    - 'app/lib/html_builder.rb'
