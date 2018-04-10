@@ -36,17 +36,13 @@ class Staff::CustomerSearchForm
     self.given_name_kana  = normalize_as_furigana(given_name_kana)
     self.postal_code      = normalize_as_postal_code(postal_code)
     self.city             = normalize_as_name(city)
-    self.phone_number     = normalize_as_phone_number(phone_number)
-                            .try(:gsub, /\D/, '')
+    self.phone_number     = normalize_as_phone_number(phone_number).try(:gsub, /\D/, '')
   end
 
   def search_by_name(rel)
-    if family_name_kana.present?
-      rel = rel.where(family_name_kana: family_name_kana)
-    end
-    if given_name_kana.present?
-      rel = rel.where(given_name_kana: given_name_kana)
-    end
+    rel = rel.where(family_name_kana: family_name_kana) if family_name_kana.present?
+    rel = rel.where(given_name_kana: given_name_kana)   if given_name_kana.present?
+
     rel
   end
 
@@ -64,16 +60,12 @@ class Staff::CustomerSearchForm
   end
 
   def search_by_address(rel)
-    return rel if postal_code.blank? &&
-                  prefecture.blank? &&
-                  city.blank?
+    return rel if postal_code.blank? && prefecture.blank? && city.blank?
 
     rel = join_addresses(address_type, rel)
-    if postal_code.present?
-      rel = rel.where('addresses.postal_code' => postal_code)
-    end
-    rel = rel.where('addresses.prefecture' => prefecture) if prefecture.present?
-    rel = rel.where('address.city' => city) if city.present?
+    rel = rel.where('addresses.postal_code' => postal_code) if postal_code.present?
+    rel = rel.where('addresses.prefecture' => prefecture)   if prefecture.present?
+    rel = rel.where('address.city' => city)                 if city.present?
 
     rel
   end
@@ -98,7 +90,6 @@ class Staff::CustomerSearchForm
 
   def search_by_phone_last_4_digits(rel)
     return rel if last_four_digits_of_phone_number.blank?
-    rel.joins(:phones)
-       .where('phones.last_four_digits' => last_four_digits_of_phone_number)
+    rel.joins(:phones).where('phones.last_four_digits' => last_four_digits_of_phone_number)
   end
 end

@@ -30,20 +30,6 @@ AsciiComments:
 ClassAndModuleChildren:
   Enabled: false
 
-# disable line is too long warning
-Metrics/LineLength:
-  Exclude:
-    - 'lib/tasks/**/*'
-    - 'lib/**/spec/*'
-    - 'spec/**/*'
-
-# dieable Block has too many lines warning
-Metrics/BlockLength:
-  Exclude:
-    - 'lib/tasks/**/*'
-    - 'lib/**/spec/*'
-    - 'spec/**/*'
-
 # enable perl regexp style ($)
 Style/PerlBackrefs:
   Enabled: false
@@ -51,3 +37,27 @@ Style/PerlBackrefs:
 # disable missing magic comment warning
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+# disable line is too long warning
+Metrics/LineLength:
+  Max: 110
+  Exclude:
+    - 'lib/tasks/**/*'
+    - 'lib/**/spec/*'
+    - 'spec/**/*'
+
+# dieable Block has too many lines warning
+Metrics/BlockLength:
+  Max: 15
+  Exclude:
+    - 'lib/tasks/**/*'
+    - 'lib/**/spec/*'
+    - 'spec/**/*'
+
+# dieable method has too many lines warning
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'lib/tasks/**/*'
+    - 'lib/**/spec/*'
+    - 'spec/**/*'
