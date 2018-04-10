@@ -8,6 +8,7 @@ end
 gem 'rails', '~> 5.2'
 gem 'mysql2'
 gem 'puma'
+gem 'bootsnap'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
@@ -32,7 +33,7 @@ group :development do
   gem 'better_errors'
   gem 'rack-mini-profiler'
   gem 'pry-rails', group: :test
-  gem 'rubocop', group: :test
+  gem 'rubocop', group: :test, require: false
 end
 
 group :test do
