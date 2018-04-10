@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def rescue403(e)
-    @exception = e
-    render 'errors/forbidden', status: 403
+  def rescue403(exception)
+    @exception = exception
+    render 'errors/forbidden', status: :forbidden
   end
 end

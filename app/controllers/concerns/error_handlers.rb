@@ -10,18 +10,18 @@ module ErrorHandlers
 
   private
 
-  def rescue400(e)
-    @exception = e
-    render 'errors/bad_request', status: 400
+  def rescue400(exception)
+    @exception = exception
+    render 'errors/bad_request', status: :bad_request
   end
 
-  def rescue404(e)
-    @exception = e
-    render 'errors/not_found', status: 404
+  def rescue404(exception)
+    @exception = exception
+    render 'errors/not_found', status: :not_found
   end
 
-  def rescue500(e)
-    @exception = e
-    render 'errors/internal_server_error', status: 500
+  def rescue500(exception)
+    @exception = exception
+    render 'errors/internal_server_error', status: :internal_server_error
   end
 end
