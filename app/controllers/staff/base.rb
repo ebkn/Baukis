@@ -4,6 +4,8 @@ class Staff::Base < ApplicationController
                 :check_account,
                 :check_timeout
 
+  TIMEOUT = 60.minutes.freeze
+
   private
 
   def check_source_ip_address
@@ -13,8 +15,7 @@ class Staff::Base < ApplicationController
   def current_staff_member
     return unless session[:staff_member_id]
 
-    @current_staff_member ||=
-      StaffMember.find_by(id: session[:staff_member_id])
+    @current_staff_member ||= StaffMember.find_by(id: session[:staff_member_id])
   end
 
   helper_method :current_staff_member
@@ -26,11 +27,10 @@ class Staff::Base < ApplicationController
 
   def check_account
     return if current_staff_member.blank? || current_staff_member.active?
+
     session.delete(:staff_member_id)
     redirect_to staff_root_path, alert: 'アカウントが無効です'
   end
-
-  TIMEOUT = 60.minutes.freeze
 
   def check_timeout
     return unless current_staff_member

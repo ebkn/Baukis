@@ -11,25 +11,16 @@ class Admin::SessionsController < Admin::Base
 
   def create
     @form = Admin::LoginForm.new(login_form_params)
-    unless form_filled?(@form)
-      flash.now.alert = 'メールアドレスとパスワードを入力してください'
-      render :new
-      return
-    end
+    return false.tap { require_mail_and_password_flash } unless form_filled?(@form)
 
-    administrator = Administrator.find_by(email_for_index: @form.email.downcase)
-    if administrator.nil?
-      flash.now.alert = 'メールアドレスが間違っています'
-    elsif administrator.suspended
-      flash.now.alert = 'アカウントが凍結されています'
-    elsif Admin::Authenticator.new(administrator).authenticate(@form.password)
-      login(administrator)
-      redirect_to admin_root_path, notice: 'ログインしました'
-      return
-    else
-      flash.now.alert = 'パスワードが間違っています'
-    end
-    render :new
+    administrator = Administrator.find_by!(email_for_index: @form.email.downcase)
+    return false.tap { suspended_account_flash } if administrator.suspended
+    return false.tap { wrong_password_flash } unless check_password(administrator)
+
+    login(administrator)
+    redirect_to admin_root_path, notice: 'ログインしました'
+  rescue ActiveRecord::RecordNotFound
+    wrong_mail_flash
   end
 
   def destroy
@@ -47,8 +38,32 @@ class Admin::SessionsController < Admin::Base
     form_data.email.present? && form_data.password.present?
   end
 
+  def check_password(administrator)
+    Admin::Authenticator.new(administrator).authenticate(@form.password)
+  end
+
   def login(administrator)
     session[:administrator_id] = administrator.id
     session[:last_access_time] = Time.current
+  end
+
+  def require_mail_and_password_flash
+    flash.now.alert = 'メールアドレスとパスワードを入力してください'
+    render :new
+  end
+
+  def wrong_mail_flash
+    flash.now.alert = 'メールアドレスが間違っています'
+    render :new
+  end
+
+  def suspended_account_flash
+    flash.now.alert = 'アカウントが凍結されています'
+    render :new
+  end
+
+  def wrong_password_flash
+    flash.now.alert = 'パスワードが間違っています'
+    render :new
   end
 end

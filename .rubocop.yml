@@ -63,8 +63,12 @@ Metrics/MethodLength:
     - 'spec/**/*'
 
 Metrics/AbcSize:
-  Max: 16
+  Max: 20
 
 Rails/HasManyOrHasOneDependent:
   Exclude:
     - 'app/models/customer.rb'
+
+Rails/OutputSafety:
+  Exclude:
+    - 'app/lib/html_builder.rb'

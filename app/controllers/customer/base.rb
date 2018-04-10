@@ -6,6 +6,7 @@ class Customer::Base < ApplicationController
   def current_customer
     customer_id = cookies.signed[:customer_id] || session[:customer_id]
     return if customer_id.blank?
+
     @current_customer ||= Customer.find_by(id: customer_id)
   end
 

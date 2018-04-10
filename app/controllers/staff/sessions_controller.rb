@@ -11,27 +11,16 @@ class Staff::SessionsController < Staff::Base
 
   def create
     @form = Staff::LoginForm.new(login_form_params)
-    unless form_filled?(@form)
-      flash.now.alert = 'メールアドレスとパスワードを入力してください'
-      render :new
-      return
-    end
+    return false.tap { require_mail_and_password_flash } unless form_filled?(@form)
 
-    staff_member = StaffMember.find_by(email_for_index: @form.email.downcase)
-    if staff_member.nil?
-      flash.now.alert = 'メールアドレスが間違っています'
-      render :new
-    elsif staff_member.suspended
-      staff_member.create_rejected_events
-      flash.now.alert = 'アカウントが凍結されています'
-      render :new
-    elsif Staff::Authenticator.new(staff_member).authenticate(@form.password)
-      login(staff_member)
-      redirect_to staff_root_path, notice: 'ログインしました'
-    else
-      flash.now.alert = 'パスワードが間違っています'
-      render :new
-    end
+    staff_member = StaffMember.find_by!(email_for_index: @form.email.downcase)
+    return false.tap { suspended_account_flash } if staff_member.suspended
+    return false.tap { wrong_password_flash } unless check_password(staff_member)
+
+    login(staff_member)
+    redirect_to staff_root_path, notice: 'ログインしました'
+  rescue ActiveRecord::RecordNotFound
+    wrong_mail_flash
   end
 
   def destroy
@@ -50,9 +39,33 @@ class Staff::SessionsController < Staff::Base
     form_data.email.present? && form_data.password.present?
   end
 
+  def check_password(staff_member)
+    Staff::Authenticator.new(staff_member).authenticate(@form.password)
+  end
+
   def login(staff_member)
     session[:staff_member_id] = staff_member.id
     session[:last_access_time] = Time.current
     staff_member.create_login_events
+  end
+
+  def require_mail_and_password_flash
+    flash.now.alert = 'メールアドレスとパスワードを入力してください'
+    render :new
+  end
+
+  def wrong_mail_flash
+    flash.now.alert = 'メールアドレスが間違っています'
+    render :new
+  end
+
+  def suspended_account_flash
+    flash.now.alert = 'アカウントが凍結されています'
+    render :new
+  end
+
+  def wrong_password_flash
+    flash.now.alert = 'パスワードが間違っています'
+    render :new
   end
 end
