@@ -61,3 +61,10 @@ Metrics/MethodLength:
     - 'lib/tasks/**/*'
     - 'lib/**/spec/*'
     - 'spec/**/*'
+
+Metrics/AbcSize:
+  Max: 16
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/customer.rb'

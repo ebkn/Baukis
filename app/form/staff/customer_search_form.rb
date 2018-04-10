@@ -60,7 +60,7 @@ class Staff::CustomerSearchForm
   end
 
   def search_by_address(rel)
-    return rel if postal_code.blank? && prefecture.blank? && city.blank?
+    return rel if address_data_not_exist?
 
     rel = join_addresses(address_type, rel)
     rel = rel.where('addresses.postal_code' => postal_code) if postal_code.present?
@@ -91,5 +91,9 @@ class Staff::CustomerSearchForm
   def search_by_phone_last_4_digits(rel)
     return rel if last_four_digits_of_phone_number.blank?
     rel.joins(:phones).where('phones.last_four_digits' => last_four_digits_of_phone_number)
+  end
+
+  def address_data_not_exist?
+    postal_code.blank? && prefecture.blank? && city.blank?
   end
 end
