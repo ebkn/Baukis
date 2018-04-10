@@ -12,7 +12,7 @@ This is sample for studying Ruby on Rails.
 ## Dependencies
 
 - Ruby 2.5.1
-- Rails 5.1.6
+- Rails 5.2.0
 - MySQL
 
 ## Setup
@@ -38,12 +38,12 @@ Add host settings.
 $ sudo vi /private/etc/hosts
 ```
 
-Add following text in last line. (Do not override)
+Add following text in last line. (**Do not replace with exists**)
 ```sh
 127.0.0.1 baukis.example.com example.com
 ```
 
-Access following links.
+Following links are URL for development.
 ```
 administrators page
 http://baukis.example.com/administrators
@@ -55,7 +55,7 @@ customers page
 http://example.com/mypage
 ```
 
-This is email & password for development.
+Following lists are sample emails & passwords for development.
 ```
 # administrator
 admin@test.com

@@ -13,28 +13,11 @@ class Staff::CustomerForm
 
   def assign_attributes(params = {})
     @params = params
-    self.inputs_home_address = params[:inputs_home_address] == '1'
-    self.inputs_work_address = params[:inputs_work_address] == '1'
+    set_inputs_addresses
 
-    customer.assign_attributes(customer_params)
-    new_phones = phone_params(:customer).fetch(:phones)
-    assign_phones_data(customer.personal_phones, new_phones)
-
-    if inputs_home_address
-      customer.home_address.assign_attributes(home_address_params)
-      new_phones = phone_params(:home_address).fetch(:phones)
-      assign_phones_data(customer.home_address.phones, new_phones)
-    else
-      customer.home_address.mark_for_destruction
-    end
-
-    if inputs_work_address
-      customer.work_address.assign_attributes(work_address_params)
-      new_phones = phone_params(:work_address).fetch(:phones)
-      assign_phones_data(customer.work_address.phones, new_phones)
-    else
-      customer.work_address.mark_for_destruction
-    end
+    assign_customer_attributes
+    assign_home_address_attributes
+    assign_work_address_attributes
   end
 
   private
@@ -42,6 +25,7 @@ class Staff::CustomerForm
   def set_addresses
     self.inputs_home_address = @customer.home_address.present?
     self.inputs_work_address = @customer.work_address.present?
+
     @customer.build_home_address unless @customer.home_address
     @customer.build_work_address unless @customer.work_address
   end
@@ -56,43 +40,35 @@ class Staff::CustomerForm
     (2 - phones.size).times { phones.build }
   end
 
-  def customer_params
-    @params.require(:customer).permit(
-      :email,
-      :password,
-      :family_name,
-      :given_name,
-      :family_name_kana,
-      :given_name_kana,
-      :birthday,
-      :gender
-    )
+  def set_inputs_addresses
+    self.inputs_home_address = @params[:inputs_home_address] == '1'
+    self.inputs_work_address = @params[:inputs_work_address] == '1'
   end
 
-  def home_address_params
-    @params.require(:home_address).permit(
-      :postal_code,
-      :prefecture,
-      :city,
-      :address1,
-      :address2
-    )
+  def assign_customer_attributes
+    customer.assign_attributes(customer_params)
+    new_phones = phone_params(:customer).fetch(:phones)
+    assign_phones_data(customer.personal_phones, new_phones)
   end
 
-  def work_address_params
-    @params.require(:work_address).permit(
-      :postal_code,
-      :prefecture,
-      :city,
-      :address1,
-      :address2,
-      :company_name,
-      :division_name
-    )
+  def assign_home_address_attributes
+    if inputs_home_address
+      customer.home_address.assign_attributes(home_address_params)
+      new_phones = phone_params(:home_address).fetch(:phones)
+      assign_phones_data(customer.home_address.phones, new_phones)
+    else
+      customer.home_address.mark_for_destruction
+    end
   end
 
-  def phone_params(record_name)
-    @params.require(record_name).permit(phones: %i[number primary])
+  def assign_work_address_attributes
+    if inputs_work_address
+      customer.work_address.assign_attributes(work_address_params)
+      new_phones = phone_params(:work_address).fetch(:phones)
+      assign_phones_data(customer.work_address.phones, new_phones)
+    else
+      customer.work_address.mark_for_destruction
+    end
   end
 
   def assign_phones_data(phones, new_phones)
@@ -104,5 +80,30 @@ class Staff::CustomerForm
         phones[index].mark_for_destruction
       end
     end
+  end
+
+  def customer_params
+    @params.require(:customer).permit(
+      :email, :password,
+      :family_name, :given_name,
+      :family_name_kana, :given_name_kana,
+      :birthday, :gender
+    )
+  end
+
+  def home_address_params
+    @params.require(:home_address).permit(
+      :postal_code, :prefecture, :city, :address1, :address2
+    )
+  end
+
+  def work_address_params
+    @params.require(:work_address).permit(
+      :postal_code, :prefecture, :city, :address1, :address2, :company_name, :division_name
+    )
+  end
+
+  def phone_params(record_name)
+    @params.require(record_name).permit(phones: %i[number primary])
   end
 end
