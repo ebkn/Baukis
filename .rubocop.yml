@@ -1,5 +1,10 @@
 AllCops:
-  # You could specify set of files or dirs while you want to be ignored by rubocop
+  TargetRubyVersion: 2.5.1
+
+  Include:
+      - '**/Rakefile'
+      - '**/config.ru'
+
   Exclude:
     - bin/*
     - db/**/*
@@ -21,9 +26,9 @@ Style/Documentation:
 AsciiComments:
   Enabled: false
 
-# disable Use nested module/class definitions instead of compact style warning
+# enable definition style like Module::Class
 ClassAndModuleChildren:
-  EnforcedStyle: compact
+  Enabled: false
 
 # disable line is too long warning
 Metrics/LineLength:
