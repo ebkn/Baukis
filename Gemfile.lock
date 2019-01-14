@@ -95,7 +95,7 @@ GEM
     faker (1.8.7)
       i18n (>= 0.7)
     faker-japanese (0.0.1)
-    ffi (1.9.23)
+    ffi (1.10.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     haml (5.0.4)
